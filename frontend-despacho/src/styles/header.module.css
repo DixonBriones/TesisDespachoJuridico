@@ -1,0 +1,60 @@
+.header {
+    background-color: #F2B705;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .leftSection {
+    display: flex;
+    align-items: center;
+  }
+  
+  .icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+  
+  .restaurantName {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .rightSection {
+    display: flex;
+    align-items: center;
+  }
+  
+  .currentTime {
+    margin-right: 10px;
+    padding-right: 25px;
+  }
+  
+  .logoutButton {
+    width: 150px;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.175rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    background-color: #D90718;
+    border-color: #D90718;
+    color: #ffffff;
+  }
+
+  .button:hover {
+    background-color: #c50515;
+    }
+    
+.link{
+  text-decoration: none;
+}
