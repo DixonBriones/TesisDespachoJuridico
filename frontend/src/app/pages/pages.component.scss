@@ -1,0 +1,38 @@
+.spacer {
+    flex: 1 1 auto;
+  }
+  .logo-image {
+    width: 50px; /* Ajusta el tamaño según tus necesidades */
+    height: auto; /* Mantén la proporción de aspecto */
+  }
+  mat-toolbar {
+    background: #015f9e;
+    color: white;
+  }
+  .toolbar-logo{
+    padding: 10px;
+  }
+  
+  .sidenav-container {
+    height: calc(100vh - 65px);
+  }
+  .sidenav-content {
+    height: calc(100vh - 65px);
+    padding: 16px;
+  }
+  
+  .sidenav {
+    background-color: #015f9e;
+    width: 200px;
+  }
+  .nav-item {
+    color: white;
+  }
+  
+  .sidenav-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    display: flex;
+    align-items: center; /* Ajusta el color del texto según tu diseño */
+  }

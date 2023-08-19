@@ -1,0 +1,32 @@
+<mat-toolbar>
+    <button mat-icon-button class="sidenav-button" *ngIf="sidenav.mode ==='over'" (click)="sidenav.toggle()">
+      <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+      <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+    </button>
+    <span>Gutierrez & Asociados</span>
+    <span class="toolbar-logo">
+      <img src="../assets/img/logo.png" alt="Logo Despacho" class="logo-image" />
+    </span>
+    <span class="spacer"></span>
+  </mat-toolbar>
+  
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav="matSidenav" mode="side" class="sidenav">
+      <mat-nav-list class="sidenav-list">
+        <a mat-list-item routerLink="/perfil">
+          <span class="nav-item">Procesos judiciales</span>
+        </a>
+        <a mat-list-item routerLink="/perfil">
+          <span class="nav-item">Perfil</span>
+        </a>
+        <a mat-list-item routerLink="/ajustes">
+          <span class="nav-item">Inicio</span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+  
+    <mat-sidenav-content class="sidenav-content">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  

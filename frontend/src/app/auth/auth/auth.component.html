@@ -1,0 +1,23 @@
+<div class="login-container">
+    <mat-card class="login-card">
+      <mat-card-content>
+        <div class="login-logo"></div>
+        <h4 class="login-company-name">Despacho Juridico Gutierrez & Asociados</h4>
+        <form class="login-form">
+          <mat-form-field>
+            <span class="input-container">
+                <input matInput placeholder="Usuario" >
+            </span>
+            
+          </mat-form-field>
+          <mat-form-field>
+            <span class="input-container">
+                <input matInput type="password" placeholder="Contraseña" >
+            </span>
+        
+          </mat-form-field>
+          <button mat-raised-button color="$my-custom-color" class="login-button" (click)="login()"> <span>Iniciar sesion</span></button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
