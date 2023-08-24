@@ -10,6 +10,25 @@ export class PagesComponent {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
+  data=[
+    
+
+    {
+      nombre: "Electrónica",
+      subcategorias: [
+        { nombre: "Smartphones" },
+        { nombre: "Computadoras" }
+      ]
+    },
+    {
+      nombre: "Ropa",
+      subcategorias: [
+        { nombre: "Camisetas" },
+        { nombre: "Pantalones" }
+      ]
+    } 
+  ]
+
   constructor(private observer: BreakpointObserver,private cd:ChangeDetectorRef) {}
 
   

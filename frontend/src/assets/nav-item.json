@@ -1,0 +1,18 @@
+{
+    "categorias": [
+      {
+        "nombre": "Electrónica",
+        "subcategorias": [
+          { "nombre": "Smartphones" },
+          { "nombre": "Computadoras" }
+        ]
+      },
+      {
+        "nombre": "Ropa",
+        "subcategorias": [
+          { "nombre": "Camisetas" },
+          { "nombre": "Pantalones" }
+        ]
+      }
+    ]
+  }
