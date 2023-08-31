@@ -7,10 +7,29 @@ import { AbogadosModule } from './abogados/abogados.module';
 import { CasosLegalesModule } from './casos-legales/casos-legales.module';
 import { DocumentosModule } from './documentos/documentos.module';
 import { EventosModule } from './eventos/eventos.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule } from '@nestjs/config';
 
 
 @Module({
-  imports: [UsuariosModule, ClientesModule, AbogadosModule, CasosLegalesModule, DocumentosModule, EventosModule],
+  imports: [
+    ConfigModule.forRoot(),
+    TypeOrmModule.forRoot({
+      type:'postgres',
+      host: process.env.DB_HOST,
+      port: +process.env.DB_PORT,
+      database: process.env.DB_NAME,
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      autoLoadEntities: true,
+      synchronize: true,
+    }),
+    UsuariosModule, 
+    ClientesModule, 
+    AbogadosModule, 
+    CasosLegalesModule, 
+    DocumentosModule,
+    EventosModule],
   controllers: [AppController],
   providers: [AppService],
 })

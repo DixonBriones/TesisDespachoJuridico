@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ClienteService } from '../cliente.service';
 
 
 interface Country {
@@ -43,4 +44,19 @@ const COUNTRIES: Country[] = [
 })
 export class ClienteListComponent {
   countries = COUNTRIES;
+  clientes: any = [];
+
+  constructor(private clienteService: ClienteService) { }
+
+  ngOnInit(): void {
+    this.listarClientes();
+  }
+
+  public listarClientes() {
+    this.clienteService.mostrarClientes().subscribe((res) => {
+      this.clientes = res
+	  console.log(this.clientes)
+    })
+  }
+
 }

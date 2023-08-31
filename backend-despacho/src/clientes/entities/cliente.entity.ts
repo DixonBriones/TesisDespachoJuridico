@@ -2,24 +2,24 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Cliente {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-  @Column()
-  nombre: string;
+  @Column('varchar',{length: 10, unique:true})
+  identification: string;
 
-  @Column()
-  apellidos: string;
+  @Column('varchar')
+  name: string;
 
-  @Column()
-  nif: string;
+  @Column('text', {nullable:true})
+  address: string;
 
-  @Column()
-  dirección: string;
+  @Column('varchar',{length: 10})
+  phone: string;
 
-  @Column()
-  teléfono: string;
+  @Column('varchar', {nullable:true})
+  email: string;
 
-  @Column()
-  correoElectronico: string;
+  @Column('boolean',{default:true})
+  status:boolean;
 }
