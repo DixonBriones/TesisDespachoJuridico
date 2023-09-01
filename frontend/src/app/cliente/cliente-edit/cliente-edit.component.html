@@ -1,1 +1,29 @@
-<p>cliente-edit works!</p>
+<h2 mat-dialog-title>Editar Cliente</h2>
+<mat-dialog-content>
+  <form [formGroup]="form" class="modal-form">
+        <div class="form-group">
+          <label>Identificación</label>
+          <input type="text" class="form-control" formControlName="identification">
+        </div>
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" class="form-control" formControlName="name">
+        </div>
+        <div class="form-group">
+          <label>Dirección</label>
+          <input type="text" class="form-control" formControlName="address">
+        </div>
+        <div class="form-group">
+          <label>Teléfono</label>
+          <input type="text" class="form-control" formControlName="phone">
+        </div>
+        <div class="form-group">
+          <label>Correo electrónico</label>
+          <input type="email" class="form-control" formControlName="email">
+        </div>
+      </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button type="button" class="btn btn-secondary" (click)="cancel()">Cancelar</button>
+  <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="save()">Guardar</button>
+</mat-dialog-actions>

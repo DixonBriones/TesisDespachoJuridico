@@ -13,5 +13,9 @@ export class ClienteService {
   mostrarClientes() {
     return this.http.get(`${this.URL}/cliente`);
   }
+  actualizarCliente(id:string,body:any) {
+   
+    return this.http.patch(`${this.URL}/cliente/${id}`,body);
+  }
 
 }

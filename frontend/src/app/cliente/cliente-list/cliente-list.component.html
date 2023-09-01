@@ -43,7 +43,7 @@
         <td class="align-middle">{{ cliente.identification }}</td>
         <td class="align-middle">{{ cliente.phone }}</td>
         <td>
-          <button mat-raised-button color="primary">
+          <button mat-raised-button color="primary" (click)="openModal(cliente)">
             Editar
           </button>
         </td>

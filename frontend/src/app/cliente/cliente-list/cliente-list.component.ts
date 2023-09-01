@@ -1,62 +1,48 @@
 import { Component } from '@angular/core';
 import { ClienteService } from '../cliente.service';
-
-
-interface Country {
-	name: string;
-	flag: string;
-	area: number;
-	population: number;
-}
-
-const COUNTRIES: Country[] = [
-	{
-		name: 'Russia',
-		flag: 'f/f3/Flag_of_Russia.svg',
-		area: 17075200,
-		population: 146989754,
-	},
-	{
-		name: 'Canada',
-		flag: 'c/cf/Flag_of_Canada.svg',
-		area: 9976140,
-		population: 36624199,
-	},
-	{
-		name: 'United States',
-		flag: 'a/a4/Flag_of_the_United_States.svg',
-		area: 9629091,
-		population: 324459463,
-	},
-	{
-		name: 'China',
-		flag: 'f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
-		area: 9596960,
-		population: 1409517397,
-	},
-];
-
+import { ModalService } from 'src/app/utility/modal.service';
+import { UpdateTableService } from 'src/app/utility/update-table.service';
 
 @Component({
   selector: 'app-cliente-list',
   templateUrl: './cliente-list.component.html',
-  styleUrls: ['./cliente-list.component.scss']
+  styleUrls: ['./cliente-list.component.scss'],
 })
 export class ClienteListComponent {
-  countries = COUNTRIES;
   clientes: any = [];
 
-  constructor(private clienteService: ClienteService) { }
+  constructor(
+    private clienteService: ClienteService,
+    private modalService: ModalService,
+    private updateTable: UpdateTableService
+  ) {}
 
   ngOnInit(): void {
     this.listarClientes();
+    this.actualizarTabla();
   }
 
-  public listarClientes() {
+  listarClientes() {
     this.clienteService.mostrarClientes().subscribe((res) => {
-      this.clientes = res
-	  console.log(this.clientes)
-    })
+      this.clientes = res;
+      console.log(this.clientes);
+    });
+  }
+  actualizarTabla() {
+    this.updateTable.updateTable$.subscribe(() => {
+      this.listarClientes();
+    });
   }
 
+  openModal(data: any) {
+    const modalData = data; // Puedes proporcionar datos al modal si es necesario
+    this.modalService.openModalEditCliente(modalData).subscribe((result) => {
+      // Lógica a realizar después de cerrar el modal (si es necesario)
+      if (result) {
+        console.log('Datos guardados:', result);
+      } else {
+        console.log('Modal cerrado sin guardar');
+      }
+    });
+  }
 }

@@ -17,7 +17,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
+import {MatDialogModule} from '@angular/material/dialog';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -37,6 +39,7 @@ import {MatButtonModule} from '@angular/material/button';
     MatSidenavModule,
     MatListModule,
     NgbModule,
+    
 
     MatCardModule,
     MatFormFieldModule,
@@ -45,7 +48,9 @@ import {MatButtonModule} from '@angular/material/button';
     MatIconModule,
     MatSidenavModule,
     MatListModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule,
+    FormsModule, ReactiveFormsModule
   ]
 })
 export class ClienteModule { }
