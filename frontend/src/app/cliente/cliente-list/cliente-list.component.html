@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-2 justify-content-start">
-      <button mat-raised-button color="primary" routerLink="/dashboard/cliente/nuevo">
+      <button mat-raised-button color="primary" (click)="openModalCreate()">
         Nuevo cliente
       </button>
     </div>
@@ -43,7 +43,7 @@
         <td class="align-middle">{{ cliente.identification }}</td>
         <td class="align-middle">{{ cliente.phone }}</td>
         <td>
-          <button mat-raised-button color="primary" (click)="openModal(cliente)">
+          <button mat-raised-button color="primary" (click)="openModalEdit(cliente)">
             Editar
           </button>
         </td>

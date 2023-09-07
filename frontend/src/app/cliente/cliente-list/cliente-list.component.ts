@@ -34,8 +34,19 @@ export class ClienteListComponent {
     });
   }
 
-  openModal(data: any) {
-    const modalData = data; // Puedes proporcionar datos al modal si es necesario
+  openModalCreate() {
+    this.modalService.openModalCreateCliente().subscribe((result) => {
+      // Lógica a realizar después de cerrar el modal (si es necesario)
+      if (result) {
+        console.log('Datos guardados:', result);
+      } else {
+        console.log('Modal cerrado sin guardar');
+      }
+    });
+  }
+
+  openModalEdit(data: any) {
+    const modalData = data; 
     this.modalService.openModalEditCliente(modalData).subscribe((result) => {
       // Lógica a realizar después de cerrar el modal (si es necesario)
       if (result) {

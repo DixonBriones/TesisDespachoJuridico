@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { CasoLegal } from "src/casos-legales/entities/casos-legale.entity";
+import { Column, Entity, PrimaryGeneratedColumn,OneToOne } from "typeorm";
 
 @Entity()
 export class Cliente {
@@ -22,4 +23,10 @@ export class Cliente {
 
   @Column('boolean',{default:true})
   status:boolean;
+
+  //Relaciones
+
+  @OneToOne(() => CasoLegal, (casoLegal) => casoLegal.client)
+  legal_case: CasoLegal;
+
 }

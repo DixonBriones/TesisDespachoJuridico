@@ -18,4 +18,8 @@ export class ClienteService {
     return this.http.patch(`${this.URL}/cliente/${id}`,body);
   }
 
+  insertarClientes(body:any) {
+    return this.http.post(`${this.URL}/cliente`,body);
+  }
+
 }

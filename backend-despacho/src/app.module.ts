@@ -9,6 +9,7 @@ import { DocumentosModule } from './documentos/documentos.module';
 import { EventosModule } from './eventos/eventos.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { RolesModule } from './roles/roles.module';
 
 
 @Module({
@@ -29,7 +30,8 @@ import { ConfigModule } from '@nestjs/config';
     AbogadosModule, 
     CasosLegalesModule, 
     DocumentosModule,
-    EventosModule],
+    EventosModule,
+    RolesModule],
   controllers: [AppController],
   providers: [AppService],
 })

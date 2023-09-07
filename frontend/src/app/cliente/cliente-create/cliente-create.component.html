@@ -1,39 +1,29 @@
-<form >
-    <div class="row">
-      <div class="col-md-6">
+<h2 mat-dialog-title>Nuevo Cliente</h2>
+<mat-dialog-content>
+  <form [formGroup]="form" class="modal-form">
         <div class="form-group">
-          <label for="identification">Identification</label>
-          <input type="text" class="form-control" formControlName="identification" ngbFormControl>
+          <label>Identificación</label>
+          <input type="text" class="form-control" formControlName="identification">
         </div>
-      </div>
-      <div class="col-md-6">
         <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" class="form-control" formControlName="name" ngbFormControl>
+          <label>Nombre</label>
+          <input type="text" class="form-control" formControlName="name">
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
         <div class="form-group">
-          <label for="address">Address</label>
-          <input type="text" class="form-control" formControlName="address" ngbFormControl>
+          <label>Dirección</label>
+          <input type="text" class="form-control" formControlName="address">
         </div>
-      </div>
-      <div class="col-md-6">
         <div class="form-group">
-          <label for="phone">Phone</label>
-          <input type="text" class="form-control" formControlName="phone" ngbFormControl>
+          <label>Teléfono</label>
+          <input type="text" class="form-control" formControlName="phone">
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
         <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control" formControlName="email" ngbFormControl>
+          <label>Correo electrónico</label>
+          <input type="email" class="form-control" formControlName="email">
         </div>
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+      </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button type="button" class="btn btn-secondary" (click)="cancel()">Cancelar</button>
+  <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="save()">Guardar</button>
+</mat-dialog-actions>

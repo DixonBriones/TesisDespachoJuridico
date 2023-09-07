@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ClienteEditComponent } from '../cliente/cliente-edit/cliente-edit.component';
+import { ClienteCreateComponent } from '../cliente/cliente-create/cliente-create.component';
 
 
 @Injectable({
@@ -14,6 +15,14 @@ export class ModalService {
     const dialogRef = this.dialog.open(ClienteEditComponent, {
       width: '500px',
       data: data
+    });
+
+    return dialogRef.afterClosed();
+  }
+
+  openModalCreateCliente() {
+    const dialogRef = this.dialog.open(ClienteCreateComponent, {
+      width: '500px',
     });
 
     return dialogRef.afterClosed();
