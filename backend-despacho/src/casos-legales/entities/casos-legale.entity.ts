@@ -17,13 +17,8 @@ export class CasoLegal {
   @Column('varchar')
   status_case: string;
   
-  @Column('date')
+  @Column('date',{default: new Date()})
   date_start: Date;
-
-  @Column('boolean',{default:true})
-  status:boolean;
-
-  //Relaciones
 
   @OneToOne(() => Abogado)
   @JoinColumn({name:'lawyer_id'})
@@ -32,6 +27,11 @@ export class CasoLegal {
   @OneToOne(() => Cliente)
   @JoinColumn({name:'client_id'})
   client: Cliente;
+
+  @Column('boolean',{default:true})
+  status:boolean;
+
+  //Relaciones
 
   @OneToMany(() => Documento, (documeto) => documeto.legal_case)
   document: Documento;
