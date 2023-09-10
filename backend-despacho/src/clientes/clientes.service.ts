@@ -22,9 +22,9 @@ export class ClientesService {
 
   async create(createClienteDto: CreateClienteDto) {
     try {
-      const estudiante = this.clienteRepository.create(createClienteDto);
-      await this.clienteRepository.save(estudiante);
-      return estudiante;
+      const cliente = this.clienteRepository.create(createClienteDto);
+      await this.clienteRepository.save(cliente);
+      return cliente;
     } catch (error) {
       console.log(error);
       if (error.code === '23505') throw new BadRequestException(error.detail);

@@ -1,7 +1,7 @@
 import { Abogado } from "src/abogados/entities/abogado.entity";
 import { Cliente } from "src/clientes/entities/cliente.entity";
 import { Documento } from "src/documentos/entities/documento.entity";
-import { Column, Entity, PrimaryGeneratedColumn, OneToOne,JoinColumn, OneToMany } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, OneToOne,JoinColumn, OneToMany, ManyToOne } from "typeorm";
 
 @Entity()
 export class CasoLegal {
@@ -20,7 +20,7 @@ export class CasoLegal {
   @Column('date',{default: new Date()})
   date_start: Date;
 
-  @OneToOne(() => Abogado)
+  @ManyToOne(() => Abogado)
   @JoinColumn({name:'lawyer_id'})
   lawyer: Abogado;
 

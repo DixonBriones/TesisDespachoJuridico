@@ -5,5 +5,5 @@ import { IsNotEmpty, IsNumber, IsString, IsOptional, IsBoolean } from "class-val
 export class UpdateClienteDto extends PartialType(CreateClienteDto) {
     @IsBoolean()
     @IsOptional()
-    estado?: boolean;
+    status?: boolean;
 }

@@ -10,6 +10,7 @@ import { EventosModule } from './eventos/eventos.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { RolesModule } from './roles/roles.module';
+import { AuthModule } from './auth/auth.module';
 
 
 @Module({
@@ -31,7 +32,8 @@ import { RolesModule } from './roles/roles.module';
     CasosLegalesModule, 
     DocumentosModule,
     EventosModule,
-    RolesModule],
+    RolesModule,
+    AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })

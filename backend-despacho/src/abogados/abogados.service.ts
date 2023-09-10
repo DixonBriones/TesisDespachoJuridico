@@ -1,26 +1,71 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  InternalServerErrorException,
+  Logger,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateAbogadoDto } from './dto/create-abogado.dto';
 import { UpdateAbogadoDto } from './dto/update-abogado.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Abogado } from './entities/abogado.entity';
 
 @Injectable()
 export class AbogadosService {
-  create(createAbogadoDto: CreateAbogadoDto) {
-    return 'This action adds a new abogado';
+  private readonly logger = new Logger('AbogadoService');
+
+  constructor(
+    @InjectRepository(Abogado)
+    private readonly abogadoRepository: Repository<Abogado>,
+  ) {}
+
+
+  async create(createAbogadoDto: CreateAbogadoDto) {
+    try {
+      const abogado = this.abogadoRepository.create(createAbogadoDto);
+      await this.abogadoRepository.save(abogado);
+      return abogado;
+    } catch (error) {
+      console.log(error);
+      if (error.code === '23505') throw new BadRequestException(error.detail);
+      this.logger.error(error);
+      throw new InternalServerErrorException('Error no esperado');
+    }
   }
 
-  findAll() {
-    return `This action returns all abogados`;
+  async findAll() {
+    const abogados = await this.abogadoRepository.findBy({status:true});
+    return abogados
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} abogado`;
+  async findOne(id: string) {
+    const abogado = await this.abogadoRepository.findOneBy({ id });
+    if (!abogado) throw new NotFoundException(`Abogado ${id} no encontrado`);
+    return abogado;
   }
 
-  update(id: number, updateAbogadoDto: UpdateAbogadoDto) {
-    return `This action updates a #${id} abogado`;
+  async update(id: string, updateAbogadoDto: UpdateAbogadoDto) {
+    const abogado = await this.abogadoRepository.preload({
+      id: id,
+      ...updateAbogadoDto,
+    });
+    if (!abogado) throw new NotFoundException(`Abogado ${id} no encontrado`);
+
+    try {
+
+      await this.abogadoRepository.save(abogado);
+      return abogado;
+
+    } catch (error) {
+      console.log(error);
+      throw new BadRequestException(error.detail);
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} abogado`;
+  async remove(id: string) {
+    const abogado= await  this.findOne(id);
+    await this.update(id,{status:false });
+    return {...abogado, id};
   }
 }

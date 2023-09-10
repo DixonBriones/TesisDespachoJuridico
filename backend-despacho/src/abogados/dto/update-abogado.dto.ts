@@ -5,5 +5,5 @@ import { IsNotEmpty, IsNumber, IsString, IsOptional, IsBoolean } from "class-val
 export class UpdateAbogadoDto extends PartialType(CreateAbogadoDto) {
     @IsBoolean()
     @IsOptional()
-    estado?: boolean;
+    status?: boolean;
 }

@@ -1,6 +1,6 @@
 import { CasoLegal } from "src/casos-legales/entities/casos-legale.entity";
 import { Usuario } from "src/usuarios/entities/usuario.entity";
-import { Column, Entity, PrimaryGeneratedColumn, OneToOne,JoinColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, OneToOne,JoinColumn, ManyToOne, OneToMany } from "typeorm";
 
 @Entity()
 export class Abogado {
@@ -27,11 +27,14 @@ export class Abogado {
 
   //Relaciones
 
-  @OneToOne(() => Usuario)
-  @JoinColumn({name:'user_id'})
+  //@OneToOne(() => Usuario)
+  //@JoinColumn({name:'user_id'})
+  //user: Usuario;
+
+  @OneToMany(() => Usuario, (user) => user.lawyer)
   user: Usuario;
 
-  @OneToOne(() => CasoLegal, (casoLegal) => casoLegal.lawyer)
+  @OneToMany(() => CasoLegal, (casoLegal) => casoLegal.lawyer)
   legal_case: CasoLegal;
 
 

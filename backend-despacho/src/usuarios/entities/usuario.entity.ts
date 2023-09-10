@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable,OneToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable,OneToOne,JoinColumn } from 'typeorm';
 import { Role } from '../../roles/entities/role.entity';
 import { Abogado } from 'src/abogados/entities/abogado.entity';
 
@@ -8,7 +8,7 @@ export class Usuario {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column('varchar',{length: 20, unique:true})
+  @Column('varchar',{length: 30, unique:true})
   username: string;
 
   @Column('varchar')
@@ -19,7 +19,12 @@ export class Usuario {
 
   //Relaciones
 
-  @OneToOne(() => Abogado, (abogado) => abogado.user)
+  //@OneToOne(() => Abogado, (abogado) => abogado.user)
+  //lawyer: Abogado;
+
+  @OneToOne(() => Abogado)
+  @JoinColumn({name:'lawyer_id'})
   lawyer: Abogado;
+  
  
 }

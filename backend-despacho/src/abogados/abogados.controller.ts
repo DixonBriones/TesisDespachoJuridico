@@ -3,7 +3,7 @@ import { AbogadosService } from './abogados.service';
 import { CreateAbogadoDto } from './dto/create-abogado.dto';
 import { UpdateAbogadoDto } from './dto/update-abogado.dto';
 
-@Controller('abogados')
+@Controller('abogado')
 export class AbogadosController {
   constructor(private readonly abogadosService: AbogadosService) {}
 
@@ -19,16 +19,16 @@ export class AbogadosController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.abogadosService.findOne(+id);
+    return this.abogadosService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateAbogadoDto: UpdateAbogadoDto) {
-    return this.abogadosService.update(+id, updateAbogadoDto);
+    return this.abogadosService.update(id, updateAbogadoDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.abogadosService.remove(+id);
+    return this.abogadosService.remove(id);
   }
 }

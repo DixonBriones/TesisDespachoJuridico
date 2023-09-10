@@ -1,9 +1,9 @@
-import { IsNotEmpty, IsNumber, IsString, IsOptional,Length, Max,IsEmail } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString, IsOptional,Length, Max,IsEmail,Min } from "class-validator";
 
 export class CreateAbogadoDto {
     @IsString()
     @IsNotEmpty()
-    @Max(10)
+    @Length(10,10)
     identification:string;
     
     @IsString()
@@ -16,7 +16,6 @@ export class CreateAbogadoDto {
 
     @IsString()
     @IsNotEmpty()
-    @Max(10)
     phone:string;
 
     @IsString()
