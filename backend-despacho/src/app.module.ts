@@ -8,23 +8,30 @@ import { CasosLegalesModule } from './casos-legales/casos-legales.module';
 import { DocumentosModule } from './documentos/documentos.module';
 import { EventosModule } from './eventos/eventos.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule,ConfigService } from '@nestjs/config';
 import { RolesModule } from './roles/roles.module';
 import { AuthModule } from './auth/auth.module';
 
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
-    TypeOrmModule.forRoot({
-      type:'postgres',
-      host: process.env.DB_HOST,
-      port: +process.env.DB_PORT,
-      database: process.env.DB_NAME,
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      autoLoadEntities: true,
-      synchronize: true,
+    ConfigModule.forRoot({
+      envFilePath: ['.env'],
+      isGlobal: true,
+    }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        type:'postgres',
+        host: config.get('DB_HOST'),
+        port: config.get('DB_PORT'),
+        database: config.get('DB_NAME'),
+        username: config.get('DB_USERNAME'),
+        password: config.get('DB_PASSWORD'),
+        autoLoadEntities: true,
+        synchronize: true,
+       })
     }),
     UsuariosModule, 
     ClientesModule, 
