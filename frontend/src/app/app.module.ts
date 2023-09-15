@@ -9,7 +9,7 @@ import { PagesModule } from './pages/pages.module';
 import { ClienteModule } from './cliente/cliente.module';
 import { AuthModule } from './auth/auth.module';
 import { HttpClientModule } from '@angular/common/http';
-
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 
 
@@ -27,7 +27,10 @@ import { HttpClientModule } from '@angular/common/http';
     ClienteModule,
     AuthModule,
   ],
-  providers: [],
+  providers: [ 
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

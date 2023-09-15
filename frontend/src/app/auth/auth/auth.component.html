@@ -1,23 +1,49 @@
 <div class="login-container">
-    <mat-card class="login-card">
-      <mat-card-content>
-        <div class="login-logo"></div>
-        <h4 class="login-company-name">Despacho Juridico Gutierrez & Asociados</h4>
-        <form class="login-form">
-          <mat-form-field>
-            <span class="input-container">
-                <input matInput placeholder="Usuario" >
+  <mat-card class="login-card">
+    <mat-card-content>
+      <div class="login-logo"></div>
+      <h4 class="login-company-name">
+        Despacho Juridico Gutierrez & Asociados
+      </h4>
+      <form [formGroup]="loginForm">
+        <div class="form-group">
+          <label class="ms-1">
+            <strong>Usuario</strong>
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Mi usuario"
+            formControlName="username"
+          />
+        </div>
+
+        <div class="form-group mt-3">
+          <label class="ms-1">
+            <strong>Contraseña</strong>
+          </label>
+          <input
+            type="password"
+            class="form-control"
+            placeholder="*********"
+            formControlName="password"
+          />
+        </div>
+
+        <div class="form-group mt-4 text-center">
+          <button
+            type="submit"
+            (click)="login()"
+            class="btn btn-primary btn-block w-100"
+            [disabled]="loading" 
+          >
+            <span *ngIf="!loading">Iniciar sesión</span>
+            <span *ngIf="loading">
+              <i class="fa-solid fa-spinner fa-pulse"></i>
             </span>
-            
-          </mat-form-field>
-          <mat-form-field>
-            <span class="input-container">
-                <input matInput type="password" placeholder="Contraseña" >
-            </span>
-        
-          </mat-form-field>
-          <button mat-raised-button color="$my-custom-color" class="login-button" (click)="login()"> <span>Iniciar sesion</span></button>
-        </form>
-      </mat-card-content>
-    </mat-card>
-  </div>
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

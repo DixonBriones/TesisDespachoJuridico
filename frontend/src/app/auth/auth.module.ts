@@ -14,6 +14,8 @@ import { MatListModule } from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -31,7 +33,10 @@ import {MatButtonModule} from '@angular/material/button';
     MatIconModule,
     MatSidenavModule,
     MatListModule,
-    MatButtonModule
+    MatButtonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AuthModule { }

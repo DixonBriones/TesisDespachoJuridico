@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth/auth/auth.component';
 import { PagesComponent } from './pages/pages.component';
 
+import { AuthGuard } from './guards/auth.guard';
+import { CheckeloginGuard } from './guards/checkelogin.guard';
 const routes: Routes = [
   {
     path: '',
@@ -11,7 +13,8 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: AuthComponent
+    component: AuthComponent,
+    canActivate: [CheckeloginGuard]
   },
   {
     path: 'dashboard',
