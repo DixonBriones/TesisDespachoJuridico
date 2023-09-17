@@ -10,6 +10,7 @@ import { UpdateTableService } from 'src/app/utility/update-table.service';
 })
 export class ClienteListComponent {
   clientes: any = [];
+  query: string = '';
 
   constructor(
     private clienteService: ClienteService,
@@ -23,11 +24,19 @@ export class ClienteListComponent {
   }
 
   listarClientes() {
-    this.clienteService.mostrarClientes().subscribe((res) => {
+    this.clienteService.mostrarClientes(this.query.trim()).subscribe((res) => {
       this.clientes = res;
       console.log(this.clientes);
     });
   }
+
+  public listar(evn: any) {
+    const key = evn.charCode;
+    if (key == 13) {
+      this.listarClientes();
+    }
+  }
+  
   actualizarTabla() {
     this.updateTable.updateTable$.subscribe(() => {
       this.listarClientes();

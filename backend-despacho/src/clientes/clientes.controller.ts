@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete,ParseUUIDPipe ,UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete,ParseUUIDPipe ,UseGuards,Query } from '@nestjs/common';
 import { ClientesService } from './clientes.service';
 import { CreateClienteDto } from './dto/create-cliente.dto';
 import { UpdateClienteDto } from './dto/update-cliente.dto';
@@ -19,7 +19,7 @@ export class ClientesController {
     return this.clientesService.findAll();
   }
 
-  @Get(':id')
+  @Get('searchId/:id')
   findOne(@Param('id', ParseUUIDPipe) id: string) {
     return this.clientesService.findOne(id);
   }
@@ -33,4 +33,12 @@ export class ClientesController {
   remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.clientesService.remove(id);
   }
+
+  @Get('search')
+  findIdentification(@Query('q') q?: string){
+    return this.clientesService.findIdentification(q);
+  }
+
+  
+
 }

@@ -12,14 +12,17 @@
         <input
           type="search"
           class="form-control rounded-start"
-          placeholder="Buscar"
+          placeholder="Buscar por cedula"
           aria-label="Search"
           aria-describedby="search-addon"
+          [(ngModel)]="query"
+          (keypress)="listar($event)"
         />
         <span
           class="input-group-text border-0 btn-primary"
           id="search-addon"
           [style.cursor]="'pointer'"
+          (click)="listarClientes()"
         >
           <i class="fas fa-search"></i>
         </span>
@@ -43,8 +46,14 @@
         <td class="align-middle">{{ cliente.identification }}</td>
         <td class="align-middle">{{ cliente.phone }}</td>
         <td>
-          <button mat-raised-button color="primary" (click)="openModalEdit(cliente)">
+          <button class="btn btn-primary">
+            Ver
+          </button>
+          <button class="btn btn-primary" (click)="openModalEdit(cliente)">
             Editar
+          </button>
+          <button class="btn btn-primary">
+            Eliminar
           </button>
         </td>
       </tr>

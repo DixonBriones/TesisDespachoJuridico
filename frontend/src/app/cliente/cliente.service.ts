@@ -10,8 +10,8 @@ export class ClienteService {
 
   constructor(private http: HttpClient) { }
 
-  mostrarClientes() {
-    return this.http.get(`${this.URL}/cliente`);
+  mostrarClientes(query = '') {
+    return this.http.get(`${this.URL}/cliente/search`, { params: { q: query } });
   }
   actualizarCliente(id:string,body:any) {
    
