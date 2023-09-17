@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, ViewChild} from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { navbardData } from './sidenav-data';
 @Component({
   selector: 'app-pages',
   templateUrl: './pages.component.html',
@@ -10,27 +11,16 @@ export class PagesComponent {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
-  data=[
-    
-
-    {
-      nombre: "Electrónica",
-      subcategorias: [
-        { nombre: "Smartphones" },
-        { nombre: "Computadoras" }
-      ]
-    },
-    {
-      nombre: "Ropa",
-      subcategorias: [
-        { nombre: "Camisetas" },
-        { nombre: "Pantalones" }
-      ]
-    } 
-  ]
+  menuItems = navbardData
 
   constructor(private observer: BreakpointObserver,private cd:ChangeDetectorRef) {}
 
+  submenuOpen: { [label: string]: boolean } = {};
+
+  toggleSubMenu(menuItem: any) {
+    const label = menuItem.label;
+    this.submenuOpen[label] = !this.submenuOpen[label];
+  }
   
   ngAfterViewInit() {
     this.sidenav.open()

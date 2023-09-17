@@ -1,35 +1,74 @@
 <mat-toolbar>
-    <button mat-icon-button class="sidenav-button" *ngIf="sidenav.mode ==='over'" (click)="sidenav.toggle()">
-      <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
-      <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
-    </button>
-    <span>Gutierrez & Asociados</span>
-    <span class="toolbar-logo">
-      <img src="../assets/img/logo.png" alt="Logo Despacho" class="logo-image" />
-    </span>
-    <span class="spacer"></span>
-  </mat-toolbar>
-  
-  <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #sidenav="matSidenav" mode="side" class="sidenav">
-      <mat-nav-list class="sidenav-list">
-        <a mat-list-item routerLink="/dashboard/clientes">
-          <span class="nav-item">Clientes</span>
-        </a>
-        <a mat-list-item routerLink="/perfil">
-          <span class="nav-item">Procesos judiciales</span>
-        </a>
-        <a mat-list-item routerLink="/perfil">
-          <span class="nav-item">Perfil</span>
-        </a>
-        <a mat-list-item routerLink="/ajustes">
-          <span class="nav-item">Inicio</span>
-        </a>
-      </mat-nav-list>
-    </mat-sidenav>
-  
-    <mat-sidenav-content class="sidenav-content">
-      <router-outlet></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-  
+  <button
+    mat-icon-button
+    class="sidenav-button"
+    *ngIf="sidenav.mode === 'over'"
+    (click)="sidenav.toggle()"
+  >
+    <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
+    <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+  </button>
+  <span>Gutierrez & Asociados</span>
+  <span class="toolbar-logo">
+    <img src="../assets/img/logo.png" alt="Logo Despacho" class="logo-image" />
+  </span>
+  <span class="spacer"></span>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav="matSidenav" mode="side" class="sidenav">
+    <mat-nav-list class="sidenav-list">
+      <div *ngFor="let menuItem of menuItems">
+        <div *ngIf="!menuItem.subItems; else submenu">
+          <a mat-list-item [routerLink]="menuItem.link">
+            <div class="flexContainer nav-item">
+              <div>
+                <mat-icon class="material-symbols-outlined">{{ menuItem.icon }}</mat-icon>
+              </div>
+              <div class="customSpan">{{ menuItem.label }}</div>
+            </div>
+          </a>
+        </div>
+
+        <ng-template #submenu>
+          <a mat-list-item>
+            <div class="flexContainer nav-item">
+              <div>
+                <mat-icon class="material-symbols-outlined">{{ menuItem.icon }}</mat-icon>
+              </div>
+              <div class="customSpan">{{ menuItem.label }}</div>
+              <span class="spacer"></span>
+              <button
+                mat-icon-button
+                (click)="toggleSubMenu(menuItem)"
+                class="sidenav-submenu"
+              >
+                <mat-icon>{{
+                  submenuOpen[menuItem.label]
+                    ? "keyboard_arrow_up"
+                    : "keyboard_arrow_down"
+                }}</mat-icon>
+              </button>
+            </div>
+          </a>
+
+          <div *ngIf="submenuOpen[menuItem.label]">
+            <mat-nav-list>
+              <div *ngFor="let subItem of menuItem.subItems">
+                <a mat-list-item [routerLink]="subItem.link">
+                  <div class="flexContainer nav-item">
+                    <div class="customSpan">{{ subItem.label }}</div>
+                  </div>
+                </a>
+              </div>
+            </mat-nav-list>
+          </div>
+        </ng-template>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="sidenav-content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
