@@ -10,6 +10,7 @@ import { ClienteModule } from './cliente/cliente.module';
 import { AuthModule } from './auth/auth.module';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { AbogadoModule } from './abogado/abogado.module';
 
 
 
@@ -27,6 +28,7 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
     PagesModule,
     ClienteModule,
     AuthModule,
+    AbogadoModule
   ],
   providers: [ 
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },

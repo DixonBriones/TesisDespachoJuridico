@@ -1,11 +1,11 @@
 export const navbardData = [
   {
-    link: '/dashboard/clientes',
+    link: '/dashboard/cliente',
     label: 'Clientes',
     icon: 'person',
   },
   {
-    link: '/dashboard',
+    link: '/dashboard/abogado',
     label: 'Abogados',
     icon: 'groups',
   },

@@ -7,11 +7,11 @@ import { ClienteDetailsComponent } from './cliente-details/cliente-details.compo
 
 const routes: Routes = [
   {
-    path:'clientes',
+    path:'',
     component: ClienteListComponent
   },
   {
-    path:'cliente/:id',
+    path:':id',
     component: ClienteDetailsComponent
   }
 

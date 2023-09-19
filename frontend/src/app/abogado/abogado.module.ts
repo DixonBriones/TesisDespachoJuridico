@@ -4,6 +4,7 @@ import { AbogadoCreateComponent } from './abogado-create/abogado-create.componen
 import { AbogadoDetailsComponent } from './abogado-details/abogado-details.component';
 import { AbogadoEditComponent } from './abogado-edit/abogado-edit.component';
 import { AbogadoListComponent } from './abogado-list/abogado-list.component';
+import { AbogadoRoutingModule } from './abogado-routing.module';
 
 
 
@@ -15,7 +16,8 @@ import { AbogadoListComponent } from './abogado-list/abogado-list.component';
     AbogadoListComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    AbogadoRoutingModule
   ]
 })
 export class AbogadoModule { }

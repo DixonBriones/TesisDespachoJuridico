@@ -21,9 +21,14 @@ const routes: Routes = [
     component: PagesComponent,
     children:[
       {
-        path:'',
+        path:'cliente',
         loadChildren:()=> import('./cliente/cliente.module')
         .then(m=> m.ClienteModule)
+      },
+      {
+        path:'abogado',
+        loadChildren:()=> import('./abogado/abogado.module')
+        .then(m=> m.AbogadoModule)
       }
     ]
   },
