@@ -20,5 +20,6 @@ export class CreateAbogadoDto {
 
     @IsString()
     @IsEmail()
+    @IsNotEmpty()
     email:string;
 }

@@ -22,4 +22,8 @@ export class AbogadoService {
     return this.http.post(`${this.URL}/abogado`,body);
   }
 
+  insertarUsuario(body:any) {
+    return this.http.post(`${this.URL}/usuario`,body);
+  }
+
 }

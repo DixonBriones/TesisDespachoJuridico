@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete,Query } from '@nestjs/common';
 import { AbogadosService } from './abogados.service';
 import { CreateAbogadoDto } from './dto/create-abogado.dto';
 import { UpdateAbogadoDto } from './dto/update-abogado.dto';
@@ -17,7 +17,7 @@ export class AbogadosController {
     return this.abogadosService.findAll();
   }
 
-  @Get(':id')
+  @Get('searchId/:id')
   findOne(@Param('id') id: string) {
     return this.abogadosService.findOne(id);
   }
@@ -30,5 +30,10 @@ export class AbogadosController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.abogadosService.remove(id);
+  }
+
+  @Get('search')
+  findIdentification(@Query('q') q?: string){
+    return this.abogadosService.findName(q);
   }
 }

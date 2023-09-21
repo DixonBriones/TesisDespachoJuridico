@@ -1,1 +1,85 @@
-<p>abogado-create works!</p>
+<h2 mat-dialog-title>Nuevo Abogado</h2>
+<mat-dialog-content>
+  <form [formGroup]="form" class="modal-form">
+    <div class="form-group mb-3">
+      <label>Identificación</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="identification"
+        maxlength="10"
+      />
+      <div *ngIf="form.get('identification')?.hasError('required')" class="text-danger">
+        La cedula es requerida.
+      </div>
+      <div *ngIf="form.get('identification')?.hasError('minlength') " class="text-danger">
+        La cedula debe contener 10 caracteres.
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <label>Nombre</label>
+      <input type="text" class="form-control" formControlName="name" />
+      <div *ngIf="form.get('name')?.hasError('required')" class="text-danger">
+        El Nombre es requerido.
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <label>Dirección</label>
+      <input type="text" class="form-control" formControlName="address" />
+    </div>
+    <div class="form-group mb-3">
+      <label>Teléfono</label>
+      <input type="text" class="form-control" formControlName="phone" maxlength="10" />
+      <div *ngIf="form.get('phone')?.hasError('required')" class="text-danger">
+        El celular es requerido.
+      </div>
+      <div *ngIf="form.get('phone')?.hasError('minlength') " class="text-danger">
+        La celular debe contener 10 caracteres.
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <label>Correo electrónico</label>
+      <input type="email" class="form-control" formControlName="email" />
+      <div *ngIf="form.get('email')?.hasError('required')" class="text-danger">
+        El correo electrónico es requerido.
+      </div>
+      <div *ngIf="form.get('email')?.hasError('email') " class="text-danger">
+        Ingresa un correo electrónico válido.
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <label>Rol</label>
+      <input type="text" class="form-control" formControlName="rol" />
+    </div>
+    <div class="form-group mb-3">
+      <label>Usuario</label>
+      <input type="text" class="form-control" formControlName="username" />
+      <div *ngIf="form.get('username')?.hasError('required')" class="text-danger">
+        El usuario es requerido.
+      </div>
+    </div>
+    <div class="form-group mb-3">
+      <label>Contraseña</label>
+      <input type="password" class="form-control" formControlName="password" />
+      <div *ngIf="form.get('password')?.hasError('required')" class="text-danger">
+        La contraseña es requerida.
+      </div>
+      <div *ngIf="form.get('password')?.hasError('minlength')" class="text-danger">
+        La contreaseña debe contener 8 caracteres minimo.
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button type="button" class="btn btn-secondary" (click)="cancel()">
+    Cancelar
+  </button>
+  <button
+    type="button"
+    class="btn btn-primary"
+    [disabled]="form.invalid"
+    (click)="save()"
+  >
+    Guardar
+  </button>
+</mat-dialog-actions>

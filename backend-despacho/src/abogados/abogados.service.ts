@@ -8,7 +8,7 @@ import {
 import { CreateAbogadoDto } from './dto/create-abogado.dto';
 import { UpdateAbogadoDto } from './dto/update-abogado.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository,Like } from 'typeorm';
 import { Abogado } from './entities/abogado.entity';
 
 @Injectable()
@@ -67,5 +67,13 @@ export class AbogadosService {
     const abogado= await  this.findOne(id);
     await this.update(id,{status:false });
     return {...abogado, id};
+  }
+
+  async findName(name: string) {
+    return this.abogadoRepository.find({
+      where: {
+        name: Like(`%${name}%`),
+      },
+    });
   }
 }

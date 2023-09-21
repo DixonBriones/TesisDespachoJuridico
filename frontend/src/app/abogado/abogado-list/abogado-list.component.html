@@ -1,4 +1,67 @@
 <div class="container">
-    <p>abogado-list works!ssssssssssssssssssssssssssssss</p>
-
-</div>
+    <div class="row">
+      <div class="col-2 justify-content-start">
+        <button class="btn btn-primary" (click)="openModalCreate()">
+          Nuevo abogado
+        </button>
+      </div>
+      <div class="col-6"></div>
+  
+      <div class="col-4 justify-content-end">
+        <div class="input-group rounded">
+          <input
+            type="search"
+            class="form-control rounded-start"
+            placeholder="Buscar por nombre"
+            aria-label="Search"
+            aria-describedby="search-addon"
+            [(ngModel)]="query"
+            (keypress)="listar($event)"
+          />
+          <span
+            class="input-group-text border-0 btn-primary"
+            id="search-addon"
+            [style.cursor]="'pointer'"
+            (click)="listarClientes()"
+          >
+            <i class="fas fa-search"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+    <table class="table table-striped table-hover table-bordered mt-3">
+      <thead>
+        <tr class="bg-header text-white">
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Cedula</th>
+          <th scope="col">Numero Celular</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let abogado of abogados; index as i">
+          <th scope="row" class="align-middle">{{ i + 1 }}</th>
+          <td class="align-middle">{{ abogado.name | titlecase }}</td>
+          <td class="align-middle">{{ abogado.identification }}</td>
+          <td class="align-middle" *ngIf="abogado.status==true">Activo</td>
+          <td class="align-middle" *ngIf="abogado.status==false">Inactivo</td>
+          <td>
+            <button class="btn btn-primary mx-1">
+              Ver
+            </button>
+            <button class="btn btn-primary mx-1" >
+              Editar
+            </button>
+            <button class="btn btn-primary mx-1">
+              Desactivar
+            </button>
+            <button class="btn btn-primary mx-1">
+                Documentos
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
