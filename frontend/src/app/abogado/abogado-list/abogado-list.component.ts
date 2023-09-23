@@ -54,4 +54,16 @@ export class AbogadoListComponent {
     });
   }
 
+  openModalEdit(data: any) {
+    const modalData = data; 
+    this.modalService.openModalEditAbogado(modalData).subscribe((result) => {
+      // Lógica a realizar después de cerrar el modal (si es necesario)
+      if (result) {
+        console.log('Datos guardados:', result);
+      } else {
+        console.log('Modal cerrado sin guardar');
+      }
+    });
+  }
+
 }

@@ -10,7 +10,7 @@ import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Usuario } from './entities/usuario.entity';
-import * as bcrypt from 'bcrypt';
+import {compare,genSalt,hash} from 'bcrypt';
 
 @Injectable()
 export class UsuariosService {
@@ -22,7 +22,7 @@ export class UsuariosService {
   ) {}
 
   async checkPassword(password: string, passwordDB: string): Promise<boolean> {
-    return await bcrypt.compare(password, passwordDB);
+    return await compare(password, passwordDB);
   }
 
   async findByUsername(username: string) {
@@ -30,8 +30,8 @@ export class UsuariosService {
   }
 
   async hashPassword(password: string): Promise<string> {
-    const salt = await bcrypt.genSalt(10);
-    return await bcrypt.hash(password, salt);
+    const salt = await genSalt(10);
+    return await hash(password, salt);
   }
 
   async create(createUsuarioDto: CreateUsuarioDto) {
@@ -60,9 +60,28 @@ export class UsuariosService {
   }
 
   async update(id: string, updateUsuarioDto: UpdateUsuarioDto) {
-    const hash = await this.hashPassword(updateUsuarioDto.password);
-    const user = { ...updateUsuarioDto, password: hash };
-    return await this.usuarioRepository.update(id, user);
+    const usuario = await this.usuarioRepository.preload({
+      id: id,
+      ...updateUsuarioDto,
+    });
+    if (!usuario) throw new NotFoundException(`Usuario ${id} no encontrado`);
+    //console.log(usuario)
+    try {
+      if(updateUsuarioDto.password==null){
+        delete usuario.password
+        return await this.usuarioRepository.update(id, usuario);
+      }else{
+        const hash = await this.hashPassword(usuario.password);
+        const user = { ...usuario, password: hash };
+        return await this.usuarioRepository.update(id, user);
+      }
+    
+
+    } catch (error) {
+      console.log(error);
+      throw new BadRequestException(error.detail);
+    }
+
   }
 
   async remove(id: string) {

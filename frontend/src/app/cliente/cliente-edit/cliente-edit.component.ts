@@ -39,7 +39,7 @@ export class ClienteEditComponent {
   save(): void {
     if (this.form.valid) {
       const savedData = this.form.value;
-      console.log('Datos a guardar:', savedData);
+      //console.log('Datos a guardar:', savedData);
 
       this.clienteService.actualizarCliente(this.id,savedData).subscribe((res)=>{
         this.updateTable.notifyTableUpdate();

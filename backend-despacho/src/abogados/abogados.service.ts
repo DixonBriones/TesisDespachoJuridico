@@ -8,7 +8,7 @@ import {
 import { CreateAbogadoDto } from './dto/create-abogado.dto';
 import { UpdateAbogadoDto } from './dto/update-abogado.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository,Like } from 'typeorm';
+import { Repository,Like,Relation } from 'typeorm';
 import { Abogado } from './entities/abogado.entity';
 
 @Injectable()
@@ -35,7 +35,7 @@ export class AbogadosService {
   }
 
   async findAll() {
-    const abogados = await this.abogadoRepository.findBy({status:true});
+    const abogados = await this.abogadoRepository.find({where:{status:true}, relations:['user']});
     return abogados
   }
 
@@ -74,6 +74,7 @@ export class AbogadosService {
       where: {
         name: Like(`%${name}%`),
       },
+      relations:['user']
     });
   }
 }

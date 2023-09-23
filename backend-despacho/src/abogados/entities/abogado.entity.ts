@@ -31,7 +31,7 @@ export class Abogado {
   //@JoinColumn({name:'user_id'})
   //user: Usuario;
 
-  @OneToMany(() => Usuario, (user) => user.lawyer)
+  @OneToOne(() => Usuario, (user) => user.lawyer)
   user: Usuario;
 
   @OneToMany(() => CasoLegal, (casoLegal) => casoLegal.lawyer)

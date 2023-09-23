@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ClienteEditComponent } from '../cliente/cliente-edit/cliente-edit.component';
 import { ClienteCreateComponent } from '../cliente/cliente-create/cliente-create.component';
 import { AbogadoCreateComponent } from '../abogado/abogado-create/abogado-create.component';
+import { AbogadoEditComponent } from '../abogado/abogado-edit/abogado-edit.component';
 
 
 @Injectable({
@@ -33,4 +34,13 @@ export class ModalService {
     });
     return dialogRef.afterClosed();
   }
+
+  openModalEditAbogado(data: any) {
+    const dialogRef = this.dialog.open(AbogadoEditComponent, {
+      width: '500px',
+      data: data
+    });
+    return dialogRef.afterClosed();
+  }
+  
 }

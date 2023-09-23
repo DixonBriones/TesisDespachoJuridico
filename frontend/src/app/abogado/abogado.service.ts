@@ -18,6 +18,10 @@ export class AbogadoService {
     return this.http.patch(`${this.URL}/abogado/${id}`,body);
   }
 
+  actualizarUsuario(id:string,body:any) {
+   
+    return this.http.patch(`${this.URL}/usuario/${id}`,body);
+  }
   insertarAbogado(body:any) {
     return this.http.post(`${this.URL}/abogado`,body);
   }
@@ -25,5 +29,6 @@ export class AbogadoService {
   insertarUsuario(body:any) {
     return this.http.post(`${this.URL}/usuario`,body);
   }
+
 
 }
