@@ -23,8 +23,7 @@ export class Documento {
 
   //Relaciones
 
-  @ManyToOne(() => CasoLegal)
-  @JoinColumn({name:'case_id'})
+  @ManyToOne(() => CasoLegal, (legal_case) => legal_case.document)
+  @JoinColumn({name:'legalCase_id'})
   legal_case: CasoLegal;
-
 }

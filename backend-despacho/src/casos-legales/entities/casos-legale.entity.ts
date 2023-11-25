@@ -1,7 +1,11 @@
 import { Abogado } from "src/abogados/entities/abogado.entity";
 import { Cliente } from "src/clientes/entities/cliente.entity";
 import { Documento } from "src/documentos/entities/documento.entity";
+import { TipoCaso } from "src/tipo_caso/entities/tipo_caso.entity";
+import { Pago } from "src/pagos/entities/pago.entity";
 import { Column, Entity, PrimaryGeneratedColumn, OneToOne,JoinColumn, OneToMany, ManyToOne } from "typeorm";
+import { Evento } from "src/eventos/entities/evento.entity";
+
 
 @Entity()
 export class CasoLegal {
@@ -16,24 +20,40 @@ export class CasoLegal {
 
   @Column('varchar')
   status_case: string;
-  
+
   @Column('date',{default: new Date()})
   date_start: Date;
 
-  @ManyToOne(() => Abogado)
+  @Column({type: "decimal", precision: 10, scale: 2, default: 0})
+  service_fee: number;
+
+  @ManyToOne(() => TipoCaso, (case_type) => case_type.legal_case)
+  @JoinColumn({name:'caseType_id'})
+  case_type: TipoCaso;
+
+  @ManyToOne(() => Abogado, (abogado) => abogado.legal_case)
   @JoinColumn({name:'lawyer_id'})
   lawyer: Abogado;
 
-  @OneToOne(() => Cliente)
+  @ManyToOne(() => Cliente, (cliente) => cliente.legal_case)
   @JoinColumn({name:'client_id'})
   client: Cliente;
+
+  @OneToMany(type => Pago, pago => pago.legal_case)
+  payment: Pago[];
+
+  @OneToMany(type => Documento, documento => documento.legal_case)
+  document: Documento[];
+
+  @OneToMany(type => Evento, evento => evento.legal_case)
+  event: Evento[];
 
   @Column('boolean',{default:true})
   status:boolean;
 
   //Relaciones
 
-  @OneToMany(() => Documento, (documeto) => documeto.legal_case)
-  document: Documento;
+  //@OneToMany(() => Documento, (documeto) => documeto.legal_case)
+  //document: Documento[];
 
 }

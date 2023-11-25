@@ -1,5 +1,5 @@
 import { CasoLegal } from "src/casos-legales/entities/casos-legale.entity";
-import { Column, Entity, PrimaryGeneratedColumn,OneToOne } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn,OneToOne, OneToMany } from "typeorm";
 
 @Entity()
 export class Cliente {
@@ -26,7 +26,7 @@ export class Cliente {
 
   //Relaciones
 
-  @OneToOne(() => CasoLegal, (casoLegal) => casoLegal.client)
-  legal_case: CasoLegal;
+  @OneToMany(() => CasoLegal, (casoLegal) => casoLegal.client)
+  legal_case: CasoLegal[];
 
 }

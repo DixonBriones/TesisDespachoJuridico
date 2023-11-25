@@ -3,7 +3,7 @@ import { CasosLegalesService } from './casos-legales.service';
 import { CreateCasosLegaleDto } from './dto/create-casos-legale.dto';
 import { UpdateCasosLegaleDto } from './dto/update-casos-legale.dto';
 
-@Controller('casos-legales')
+@Controller('caso-legal')
 export class CasosLegalesController {
   constructor(private readonly casosLegalesService: CasosLegalesService) {}
 

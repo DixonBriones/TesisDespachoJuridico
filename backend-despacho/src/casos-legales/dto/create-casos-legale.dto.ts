@@ -10,6 +10,8 @@ import {
   IsEnum,
   IsUUID,
 } from 'class-validator';
+import { Abogado } from 'src/abogados/entities/abogado.entity';
+import { Cliente } from 'src/clientes/entities/cliente.entity';
 import { EstadoCaso } from 'src/constants/status_case';
 
 export class CreateCasosLegaleDto {
@@ -21,18 +23,21 @@ export class CreateCasosLegaleDto {
   @IsNotEmpty()
   description: string;
 
-  @IsDate()
-  date_start: Date;
-
   @IsEnum(EstadoCaso)
   @IsNotEmpty()
   status_case: EstadoCaso;
 
-  @IsUUID()
-  @IsNotEmpty()
-  client: string;
+  date_start: Date;
 
-  @IsUUID()
   @IsNotEmpty()
-  lawyer: string;
+  service_fee:number
+
+  @IsNotEmpty()
+  category_case:string
+
+  @IsString()
+  client: Cliente;
+
+  @IsString()
+  lawyer: Abogado;
 }

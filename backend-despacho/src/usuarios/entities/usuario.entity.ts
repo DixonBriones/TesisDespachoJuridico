@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable,OneToOne,JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable,OneToOne,JoinColumn,ManyToOne } from 'typeorm';
 import { Role } from '../../roles/entities/role.entity';
 import { Abogado } from 'src/abogados/entities/abogado.entity';
 
@@ -25,6 +25,10 @@ export class Usuario {
   @OneToOne(() => Abogado)
   @JoinColumn({name:'lawyer_id'})
   lawyer: Abogado;
+
+  @ManyToOne(type => Role, rol => rol.users)
+  @JoinColumn({name:'role_id'})
+  role: Role;
   
  
 }

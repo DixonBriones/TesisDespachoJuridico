@@ -1,15 +1,21 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable,OneToMany } from 'typeorm';
 import { Usuario } from '../../usuarios/entities/usuario.entity';
 
 @Entity()
 export class Role {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-  @Column()
+  @Column('varchar')
   name: string;
 
-  @ManyToMany(() => Usuario)
-  @JoinTable()
+  @Column('boolean',{default:true})
+  status:boolean;
+  
+  //@ManyToMany(() => Usuario)
+  //@JoinTable()
+  //users: Usuario[];
+
+  @OneToMany(type => Usuario, usuario => usuario.role)
   users: Usuario[];
 }

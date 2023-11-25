@@ -11,6 +11,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule,ConfigService } from '@nestjs/config';
 import { RolesModule } from './roles/roles.module';
 import { AuthModule } from './auth/auth.module';
+import { TipoEventoModule } from './tipo_evento/tipo_evento.module';
+import { TipoCasoModule } from './tipo_caso/tipo_caso.module';
+import { PagosModule } from './pagos/pagos.module';
 
 
 @Module({
@@ -40,7 +43,10 @@ import { AuthModule } from './auth/auth.module';
     DocumentosModule,
     EventosModule,
     RolesModule,
-    AuthModule],
+    AuthModule,
+    TipoEventoModule,
+    TipoCasoModule,
+    PagosModule],
   controllers: [AppController],
   providers: [AppService],
 })
