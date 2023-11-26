@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>Nuevo Rol</h2>
+<mat-dialog-content>
+  <form [formGroup]="form" class="modal-form">
+    <div class="form-group mb-3">
+      <label>Nombre del rol</label>
+      <input type="text" class="form-control" formControlName="name" minlength="3" />
+      <div *ngIf="form.get('name')?.hasError('required')" class="text-danger">
+        El Nombre del rol es requerido.
+      </div>
+      <div *ngIf="form.get('name')?.hasError('minlength') " class="text-danger">
+        Debe tener mínimo 3 carácteres
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label>Decripción del rol</label>
+      <input type="text" class="form-control" formControlName="description" minlength="3" />
+      <div *ngIf="form.get('description')?.hasError('required')" class="text-danger">
+        La descripción del rol es requerido.
+      </div>
+      <div *ngIf="form.get('description')?.hasError('minlength') " class="text-danger">
+        Debe tener mínimo 3 carácteres
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button type="button" class="btn btn-danger mx-1" (click)="cancel()">
+    Cancelar
+  </button>
+  <button
+    type="button"
+    class="btn btn-primary mx-1"
+    [disabled]="form.invalid"
+    (click)="save()"
+  >
+    Guardar
+  </button>
+</mat-dialog-actions>

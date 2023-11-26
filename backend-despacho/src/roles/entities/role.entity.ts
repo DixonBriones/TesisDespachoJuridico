@@ -6,8 +6,11 @@ export class Role {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column('varchar')
+  @Column('varchar',{unique:true})
   name: string;
+
+  @Column('varchar', {nullable:true})
+  description: string;
 
   @Column('boolean',{default:true})
   status:boolean;

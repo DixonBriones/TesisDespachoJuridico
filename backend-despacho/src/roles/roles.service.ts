@@ -1,26 +1,70 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  InternalServerErrorException,
+  Logger,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateRoleDto } from './dto/create-role.dto';
 import { UpdateRoleDto } from './dto/update-role.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Role } from './entities/role.entity';
+import { Repository,Like,Relation } from 'typeorm';
 
 @Injectable()
 export class RolesService {
-  create(createRoleDto: CreateRoleDto) {
-    return 'This action adds a new role';
+  private readonly logger = new Logger('RolesService');
+
+  constructor(
+    @InjectRepository(Role)
+    private readonly rolesRepository: Repository<Role>,
+  ) {}
+
+  async create(createRoleDto: CreateRoleDto) {
+    try {
+      const role = this.rolesRepository.create(createRoleDto);
+      await this.rolesRepository.save(role);
+      return role;
+    } catch (error) {
+      console.log(error);
+      if (error.code === '23505') throw new BadRequestException(error.detail);
+      this.logger.error(error);
+      throw new InternalServerErrorException('Error no esperado');
+    }
   }
 
-  findAll() {
-    return `This action returns all roles`;
+  async findAll() {
+    const roles = await this.rolesRepository.find({where:{status:true}});
+    return roles
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} role`;
+  async findOne(id: string) {
+    const role = await this.rolesRepository.findOneBy({ id });
+    if (!role) throw new NotFoundException(`Rol ${id} no encontrado`);
+    return role;
   }
 
-  update(id: number, updateRoleDto: UpdateRoleDto) {
-    return `This action updates a #${id} role`;
+  async update(id: string, updateRoleDto: UpdateRoleDto) {
+    const role = await this.rolesRepository.preload({
+      id: id,
+      ...updateRoleDto,
+    });
+    if (!role) throw new NotFoundException(`Rol ${id} no encontrado`);
+
+    try {
+
+      await this.rolesRepository.save(role);
+      return role;
+
+    } catch (error) {
+      console.log(error);
+      throw new BadRequestException(error.detail);
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} role`;
+  async remove(id: string) {
+    const role= await  this.findOne(id);
+    await this.update(id,{status:false });
+    return {...role, id};
   }
 }

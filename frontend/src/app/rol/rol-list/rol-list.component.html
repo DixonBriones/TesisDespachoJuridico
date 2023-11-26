@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+      <div class="col-2 justify-content-start">
+        <button class="btn btn-primary" (click)="openModalCreate()">
+          Nuevo Rol
+        </button>
+      </div>
+    </div>  
+  
+     
+    <table class="table table-striped table-hover table-bordered mt-3">
+      <thead>
+        <tr class="bg-header text-white">
+          <th scope="col" class="col-md-1">#</th>
+          <th scope="col">Nombre del rol</th>
+          <th scope="col">Descripcion del rol</th>
+          <th scope="col" class="col-md-3">Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rol of roles; index as i">
+          <th scope="row" class="align-middle">{{ i + 1 }}</th>
+          <td class="align-middle">{{ rol.name }}</td>
+          <td class="align-middle">{{ rol.description | titlecase }}</td>
+          <td>
+            <button class="btn btn-warning mx-1"  (click)="openModalEdit(rol)" >
+              Editar
+            </button>
+
+            <button class="btn btn-danger mx-1" (click)="deleteRol(rol.id)">
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

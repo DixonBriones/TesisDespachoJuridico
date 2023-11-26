@@ -26,7 +26,7 @@ export class ClienteListComponent {
   listarClientes() {
     this.clienteService.mostrarClientes(this.query.trim()).subscribe((res) => {
       this.clientes = res;
-      console.log(this.clientes);
+      //console.log(this.clientes);
     });
   }
 
