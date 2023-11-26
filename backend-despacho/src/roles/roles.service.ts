@@ -21,6 +21,11 @@ export class RolesService {
   ) {}
 
   async create(createRoleDto: CreateRoleDto) {
+    const rolExistente=this.findName(createRoleDto.name);
+    if(rolExistente && (await rolExistente).status==false){
+      await this.update((await rolExistente).id,{status:true });
+      return rolExistente
+    }
     try {
       const role = this.rolesRepository.create(createRoleDto);
       await this.rolesRepository.save(role);
@@ -36,6 +41,11 @@ export class RolesService {
   async findAll() {
     const roles = await this.rolesRepository.find({where:{status:true}});
     return roles
+  }
+
+  async findName(name: string) {
+    const cliente = await this.rolesRepository.findOneBy({ name });
+    return cliente;
   }
 
   async findOne(id: string) {
