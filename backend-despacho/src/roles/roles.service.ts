@@ -21,9 +21,9 @@ export class RolesService {
   ) {}
 
   async create(createRoleDto: CreateRoleDto) {
-    const rolExistente=this.findName(createRoleDto.name);
-    if(rolExistente && (await rolExistente).status==false){
-      await this.update((await rolExistente).id,{status:true });
+    const rolExistente= await this.findName(createRoleDto.name);
+    if(rolExistente && rolExistente.status==false){
+      await this.update(rolExistente.id,{status:true });
       return rolExistente
     }
     try {
@@ -31,7 +31,6 @@ export class RolesService {
       await this.rolesRepository.save(role);
       return role;
     } catch (error) {
-      console.log(error);
       if (error.code === '23505') throw new BadRequestException(error.detail);
       this.logger.error(error);
       throw new InternalServerErrorException('Error no esperado');
@@ -44,8 +43,8 @@ export class RolesService {
   }
 
   async findName(name: string) {
-    const cliente = await this.rolesRepository.findOneBy({ name });
-    return cliente;
+    const rol = await this.rolesRepository.findOneBy({ name });
+    return rol;
   }
 
   async findOne(id: string) {

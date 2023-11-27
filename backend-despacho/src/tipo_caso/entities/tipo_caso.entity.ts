@@ -6,7 +6,7 @@ export class TipoCaso {
     @PrimaryGeneratedColumn('uuid')
     id: string;
   
-    @Column('varchar')
+    @Column('varchar',{unique:true})
     name: string;
 
     @Column('boolean',{default:true})
