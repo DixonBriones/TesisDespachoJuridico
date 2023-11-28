@@ -12,7 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { AbogadoModule } from './abogado/abogado.module';
 import { RolModule } from './rol/rol.module';
-
+import { TipoCasoModule } from './tipoCaso/tipo-caso.module';
+import { TipoEventoModule } from './tipoEvento/tipo-evento.module';
 
 
 
@@ -30,7 +31,9 @@ import { RolModule } from './rol/rol.module';
     ClienteModule,
     AuthModule,
     AbogadoModule,
-    RolModule
+    RolModule,
+    TipoCasoModule,
+    TipoEventoModule,
   ],
   providers: [ 
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },

@@ -1,8 +1,8 @@
 <div class="container">
     <div class="row">
       <div class="col-2 justify-content-start">
-        <button class="btn btn-primary" (click)="openModalCreate()">
-          Nuevo Rol
+        <button class="btn btn-primary"  (click)="openModalCreate()">
+          Nuevo Tipo de Evento
         </button>
       </div>
     </div>  
@@ -11,22 +11,20 @@
       <thead>
         <tr class="bg-header text-white">
           <th scope="col" class="col-md-1">#</th>
-          <th scope="col">Nombre del rol</th>
-          <th scope="col">Descripcion del rol</th>
+          <th scope="col">Nombre del tipo de evento</th>
           <th scope="col" class="col-md-3">Acción</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let rol of roles| paginate: { itemsPerPage: 10, currentPage: p }; index as i">
+        <tr *ngFor="let tipoEvento of tiposEventos| paginate: { itemsPerPage: 10, currentPage: p }; index as i">
           <th scope="row" class="align-middle">{{ i + 1 }}</th>
-          <td class="align-middle">{{ rol.name }}</td>
-          <td class="align-middle">{{ rol.description | titlecase }}</td>
+          <td class="align-middle">{{ tipoEvento.name }}</td>
           <td>
-            <button class="btn btn-warning mx-1"  (click)="openModalEdit(rol)" >
+            <button class="btn btn-warning mx-1" (click)="openModalEdit(tipoEvento)"  >
               Editar
             </button>
 
-            <button class="btn btn-danger mx-1" (click)="deleteRol(rol.id)">
+            <button class="btn btn-danger mx-1" (click)="deleteTipo(tipoEvento.id)">
               Eliminar
             </button>
           </td>

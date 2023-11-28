@@ -6,6 +6,10 @@ import { AbogadoCreateComponent } from '../abogado/abogado-create/abogado-create
 import { AbogadoEditComponent } from '../abogado/abogado-edit/abogado-edit.component';
 import { RolCreateComponent } from '../rol/rol-create/rol-create.component';
 import { RolEditComponent } from '../rol/rol-edit/rol-edit.component';
+import { TipoCasoCreateComponent } from '../tipoCaso/tipo-caso-create/tipo-caso-create.component';
+import { TipoCasoEditComponent } from '../tipoCaso/tipo-caso-edit/tipo-caso-edit.component';
+import { TipoEventoCreateComponent } from '../tipoEvento/tipo-evento-create/tipo-evento-create.component';
+import { TipoEventoEditComponent } from '../tipoEvento/tipo-evento-edit/tipo-evento-edit.component';
 
 
 @Injectable({
@@ -59,5 +63,35 @@ export class ModalService {
     });
     return dialogRef.afterClosed();
   }
+
+  openModalCreateTipoCaso() {
+    const dialogRef = this.dialog.open(TipoCasoCreateComponent, {
+      width: '500px',
+    });
+    return dialogRef.afterClosed();
+  }
+
+  openModalEditTipoCaso(data: any) {
+    const dialogRef = this.dialog.open(TipoCasoEditComponent, {
+      width: '500px',
+      data: data
+    });
+    return dialogRef.afterClosed();
+  }
   
+  openModalCreateTipoEvento() {
+    const dialogRef = this.dialog.open(TipoEventoCreateComponent, {
+      width: '500px',
+    });
+    return dialogRef.afterClosed();
+  }
+
+  openModalEditTipoEvento(data: any) {
+    const dialogRef = this.dialog.open(TipoEventoEditComponent, {
+      width: '500px',
+      data: data
+    });
+    return dialogRef.afterClosed();
+  }
+
 }

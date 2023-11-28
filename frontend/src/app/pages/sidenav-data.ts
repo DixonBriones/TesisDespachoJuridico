@@ -4,8 +4,8 @@ export const navbardData = [
     label: 'Abogados',
     icon: 'groups',
     subItems: [
-      { label: 'Roles',link: '/ruta1/opcion1' },
-      { label: 'Abogados',link: '/ruta1/opcion2' },
+      { label: 'Roles',link: '/dashboard/rol' },
+      { label: 'Abogados',link: '/dashboard/abogado' },
     ]
   },
   {
@@ -21,7 +21,7 @@ export const navbardData = [
       { label: 'Mis casos',link: '/ruta1/opcion1' },
       { label: 'Casos abiertos',link: '/ruta1/opcion2' },
       { label: 'Casos archivados',link: '/ruta1/opcion3' },
-      { label: 'Tipos de casos',link: '/ruta1/opcion4' },
+      { label: 'Tipos de casos',link: '/dashboard/tipo-caso' },
     ]
   },
   {
@@ -40,7 +40,7 @@ export const navbardData = [
     icon: 'event',
     subItems: [
       { label: 'Mis eventos',link: '/ruta1/opcion1' },
-      { label: 'Tipos de eventos',link: '/ruta1/opcion2' }
+      { label: 'Tipos de eventos',link: '/dashboard/tipo-evento' }
     ],
   }
 ];

@@ -26,6 +26,16 @@ const routes: Routes = [
         .then(m=> m.ClienteModule)
       },
       {
+        path:'tipo-evento',
+        loadChildren:()=> import('./tipoEvento/tipo-evento.module')
+        .then(m=> m.TipoEventoModule)
+      },
+      {
+        path:'tipo-caso',
+        loadChildren:()=> import('./tipoCaso/tipo-caso.module')
+        .then(m=> m.TipoCasoModule)
+      },
+      {
         path:'rol',
         loadChildren:()=> import('./rol/rol.module')
         .then(m=> m.RolModule)
@@ -35,7 +45,8 @@ const routes: Routes = [
         loadChildren:()=> import('./abogado/abogado.module')
         .then(m=> m.AbogadoModule)
       }
-    ]
+    ],
+    canActivate: [AuthGuard]
   },
 
 ];

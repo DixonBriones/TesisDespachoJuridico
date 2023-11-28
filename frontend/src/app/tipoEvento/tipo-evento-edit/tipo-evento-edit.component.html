@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>Editar Tipo de Evento</h2>
+<mat-dialog-content>
+  <form [formGroup]="form" class="modal-form">
+
+    <div class="form-group mb-3">
+      <label>Nombre del tipo de evento</label>
+      <input type="text" class="form-control" formControlName="name" minlength="3" />
+      <div *ngIf="form.get('name')?.hasError('required')" class="text-danger">
+        El Nombre del tipo de evento es requerido.
+      </div>
+      <div *ngIf="form.get('name')?.hasError('minlength') " class="text-danger">
+        Debe tener mínimo 3 carácteres
+      </div>
+    </div>
+
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button type="button" class="btn btn-danger mx-1" (click)="cancel()">
+    Cancelar
+  </button>
+  <button
+    type="button"
+    class="btn btn-primary mx-1"
+    [disabled]="form.invalid"
+    (click)="save()"
+  >
+    Guardar
+  </button>
+</mat-dialog-actions>

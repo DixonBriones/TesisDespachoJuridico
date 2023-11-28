@@ -1,43 +1,63 @@
 import { Component } from '@angular/core';
-import { RolService } from '../rol.service';
 import { ModalService } from 'src/app/utility/modal.service';
 import { UpdateTableService } from 'src/app/utility/update-table.service';
 import Swal from 'sweetalert2';
+import { TipoCasoService } from '../tipo-caso.service';
 
 @Component({
-  selector: 'app-rol-list',
-  templateUrl: './rol-list.component.html',
-  styleUrls: ['./rol-list.component.scss']
+  selector: 'app-tipo-caso-list',
+  templateUrl: './tipo-caso-list.component.html',
+  styleUrls: ['./tipo-caso-list.component.scss']
 })
-export class RolListComponent {
-  roles: any = [];
+export class TipoCasoListComponent {
+  tiposCasos: any = [];
   p: number = 1;
   constructor(
-    private rolService: RolService,
+    private tipoCasoService: TipoCasoService,
     private modalService: ModalService,
     private updateTable: UpdateTableService
   ) {}
 
   ngOnInit(): void {
-    this.listarClientes();
+    this.listarTipoCasos();
     this.actualizarTabla();
   }
 
-  listarClientes() {
-    this.rolService.mostrarRoles().subscribe((res) => {
-      this.roles = res;
+  listarTipoCasos() {
+    this.tipoCasoService.mostrarTipoCaso().subscribe((res) => {
+      this.tiposCasos = res;
       //console.log(this.roles);
     });
   }
 
   actualizarTabla() {
     this.updateTable.updateTable$.subscribe(() => {
-      this.listarClientes();
+      this.listarTipoCasos();
     });
   }
 
+  deleteTipo(id:string){
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'Esta acción no se puede deshacer',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, estoy seguro',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.tipoCasoService.eliminarTipoCaso(id).subscribe((res) => {
+          this.listarTipoCasos()
+        })
+        Swal.fire('¡Acción confirmada!', 'La acción se realizó con éxito', 'success');
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire('Cancelado', 'La acción ha sido cancelada', 'error');
+      }}) 
+  }
+
+
   openModalCreate() {
-    this.modalService.openModalCreateRol().subscribe((result) => {
+    this.modalService.openModalCreateTipoCaso().subscribe((result) => {
       if (result) {
        // console.log('Datos guardados:', result);
         Swal.fire({
@@ -68,7 +88,7 @@ export class RolListComponent {
 
   openModalEdit(data: any) {
     const modalData = data; 
-    this.modalService.openModalEditRol(modalData).subscribe((result) => {
+    this.modalService.openModalEditTipoCaso(modalData).subscribe((result) => {
       // Lógica a realizar después de cerrar el modal (si es necesario)
       if (result) {
         Swal.fire({
@@ -97,23 +117,5 @@ export class RolListComponent {
   }
 
 
-  deleteRol(id:string){
-    Swal.fire({
-      title: '¿Estás seguro?',
-      text: 'Esta acción no se puede deshacer',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Sí, estoy seguro',
-      cancelButtonText: 'Cancelar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.rolService.eliminarRol(id).subscribe((res) => {
-          this.listarClientes()
-        })
-        Swal.fire('¡Acción confirmada!', 'La acción se realizó con éxito', 'success');
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire('Cancelado', 'La acción ha sido cancelada', 'error');
-      }}) 
-  }
 
 }

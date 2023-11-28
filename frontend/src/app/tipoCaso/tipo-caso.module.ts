@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RolListComponent } from './rol-list/rol-list.component';
-import { RolRoutingModule } from './rol-routing.module';
-import { RolCreateComponent } from './rol-create/rol-create.component';
-import { RolEditComponent } from './rol-edit/rol-edit.component';
+import { TipoCasoRoutingModule } from './tipo-caso-routing.module';
+import { TipoCasoListComponent } from './tipo-caso-list/tipo-caso-list.component';
+import { TipoCasoEditComponent } from './tipo-caso-edit/tipo-caso-edit.component';
+import { TipoCasoCreateComponent } from './tipo-caso-create/tipo-caso-create.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -13,19 +13,19 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
-    RolListComponent,
-    RolCreateComponent,
-    RolEditComponent
+    TipoCasoListComponent,
+    TipoCasoEditComponent,
+    TipoCasoCreateComponent
   ],
   imports: [
     CommonModule,
-    RolRoutingModule,
+    TipoCasoRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     NgbModule,
     MatDialogModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ]
 })
-export class RolModule { }
+export class TipoCasoModule { }
