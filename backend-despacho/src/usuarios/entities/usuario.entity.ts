@@ -26,7 +26,7 @@ export class Usuario {
   @JoinColumn({name:'lawyer_id'})
   lawyer: Abogado;
 
-  @ManyToOne(type => Role, rol => rol.users)
+  @ManyToOne(() => Role, rol => rol.users, {eager: true})
   @JoinColumn({name:'role_id'})
   role: Role;
   

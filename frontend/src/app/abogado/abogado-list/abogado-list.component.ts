@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AbogadoService } from '../abogado.service';
 import { UpdateTableService } from 'src/app/utility/update-table.service';
 import { ModalService } from 'src/app/utility/modal.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-abogado-list',
@@ -11,6 +12,7 @@ import { ModalService } from 'src/app/utility/modal.service';
 export class AbogadoListComponent {
   abogados: any = [];
   query: string = '';
+  p: number = 1;
 
   constructor(
     private abogadoService: AbogadoService,

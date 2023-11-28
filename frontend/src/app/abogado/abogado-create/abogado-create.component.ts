@@ -12,6 +12,7 @@ import { UpdateTableService } from 'src/app/utility/update-table.service';
 })
 export class AbogadoCreateComponent {
   form: FormGroup;
+  roles: any = [];
 
   constructor(
     private dialogRef: MatDialogRef<AbogadoCreateComponent>,
@@ -25,9 +26,20 @@ export class AbogadoCreateComponent {
       address: [null],
       phone: [null, [Validators.required, Validators.minLength(10)]],
       email: [null,[Validators.required, Validators.email]],
-      rol: [null],
+      rol: [null,Validators.required],
       username: [null,[Validators.required, Validators.minLength(5)]],
       password: [null,[Validators.required, Validators.minLength(8)]],
+    });
+  }
+
+  ngOnInit(): void {
+    this.listarRoles();
+  }
+
+  listarRoles() {
+    this.abogadoService.mostrarRoles().subscribe((res) => {
+      this.roles = res;
+      //console.log(this.roles);
     });
   }
 
@@ -46,6 +58,7 @@ export class AbogadoCreateComponent {
         const usuarioBody={
           username:this.form.get('username')?.value,
           password:this.form.get('password')?.value,
+          role:this.form.get('rol')?.value,
           lawyer: res.id
         }
         this.abogadoService.insertarUsuario(usuarioBody).subscribe((res)=>{

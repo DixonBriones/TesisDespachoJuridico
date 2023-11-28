@@ -19,6 +19,6 @@ export class Role {
   //@JoinTable()
   //users: Usuario[];
 
-  @OneToMany(type => Usuario, usuario => usuario.role)
+  @OneToMany(() => Usuario, usuario => usuario.role)
   users: Usuario[];
 }

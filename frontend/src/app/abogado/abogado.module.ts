@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatDialogModule} from '@angular/material/dialog';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -26,7 +26,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     ReactiveFormsModule,
     MatFormFieldModule,
     NgbModule,
-    MatDialogModule
+    MatDialogModule,
+    NgxPaginationModule
   ]
 })
 export class AbogadoModule { }

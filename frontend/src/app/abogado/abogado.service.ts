@@ -30,5 +30,9 @@ export class AbogadoService {
     return this.http.post(`${this.URL}/usuario`,body);
   }
 
+  mostrarRoles() {
+    return this.http.get(`${this.URL}/rol`);
+  }
+
 
 }

@@ -49,7 +49,12 @@
     </div>
     <div class="form-group mb-3">
       <label>Rol</label>
-      <input type="text" class="form-control" formControlName="rol" />
+      <select formControlName="rol" class="form-select">
+        <option *ngFor="let rol of roles" [value]="rol.id">{{ rol.description }}</option>
+      </select>
+      <div *ngIf="form.get('rol')?.hasError('required')" class="text-danger">
+        La seleccion de rol de usuario es requerida
+      </div>
     </div>
     <div class="form-group mb-3">
       <label>Usuario</label>
