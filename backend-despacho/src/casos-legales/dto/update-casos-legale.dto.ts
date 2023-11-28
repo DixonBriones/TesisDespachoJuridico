@@ -17,5 +17,5 @@ import {
 export class UpdateCasosLegaleDto extends PartialType(CreateCasosLegaleDto) {
     @IsBoolean()
     @IsOptional()
-    estado?: boolean;
+    status?: boolean;
 }

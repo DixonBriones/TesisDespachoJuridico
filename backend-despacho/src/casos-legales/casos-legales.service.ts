@@ -34,8 +34,8 @@ export class CasosLegalesService {
   }
 
   async findAll() {
-    const clientes = await this.casoLegalRepository.find({relations:{client:true, lawyer:true}});
-    return clientes
+    const casoLegal = await this.casoLegalRepository.find({relations:{client:true, lawyer:true}});
+    return casoLegal
   
   }
 

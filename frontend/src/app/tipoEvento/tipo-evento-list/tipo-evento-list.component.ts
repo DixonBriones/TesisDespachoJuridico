@@ -19,11 +19,11 @@ export class TipoEventoListComponent {
   ) {}
 
   ngOnInit(): void {
-    this.listarTipoCasos();
+    this.listarTipoEvento();
     this.actualizarTabla();
   }
 
-  listarTipoCasos() {
+  listarTipoEvento() {
     this.tipoEventoService.mostrarTipoEvento().subscribe((res) => {
       this.tiposEventos = res;
       //console.log(this.roles);
@@ -32,7 +32,7 @@ export class TipoEventoListComponent {
 
   actualizarTabla() {
     this.updateTable.updateTable$.subscribe(() => {
-      this.listarTipoCasos();
+      this.listarTipoEvento();
     });
   }
 
@@ -48,7 +48,7 @@ export class TipoEventoListComponent {
     }).then((result) => {
       if (result.isConfirmed) {
         this.tipoEventoService.eliminarTipoEvento(id).subscribe((res) => {
-          this.listarTipoCasos()
+          this.listarTipoEvento()
         })
         Swal.fire('¡Acción confirmada!', 'La acción se realizó con éxito', 'success');
       } else if (result.dismiss === Swal.DismissReason.cancel) {

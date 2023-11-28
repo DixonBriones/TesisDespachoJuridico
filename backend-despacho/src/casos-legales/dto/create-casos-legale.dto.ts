@@ -13,6 +13,7 @@ import {
 import { Abogado } from 'src/abogados/entities/abogado.entity';
 import { Cliente } from 'src/clientes/entities/cliente.entity';
 import { EstadoCaso } from 'src/constants/status_case';
+import { TipoCaso } from 'src/tipo_caso/entities/tipo_caso.entity';
 
 export class CreateCasosLegaleDto {
   @IsNotEmpty()
@@ -27,13 +28,15 @@ export class CreateCasosLegaleDto {
   @IsNotEmpty()
   status_case: EstadoCaso;
 
+  @IsDate()
+  @IsNotEmpty()
   date_start: Date;
 
   @IsNotEmpty()
   service_fee:number
 
   @IsNotEmpty()
-  category_case:string
+  case_type: TipoCaso;
 
   @IsString()
   client: Cliente;

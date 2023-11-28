@@ -14,11 +14,11 @@ export const navbardData = [
     icon: 'person',
   },
   {
-    link: '/dashboard',
+    link: '/dashboard/',
     label: 'Casos',
     icon: 'cases',
     subItems: [
-      { label: 'Mis casos',link: '/ruta1/opcion1' },
+      { label: 'Mis casos',link: '/dashboard/casos/miscasos' },
       { label: 'Casos abiertos',link: '/ruta1/opcion2' },
       { label: 'Casos archivados',link: '/ruta1/opcion3' },
       { label: 'Tipos de casos',link: '/dashboard/tipo-caso' },

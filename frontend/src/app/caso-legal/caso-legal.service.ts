@@ -1,9 +1,16 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CasoLegalService {
+  private URL = environment.rutaService;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  mostrarMisCasos() {
+    return this.http.get(`${this.URL}/caso-legal`);
+  }
 }
