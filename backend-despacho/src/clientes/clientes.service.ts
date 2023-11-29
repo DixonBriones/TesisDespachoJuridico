@@ -70,6 +70,16 @@ export class ClientesService {
     return this.clienteRepository.find({
       where: {
         identification: Like(`%${identification}%`),
+        status:true,
+      },
+    });
+  }
+
+  async findIdentificationCompleta(identification: string) {
+    return this.clienteRepository.find({
+      where: {
+        identification: identification,
+        status:true,
       },
     });
   }

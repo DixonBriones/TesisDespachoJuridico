@@ -9,6 +9,7 @@ import {
   IsDate,
   IsEnum,
   IsUUID,
+  IsDateString
 } from 'class-validator';
 import { Abogado } from 'src/abogados/entities/abogado.entity';
 import { Cliente } from 'src/clientes/entities/cliente.entity';
@@ -28,8 +29,8 @@ export class CreateCasosLegaleDto {
   @IsNotEmpty()
   status_case: EstadoCaso;
 
-  @IsDate()
   @IsNotEmpty()
+  @IsDateString()
   date_start: Date;
 
   @IsNotEmpty()

@@ -21,7 +21,7 @@ export class CasoLegal {
   @Column('varchar')
   status_case: string;
 
-  @Column('date',{default: new Date()})
+  @Column('date')
   date_start: Date;
 
   @Column({type: "decimal", precision: 10, scale: 2, default: 0})

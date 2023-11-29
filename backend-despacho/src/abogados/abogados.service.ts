@@ -73,8 +73,11 @@ export class AbogadosService {
     return this.abogadoRepository.find({
       where: {
         name: Like(`%${name}%`),
+        status:true
       },
       relations:['user']
     });
   }
+
+
 }

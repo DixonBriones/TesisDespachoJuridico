@@ -1,16 +1,47 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CasoLegalService {
   private URL = environment.rutaService;
+  decodedToken:any;
+  token:any;
+  data:any=[]
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private jwtHelper: JwtHelperService) { }
+
+  mostrarTiposCaso() {
+    return this.http.get(`${this.URL}/tipo-caso`);
+  }
+
+  mostrarUserID(id:any) {
+    return this.http.get(`${this.URL}/usuario/${id}`);
+  }
+
+  buscarClienteCedula(id:string) {
+    return this.http.get(`${this.URL}/cliente/identificacion/${id}`);
+  }
 
   mostrarMisCasos() {
     return this.http.get(`${this.URL}/caso-legal`);
+  }
+
+  insertarMiCaso(body:any) {
+    this.token=localStorage.getItem('token');
+    this.decodedToken = this.jwtHelper.decodeToken(this.token);
+    body.lawyer=this.decodedToken.idAbogado;
+    return this.http.post(`${this.URL}/caso-legal`,body);
+  }
+
+  actualizarTipoCaso(id:string,body:any) {
+    return this.http.patch(`${this.URL}/tipo-caso/${id}`,body);
+  }
+
+  eliminarTipoCaso(id:string) {
+    return this.http.delete(`${this.URL}/tipo-caso/${id}`);
   }
 }

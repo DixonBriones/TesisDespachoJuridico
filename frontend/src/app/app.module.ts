@@ -14,6 +14,7 @@ import { AbogadoModule } from './abogado/abogado.module';
 import { RolModule } from './rol/rol.module';
 import { TipoCasoModule } from './tipoCaso/tipo-caso.module';
 import { TipoEventoModule } from './tipoEvento/tipo-evento.module';
+import { CasoLegalModule } from './caso-legal/caso-legal.module';
 
 
 
@@ -34,6 +35,7 @@ import { TipoEventoModule } from './tipoEvento/tipo-evento.module';
     RolModule,
     TipoCasoModule,
     TipoEventoModule,
+    CasoLegalModule
   ],
   providers: [ 
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },

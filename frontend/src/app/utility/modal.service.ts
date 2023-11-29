@@ -10,6 +10,8 @@ import { TipoCasoCreateComponent } from '../tipoCaso/tipo-caso-create/tipo-caso-
 import { TipoCasoEditComponent } from '../tipoCaso/tipo-caso-edit/tipo-caso-edit.component';
 import { TipoEventoCreateComponent } from '../tipoEvento/tipo-evento-create/tipo-evento-create.component';
 import { TipoEventoEditComponent } from '../tipoEvento/tipo-evento-edit/tipo-evento-edit.component';
+import { CasoCreateComponent } from '../caso-legal/caso-create/caso-create.component';
+import { CasoEditComponent } from '../caso-legal/caso-edit/caso-edit.component';
 
 
 @Injectable({
@@ -94,4 +96,18 @@ export class ModalService {
     return dialogRef.afterClosed();
   }
 
+  openModalCreateCasoLegal() {
+    const dialogRef = this.dialog.open(CasoCreateComponent, {
+      width: '500px',
+    });
+    return dialogRef.afterClosed();
+  }
+
+  openModalEditCasoLegal(data: any) {
+    const dialogRef = this.dialog.open(CasoEditComponent, {
+      width: '500px',
+      data: data
+    });
+    return dialogRef.afterClosed();
+  }
 }

@@ -36,4 +36,66 @@ export class CasoListComponent {
       this.listarMisCasos();
     });
   }
+
+  openModalCreate() {
+    this.modalService.openModalCreateCasoLegal().subscribe((result) => {
+      if (result) {
+       // console.log('Datos guardados:', result);
+        Swal.fire({
+          icon: 'success',
+          title: `Gutierrez & Asociados`,
+          text: 'Datos guardados',
+          timer: 3500,
+          toast: true,
+          position: 'bottom-end',
+          timerProgressBar: true,
+          showConfirmButton: false
+        });
+      } else {
+       // console.log('Modal cerrado sin guardar');
+       Swal.fire({
+        icon: 'warning',
+        title: `Gutierrez & Asociados`,
+        text: 'Modal cerrado sin guardar',
+        timer: 3500,
+        toast: true,
+        position: 'bottom-end',
+        timerProgressBar: true,
+        showConfirmButton: false
+      });
+      }
+    });
+  }
+
+  openModalEdit(data: any) {
+    const modalData = data; 
+    this.modalService.openModalEditCasoLegal(modalData).subscribe((result) => {
+      // Lógica a realizar después de cerrar el modal (si es necesario)
+      if (result) {
+        Swal.fire({
+          icon: 'success',
+          title: `Gutierrez & Asociados`,
+          text: 'Datos actualizados correctamente',
+          timer: 3500,
+          toast: true,
+          position: 'bottom-end',
+          timerProgressBar: true,
+          showConfirmButton: false
+        });
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: `Gutierrez & Asociados`,
+          text: 'Modal cerrado sin guardar',
+          timer: 3500,
+          toast: true,
+          position: 'bottom-end',
+          timerProgressBar: true,
+          showConfirmButton: false
+        });
+      }
+    });
+  }
+
+
 }

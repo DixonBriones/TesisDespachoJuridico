@@ -1,5 +1,11 @@
 export enum EstadoCaso {
-    ABIERTO = 'Abierto',
-    CERRADO = 'Cerrado',
-    EN_PROCESO = 'En Proceso',
-  }
+  RevisionInicial = 'Revisión Inicial',
+  NotificacionALasPartes = 'Notificación a las Partes',
+  Descubrimiento = 'Descubrimiento',
+  MediacionDelCaso = 'Mediación del caso',
+  PreparacionParaJuicio = 'Preparación para Juicio',
+  Juicio = 'Juicio',
+  Sentencia = 'Sentencia',
+  Apelacion = 'Apelación',
+  CierreDelCaso = 'Caso cerrado'
+}

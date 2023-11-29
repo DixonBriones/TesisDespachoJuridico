@@ -39,6 +39,11 @@ export class ClientesController {
     return this.clientesService.findIdentification(q);
   }
 
+  @Get('identificacion/:identification')
+  findIdentificationCompleta(@Param('identification') identificacion: string){
+    return this.clientesService.findIdentificationCompleta(identificacion);
+  }
+
   
 
 }
