@@ -19,16 +19,16 @@ export class CasosLegalesController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.casosLegalesService.findOne(+id);
+    return this.casosLegalesService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateCasosLegaleDto: UpdateCasosLegaleDto) {
-    return this.casosLegalesService.update(+id, updateCasosLegaleDto);
+    return this.casosLegalesService.update(id, updateCasosLegaleDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.casosLegalesService.remove(+id);
+    return this.casosLegalesService.remove(id);
   }
 }

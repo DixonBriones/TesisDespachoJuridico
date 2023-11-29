@@ -19,8 +19,9 @@ export const navbardData = [
     icon: 'cases',
     subItems: [
       { label: 'Mis casos',link: '/dashboard/casos/miscasos' },
+      { label: 'Mis casos cerrados',link: '/dashboard/casos/miscasos' },
       { label: 'Casos abiertos',link: '/ruta1/opcion2' },
-      { label: 'Casos archivados',link: '/ruta1/opcion3' },
+      { label: 'Casos cerrados',link: '/ruta1/opcion3' },
       { label: 'Tipos de casos',link: '/dashboard/tipo-caso' },
     ]
   },

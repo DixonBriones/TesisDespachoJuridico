@@ -34,20 +34,36 @@ export class CasosLegalesService {
   }
 
   async findAll() {
-    const casoLegal = await this.casoLegalRepository.find({relations:{client:true, lawyer:true}});
+    const casoLegal = await this.casoLegalRepository.find({where:{status:true},relations:{client:true, lawyer:true,case_type:true}});
     return casoLegal
   
   }
 
-  async findOne(id: number) {
-    return `This action returns a #${id} casosLegale`;
+  async findOne(id: string) {
+    const casoLegal = await this.casoLegalRepository.findOne({ where:{status:true,id:id}});
+    if (!casoLegal) throw new NotFoundException(`Caso Legal ${id} no encontrado`);
+    return casoLegal;
   }
 
-  async update(id: number, updateCasosLegaleDto: UpdateCasosLegaleDto) {
-    return `This action updates a #${id} casosLegale`;
+  async update(id: string, updateCasosLegaleDto: UpdateCasosLegaleDto) {
+    const casoLegal = await this.casoLegalRepository.preload({
+      id: id,
+      ...updateCasosLegaleDto,
+    });
+    if (!casoLegal) throw new NotFoundException(`Caso Legal ${id} no encontrado`);
+
+    try {
+      await this.casoLegalRepository.save(casoLegal);
+      return casoLegal;
+    } catch (error) {
+      console.log(error);
+      throw new BadRequestException(error.detail);
+    }
   }
 
-  async remove(id: number) {
-    return `This action removes a #${id} casosLegale`;
+  async remove(id: string) {
+    const casoLegal= await  this.findOne(id);
+    await this.update(id,{status:false });
+    return {...casoLegal, id};
   }
 }

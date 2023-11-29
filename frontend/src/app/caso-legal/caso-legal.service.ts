@@ -37,11 +37,11 @@ export class CasoLegalService {
     return this.http.post(`${this.URL}/caso-legal`,body);
   }
 
-  actualizarTipoCaso(id:string,body:any) {
-    return this.http.patch(`${this.URL}/tipo-caso/${id}`,body);
+  actualizarCaso(id:string,body:any) {
+    return this.http.patch(`${this.URL}/caso-legal/${id}`,body);
   }
 
   eliminarTipoCaso(id:string) {
-    return this.http.delete(`${this.URL}/tipo-caso/${id}`);
+    return this.http.delete(`${this.URL}/caso-legal/${id}`);
   }
 }

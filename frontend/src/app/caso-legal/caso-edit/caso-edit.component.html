@@ -1,1 +1,96 @@
-<p>caso-edit works!</p>
+<h2 mat-dialog-title>Nuevo Caso</h2>
+<mat-dialog-content>
+  <form [formGroup]="form" class="modal-form">
+
+    <div class="form-group mb-3">
+      <label>Nombre del Caso</label>
+      <input type="text" class="form-control" formControlName="name_case" minlength="3" />
+      <div *ngIf="form.get('name_case')?.hasError('required')" class="text-danger">
+        El Nombre del caso es requerido.
+      </div>
+      <div *ngIf="form.get('name_case')?.hasError('minlength') " class="text-danger">
+        Debe tener mínimo 3 carácteres
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Identificacion del cliente</label>
+        <input type="text" class="form-control" formControlName="clientIdentificacion" minlength="10"  />
+        <div *ngIf="form.get('clientIdentificacion')?.hasError('required')" class="text-danger">
+          La identificacion del cliente es requerida.
+        </div>
+        <div *ngIf="form.get('clientIdentificacion')?.hasError('minlength') " class="text-danger">
+            Debe tener mínimo 10 carácteres
+          </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Nombre del cliente</label>
+        <input type="text" class="form-control" formControlName="clientName" readonly />
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Descripción del caso</label>
+        <textarea class="form-control" formControlName="description" minlength="5" rows="3"></textarea>
+        <div *ngIf="form.get('description')?.hasError('required')" class="text-danger">
+          La descripción del caso es requerida.
+        </div>
+        <div *ngIf="form.get('description')?.hasError('minlength') " class="text-danger">
+          Debe tener mínimo 5 carácteres
+        </div>
+    </div>
+
+   <div class="form-group mb-3">
+        <label>Estado del caso</label>
+        <select formControlName="status_case" class="form-select" >
+          <option *ngFor="let estadoCaso of estadoCaso" [value]="estadoCaso">{{estadoCaso}}</option>
+        </select>
+        <div *ngIf="form.get('rol')?.hasError('required')" class="text-danger">
+          La seleccion de rol de usuario es requerida
+        </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Tipo de caso</label>
+        <select formControlName="case_type" class="form-select">
+          <option *ngFor="let tipo of tipoCaso" [value]="tipo.id">{{tipo.name}}</option>
+        </select>
+        <div *ngIf="form.get('case_type')?.hasError('required')" class="text-danger">
+          La seleccion del tipo de caso es requerida
+        </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label>Fecha de inicio del caso</label>
+      <input type="date" class="form-control" formControlName="date_start"/>
+      <div *ngIf="form.get('date_start')?.hasError('required')" class="text-danger">
+        La fecha de inicio del caso es requerida.
+      </div>
+    </div>
+    
+
+    <div class="form-group mb-3">
+        <label>Honorarios totales del caso</label>
+        <input type="number" class="form-control" formControlName="service_fee" />
+        <div *ngIf="form.get('service_fee')?.hasError('required')" class="text-danger">
+          El Nombre del tipo de caso es requerido.
+        </div>
+    </div>
+
+
+
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button type="button" class="btn btn-danger mx-1" (click)="cancel()">
+    Cancelar
+  </button>
+  <button
+    type="button"
+    class="btn btn-primary mx-1"
+    [disabled]="form.invalid"
+    (click)="save()"
+  >
+    Guardar
+  </button>
+</mat-dialog-actions>

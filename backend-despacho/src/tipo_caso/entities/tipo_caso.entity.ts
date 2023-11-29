@@ -12,6 +12,6 @@ export class TipoCaso {
     @Column('boolean',{default:true})
     status:boolean;
 
-    @OneToMany(type => CasoLegal, legal_case => legal_case.case_type)
+    @OneToMany(() => CasoLegal, (casoLegal) => casoLegal.case_type)
     legal_case: CasoLegal[];
 }

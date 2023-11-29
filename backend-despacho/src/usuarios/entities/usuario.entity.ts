@@ -22,7 +22,7 @@ export class Usuario {
   //@OneToOne(() => Abogado, (abogado) => abogado.user)
   //lawyer: Abogado;
 
-  @OneToOne(() => Abogado,{eager: true})
+  @OneToOne(() => Abogado,lawyer => lawyer.user,{eager: true})
   @JoinColumn({name:'lawyer_id'})
   lawyer: Abogado;
 

@@ -27,25 +27,25 @@ export class CasoLegal {
   @Column({type: "decimal", precision: 10, scale: 2, default: 0})
   service_fee: number;
 
-  @ManyToOne(() => TipoCaso, (case_type) => case_type.legal_case)
+  @ManyToOne(() => TipoCaso, (case_type) => case_type.legal_case, {eager: true})
   @JoinColumn({name:'caseType_id'})
   case_type: TipoCaso;
 
-  @ManyToOne(() => Abogado, (abogado) => abogado.legal_case)
+  @ManyToOne(() => Abogado, (abogado) => abogado.legal_case,{eager: true})
   @JoinColumn({name:'lawyer_id'})
   lawyer: Abogado;
 
-  @ManyToOne(() => Cliente, (cliente) => cliente.legal_case)
+  @ManyToOne(() => Cliente, (cliente) => cliente.legal_case,{eager: true})
   @JoinColumn({name:'client_id'})
   client: Cliente;
 
-  @OneToMany(type => Pago, pago => pago.legal_case)
+  @OneToMany(() => Pago, pago => pago.legal_case)
   payment: Pago[];
 
-  @OneToMany(type => Documento, documento => documento.legal_case)
+  @OneToMany(() => Documento, documento => documento.legal_case)
   document: Documento[];
 
-  @OneToMany(type => Evento, evento => evento.legal_case)
+  @OneToMany(() => Evento, evento => evento.legal_case)
   event: Evento[];
 
   @Column('boolean',{default:true})

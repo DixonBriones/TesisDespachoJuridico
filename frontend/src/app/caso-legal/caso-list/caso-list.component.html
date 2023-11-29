@@ -13,7 +13,7 @@
           <input
             type="search"
             class="form-control rounded-start"
-            placeholder="Buscar por nombre"
+            placeholder="Buscar por cliente"
             aria-label="Search"
             aria-describedby="search-addon"
           
@@ -37,15 +37,23 @@
           <th scope="col">Nombre caso</th>
           <th scope="col">Cliente</th>
           <th scope="col">Tipo de caso</th>
+          <th scope="col">Estado del caso</th>
           <th scope="col" class="col-md-3">Acción</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let tipoCaso of misCasos| paginate: { itemsPerPage: 10, currentPage: p }; index as i">
+        <tr *ngFor="let micaso of misCasos| paginate: { itemsPerPage: 10, currentPage: p }; index as i">
           <th scope="row" class="align-middle">{{ i + 1 }}</th>
-          <td class="align-middle">{{ tipoCaso.name }}</td>
+          <td class="align-middle">{{ micaso.name_case }}</td>
+          <td class="align-middle">{{ micaso.client.name }}</td>
+          <td class="align-middle">{{ micaso.case_type.name }}</td>
+          <td class="align-middle">{{ micaso.status_case }}</td>
           <td>
-            <button class="btn btn-warning mx-1"   >
+            <button class="btn btn-success mx-1" >
+              Ver detalles
+            </button>
+
+            <button class="btn btn-warning mx-1" (click)="openModalEdit(micaso)"   >
               Editar
             </button>
 
