@@ -35,7 +35,8 @@ import { CasoLegalModule } from './caso-legal/caso-legal.module';
     RolModule,
     TipoCasoModule,
     TipoEventoModule,
-    CasoLegalModule
+    CasoLegalModule,
+    BrowserAnimationsModule,
   ],
   providers: [ 
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },

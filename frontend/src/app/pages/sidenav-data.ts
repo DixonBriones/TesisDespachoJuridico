@@ -40,7 +40,7 @@ export const navbardData = [
     label: 'Eventos',
     icon: 'event',
     subItems: [
-      { label: 'Mis eventos',link: '/ruta1/opcion1' },
+      { label: 'Mis eventos',link: '/dashboard/evento' },
       { label: 'Tipos de eventos',link: '/dashboard/tipo-evento' }
     ],
   }

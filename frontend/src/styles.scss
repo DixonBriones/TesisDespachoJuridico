@@ -4,6 +4,6 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 $my-custom-color: #179df7;
 
-
+@import "node_modules/angular-calendar/css/angular-calendar.css";
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';

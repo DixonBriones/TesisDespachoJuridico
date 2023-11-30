@@ -1,0 +1,51 @@
+<div class="container">
+    <div class=" mt-4 row text-center">
+        <div class="col-md-4">
+            <div class="btn-group">
+                <button class="btn btn-success" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate">Anterior</button>
+                <button class="btn btn-outline-primary" mwlCalendarToday [(viewDate)]="viewDate">Hoy</button>
+                <button class="btn btn-success" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate">Siguiente</button>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h2>{{ viewDate | calendarDate:(view + 'ViewTitle'):'es' }}</h2>
+        </div>
+        <div class="col-md-4">
+            <div class="btn-group">
+                <button class="btn btn-outline-primary" >Nuevo Evento</button>
+                <button
+                class="btn btn-success"
+                (click)="setView(CalendarView.Month)"
+                [class.active]="view === CalendarView.Month">
+                    Mensual
+                </button>
+
+                <button
+                class="btn btn-success"
+                (click)="setView(CalendarView.Week)"
+                [class.active]="view === CalendarView.Week"
+                >
+                    Semanal
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="mt-4">
+        <div [ngSwitch]="view">
+            <mwl-calendar-month-view
+              *ngSwitchCase="CalendarView.Month"
+              [viewDate]="viewDate"
+              [events]="events"
+              [locale]="'es'"
+            >
+            </mwl-calendar-month-view>
+            <mwl-calendar-week-view
+              *ngSwitchCase="CalendarView.Week"
+              [viewDate]="viewDate"
+              [events]="events"
+              [locale]="'es'"
+            ></mwl-calendar-week-view>
+        </div>
+    </div>
+</div>
+
