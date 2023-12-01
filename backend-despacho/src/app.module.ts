@@ -32,6 +32,7 @@ import { PagosModule } from './pagos/pagos.module';
         database: config.get('DB_NAME'),
         username: config.get('DB_USERNAME'),
         password: config.get('DB_PASSWORD'),
+        timezone: 'America/Bogota',
         autoLoadEntities: true,
         synchronize: true,
        })

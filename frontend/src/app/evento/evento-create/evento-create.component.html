@@ -1,1 +1,93 @@
-<p>evento-create works!</p>
+<h2 mat-dialog-title>Nuevo Evento</h2>
+<mat-dialog-content>
+  <form [formGroup]="form" class="modal-form">
+
+    <div class="form-group mb-3">
+      <label>Nombre del evento</label>
+      <input type="text" class="form-control" formControlName="name" minlength="3" />
+      <div *ngIf="form.get('name')?.hasError('required')" class="text-danger">
+        El Nombre del evento es requerido.
+      </div>
+      <div *ngIf="form.get('name')?.hasError('minlength') " class="text-danger">
+        Debe tener mínimo 3 carácteres
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Descripción del caso</label>
+        <textarea class="form-control" formControlName="description" minlength="5" rows="3"></textarea>
+        <div *ngIf="form.get('description')?.hasError('minlength') " class="text-danger">
+          Debe tener mínimo 5 carácteres
+        </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Tipo de evento</label>
+        <select formControlName="event_type" class="form-select">
+          <option *ngFor="let tipo of tipoEvento" [value]="tipo.id">{{tipo.name}}</option>
+        </select>
+        <div *ngIf="form.get('event_type')?.hasError('required')" class="text-danger">
+          La seleccion del tipo de evento es requerida
+        </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Titulo del caso</label>
+        <select formControlName="legal_case" class="form-select">
+          <option *ngFor="let caso of casos" [value]="caso.id">{{caso.name_case}}</option>
+        </select>
+        <div *ngIf="form.get('legal_case')?.hasError('required')" class="text-danger">
+          La seleccion del caso es requerida
+        </div>
+    </div>
+
+    <div class="form-group mb-3 row">
+        <div class="col-6">
+            <label>Fecha y hora de Inicio:</label>
+            <input type="datetime-local" class="form-control" formControlName="date_start" (change)="validarFechaFin()" />
+            <div *ngIf="form.get('date_start')?.hasError('required')" class="text-danger">
+              La fecha y hora de inicio del evento es requerida.
+            </div>
+        </div>
+        <div class="col-6">
+            <label>Fecha y hora de fin:</label>
+            <input type="datetime-local" class="form-control" formControlName="date_end" [min]="minFechaFin" [readOnly]="!form.get('date_start')?.value" />
+            <div *ngIf="form.get('date_end')?.hasError('required')" class="text-danger">
+              La fecha y hora de fin del evento es requerida.
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group mb-3 row">
+        <div class="col-6">
+            <label>Color principal:</label>
+            <input type="color" class="form-control form-control-color" formControlName="color"/>
+            <div *ngIf="form.get('color')?.hasError('required')" class="text-danger">
+              El color principal es requerido.
+            </div>
+        </div>
+        <div class="col-6">
+            <label>Color secundario:</label>
+            <input type="color" class="form-control form-control-color" formControlName="color_secondary" />
+            <div *ngIf="form.get('color_secondary')?.hasError('required')" class="text-danger">
+              El color secundario es requerido.
+            </div>
+        </div>
+    </div>
+
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button type="button" class="btn btn-danger mx-1" (click)="cancel()">
+    Cancelar
+  </button>
+  <button
+    type="button"
+    class="btn btn-primary mx-1"
+    [disabled]="form.invalid"
+    (click)="save()"
+  >
+    Guardar
+  </button>
+</mat-dialog-actions>

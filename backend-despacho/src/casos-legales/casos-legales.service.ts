@@ -66,4 +66,17 @@ export class CasosLegalesService {
     await this.update(id,{status:false });
     return {...casoLegal, id};
   }
+
+  async findByAbogado(id:string) {
+    //const casoLegal = await this.casoLegalRepository.find({loadRelationIds:true,where:{lawyer: id,status:true}});
+    const casoLegal = await this.casoLegalRepository.createQueryBuilder('caso_legal')
+    .leftJoinAndSelect('caso_legal.lawyer', 'lawyer')
+    .leftJoinAndSelect('caso_legal.client', 'client')
+    .leftJoinAndSelect('caso_legal.case_type', 'case_type')
+    .where('lawyer.id = :id', { id })
+    .where('caso_legal.status = true')
+    .getMany();
+    return casoLegal
+  
+  }
 }

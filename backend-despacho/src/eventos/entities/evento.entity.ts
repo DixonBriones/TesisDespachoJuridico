@@ -11,13 +11,25 @@ export class Evento {
   @Column('varchar')
   name: string;
 
-  @Column('text')
+  @Column('text',{nullable:true})
   description: string;
 
-  @Column('boolean',{default:true})
-  status:boolean;
+  @Column('timestamp')
+  date_start: Date;
 
-  @ManyToOne(type => TipoEvento, event_type => event_type.event)
+  @Column('timestamp')
+  date_end: Date;
+
+  @Column('varchar')
+  color: string;
+
+  @Column('varchar')
+  color_secondary: string;
+
+  //@Column('boolean',{default:true})
+  //status:boolean;
+
+  @ManyToOne(() => TipoEvento, event_type => event_type.event,{eager:true})
   @JoinColumn({name:'eventType_id'})
   event_type: TipoEvento;
 
@@ -26,7 +38,7 @@ export class Evento {
   //@JoinColumn({name:'lawyer_id'})
   //lawyer: Abogado;
 
-  @ManyToOne(() => CasoLegal, (legal_case) => legal_case.document)
+  @ManyToOne(() => CasoLegal, (legal_case) => legal_case.document,{eager:true})
   @JoinColumn({name:'legalCase_id'})
   legal_case: CasoLegal;
 

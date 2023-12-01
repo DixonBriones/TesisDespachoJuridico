@@ -12,6 +12,8 @@ import { TipoEventoCreateComponent } from '../tipoEvento/tipo-evento-create/tipo
 import { TipoEventoEditComponent } from '../tipoEvento/tipo-evento-edit/tipo-evento-edit.component';
 import { CasoCreateComponent } from '../caso-legal/caso-create/caso-create.component';
 import { CasoEditComponent } from '../caso-legal/caso-edit/caso-edit.component';
+import { EventoCreateComponent } from '../evento/evento-create/evento-create.component';
+import { EventoEditComponent } from '../evento/evento-edit/evento-edit.component';
 
 
 @Injectable({
@@ -105,6 +107,21 @@ export class ModalService {
 
   openModalEditCasoLegal(data: any) {
     const dialogRef = this.dialog.open(CasoEditComponent, {
+      width: '500px',
+      data: data
+    });
+    return dialogRef.afterClosed();
+  }
+
+  openModalCreateEvento() {
+    const dialogRef = this.dialog.open(EventoCreateComponent, {
+      width: '500px',
+    });
+    return dialogRef.afterClosed();
+  }
+
+  openModalEditEvento(data: any) {
+    const dialogRef = this.dialog.open(EventoEditComponent, {
       width: '500px',
       data: data
     });
