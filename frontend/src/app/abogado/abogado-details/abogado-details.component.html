@@ -45,7 +45,7 @@
             </div>
 
             <div class="col">
-              <table class="table table-bordered">
+              <table class="table table-bordered table-hover">
                 <thead>
                   <tr class="bg-header text-white">
                     <th scope="col" colspan="2">Información de contacto</th>
@@ -70,12 +70,13 @@
           </div>
 
           <div class="row">
-            <table class="table table-bordered">
-              <tbody>
+            <table class="table table-bordered table-hover">
+              <thead>
                 <tr class="bg-header text-white">
-                  <th colspan="2">Datos usuario</th>
+                  <th scope="col" colspan="2">Datos del usuario</th>
                 </tr>
-
+              </thead>
+              <tbody>
                 <tr>
                   <th>Nombre de usuario</th>
                   <td>{{ datos.user.username }}</td>
@@ -86,15 +87,47 @@
                   <td>{{ datos.user.role.description }}</td>
                 </tr>
 
-              
               </tbody>
             </table>
           </div>
+          
+          <div class="row">
+            <h2>Casos activos</h2>
+          </div>
+
+          <div class="row">
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr class="bg-header text-white">
+                  <th scope="col" class="col-md-1">#</th>
+                  <th scope="col">Titulo del caso</th>
+                  <th scope="col">Cliente</th>
+                  <th scope="col">Tipo de caso</th>
+                  <th scope="col">Fase del caso</th>
+                  <th scope="col">Honorarios</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngIf="casos.length<=0"><td colspan="6">No tiene caso activos</td></tr>
+                <tr *ngFor="let caso of casos; index as i">
+                  <th scope="row" class="align-middle">{{ i + 1 }}</th>
+                  <td class="align-middle">{{ caso.name_case }}</td>
+                  <td class="align-middle">{{ caso.client.name }}</td>
+                  <td class="align-middle">{{ caso.case_type.name }}</td>
+                  <td class="align-middle">{{ caso.status_case }}</td>
+                  <td class="align-middle">{{ caso.service_fee }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          
+
+
+
+
         </div>
-  
       </div>
-    
-  
     </div>
   
   </div>

@@ -48,5 +48,9 @@ export class AbogadoService {
     return this.http.get(`${this.URL}/abogado/searchId/${id}`);
   }
 
+  mostrarCasoAbogadoId(id:string) {
+    return this.http.get(`${this.URL}/caso-legal/abogadoId/${id}`);
+  }
+
 
 }

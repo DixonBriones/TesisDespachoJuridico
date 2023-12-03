@@ -14,6 +14,7 @@ export class AbogadoDetailsComponent {
       role : {}
     }
   };
+  casos:any=[];
 
   constructor(private route: ActivatedRoute,
     private abogadoService: AbogadoService) {
@@ -22,11 +23,19 @@ export class AbogadoDetailsComponent {
 
   ngOnInit(): void {
     this.mostrarAbogadoId(this.id);
+    this.mostrarCasosAbogadoId(this.id);
   }
 
   mostrarAbogadoId(id: any) {
     this.abogadoService.mostrarAbogadoId(id).subscribe((res) => {
       this.datos = res
+    });
+  }
+
+  mostrarCasosAbogadoId(id: any) {
+    this.abogadoService.mostrarCasoAbogadoId(id).subscribe((res) => {
+      this.casos = res
+      //console.log(this.casos)
     });
   }
 }

@@ -73,8 +73,8 @@ export class CasosLegalesService {
     .leftJoinAndSelect('caso_legal.lawyer', 'lawyer')
     .leftJoinAndSelect('caso_legal.client', 'client')
     .leftJoinAndSelect('caso_legal.case_type', 'case_type')
-    .where('lawyer.id = :id', { id })
     .where('caso_legal.status = true')
+    .where('caso_legal.lawyer.id = :id', { id })
     .getMany();
     return casoLegal
   
@@ -86,7 +86,7 @@ export class CasosLegalesService {
     .leftJoinAndSelect('caso_legal.lawyer', 'lawyer')
     .leftJoinAndSelect('caso_legal.client', 'client')
     .leftJoinAndSelect('caso_legal.case_type', 'case_type')
-    .where('lawyer.id = :id', { id })
+    .where('caso_legal.lawyer.id = :id', { id })
     .where('caso_legal.status = true')
     .getMany();
     return casoLegal
