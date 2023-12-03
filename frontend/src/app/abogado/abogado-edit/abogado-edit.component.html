@@ -49,10 +49,10 @@
     </div>
     <div class="form-group mb-3">
       <label>Rol</label>
-      <select formControlName="rol" class="form-select">
+      <select formControlName="role" class="form-select">
         <option *ngFor="let rol of roles" [value]="rol.id">{{ rol.description }}</option>
       </select>
-      <div *ngIf="form.get('rol')?.hasError('required')" class="text-danger">
+      <div *ngIf="form.get('role')?.hasError('required')" class="text-danger">
         La seleccion de rol de usuario es requerida
       </div>
     </div>
@@ -73,7 +73,7 @@
   </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button type="button" class="btn btn-secondary" (click)="cancel()">
+  <button type="button" class="btn btn-danger mx-1" (click)="cancel()">
     Cancelar
   </button>
   <button

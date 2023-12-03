@@ -19,16 +19,21 @@ export class PagosController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.pagosService.findOne(+id);
+    return this.pagosService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updatePagoDto: UpdatePagoDto) {
-    return this.pagosService.update(+id, updatePagoDto);
+    return this.pagosService.update(id, updatePagoDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.pagosService.remove(+id);
+    return this.pagosService.remove(id);
+  }
+
+  @Get('abogado/:id')
+  findAbogadoEvent(@Param('id') id: string) {
+    return this.pagosService.findPagoAbogado(id);
   }
 }

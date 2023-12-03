@@ -22,7 +22,7 @@
             class="input-group-text border-0 btn-primary"
             id="search-addon"
             [style.cursor]="'pointer'"
-            (click)="listarClientes()"
+            (click)="listarAbogados()"
           >
             <i class="fas fa-search"></i>
           </span>
@@ -45,21 +45,21 @@
           <th scope="row" class="align-middle">{{ i + 1 }}</th>
           <td class="align-middle">{{ abogado.name | titlecase }}</td>
           <td class="align-middle">{{ abogado.identification }}</td>
-          <td class="align-middle" *ngIf="abogado.status==true"> Activo </td>
-          <td class="align-middle" *ngIf="abogado.status==false"> Inactivo </td>
+          <td class="align-middle" *ngIf="abogado.status"> Activo </td>
+          <td class="align-middle" *ngIf="!abogado.status"> Inactivo </td>
           <td class="align-middle">{{abogado.user.role.description}}</td>
           <td>
-            <button class="btn btn-primary mx-1">
+            <button class="btn btn-success mx-1" routerLink="detalle/{{ abogado.id }}">
               Ver
             </button>
-            <button class="btn btn-primary mx-1" (click)="openModalEdit(abogado)" >
+            <button class="btn btn-warning mx-1" (click)="openModalEdit(abogado)" >
               Editar
             </button>
-            <button class="btn btn-primary mx-1">
+            <button class="btn btn-danger mx-1" *ngIf="abogado.status" (click)="deleteAbogado(abogado.id,abogado.user.id)" >
               Desactivar
             </button>
-            <button class="btn btn-primary mx-1">
-              Documentos
+            <button class="btn btn-danger mx-1" *ngIf="!abogado.status" (click)="activar(abogado.id,abogado.user.id)">
+              Activar
             </button>
           </td>
         </tr>

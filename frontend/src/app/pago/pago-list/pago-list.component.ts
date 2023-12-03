@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./pago-list.component.scss']
 })
 export class PagoListComponent {
-
+  misCasos: any = [];
+  p: number = 1;
 }

@@ -34,6 +34,10 @@ export const navbardData = [
     link: '/dashboard',
     label: 'Pagos',
     icon: 'payment',
+    subItems: [
+      { label: 'Pendientes de pago',link: '/dashboard/pago' },
+      { label: 'Casos pagados',link: '/dashboard/tipo-evento' }
+    ],
   },
   {
     link: '/dashboard',

@@ -9,11 +9,9 @@ export class Pago {
     @Column({type: "decimal", precision: 10, scale: 2, default: 0})
     amount: number;
 
-    @Column('date',{default: new Date()})
+    @Column('date')
     date_payment: Date;
 
-    @Column('boolean',{default:true})
-    status:boolean;
 
     @ManyToOne(() => CasoLegal, (legal_case) => legal_case.payment)
     @JoinColumn({name:'legalCase_id'})

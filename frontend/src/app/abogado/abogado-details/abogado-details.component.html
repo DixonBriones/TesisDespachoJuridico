@@ -1,1 +1,101 @@
-<p>abogado-details works!</p>
+<div class="container mt-4">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="personal-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
+          role="tab" aria-controls="home" aria-selected="true">Datos personales</button>
+      </li>
+      <!--<li class="nav-item" >
+        <button class="nav-link" id="reference-tab" data-bs-toggle="tab" data-bs-target="#reference" type="button"
+          aria-controls="reference" aria-selected="false">Documentos</button>
+      </li>-->
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="personal-tab">
+  
+        <div class="container mt-4">
+          <div class="row">
+            <div class="col">
+              <table class="table table-bordered table-hover">
+                <thead>
+                  <tr class="bg-header text-white">
+                    <th scope="col" colspan="2">Datos Personales</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>Nombre</th>
+                    <td>{{ datos.name | titlecase }}</td>
+                  </tr>
+  
+                  <tr>
+                    <th>Número de cédula</th>
+                    <td>{{datos.identification}}</td>
+                  </tr>
+  
+  
+                  <tr>
+                    <th>Dirección domiciliaria</th>
+                    <td>{{ datos.address }}</td>
+                  </tr>
+  
+                </tbody>
+              </table>
+  
+            </div>
+
+            <div class="col">
+              <table class="table table-bordered">
+                <thead>
+                  <tr class="bg-header text-white">
+                    <th scope="col" colspan="2">Información de contacto</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>Correo</th>
+                    <td>{{ datos.email }}</td>
+                  </tr>
+  
+                  <tr>
+                    <th>Número celular</th>
+                    <td>{{ datos.phone }}</td>
+                  </tr>
+                </tbody>
+              </table>
+  
+            
+
+            </div>
+          </div>
+
+          <div class="row">
+            <table class="table table-bordered">
+              <tbody>
+                <tr class="bg-header text-white">
+                  <th colspan="2">Datos usuario</th>
+                </tr>
+
+                <tr>
+                  <th>Nombre de usuario</th>
+                  <td>{{ datos.user.username }}</td>
+                </tr>
+
+                <tr>
+                  <th>Rol del usuario</th>
+                  <td>{{ datos.user.role.description }}</td>
+                </tr>
+
+              
+              </tbody>
+            </table>
+          </div>
+        </div>
+  
+      </div>
+    
+  
+    </div>
+  
+  </div>
+  

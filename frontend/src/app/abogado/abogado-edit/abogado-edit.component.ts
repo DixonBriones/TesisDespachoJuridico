@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AbogadoService } from '../abogado.service';
 import { UpdateTableService } from 'src/app/utility/update-table.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-abogado-edit',
@@ -28,13 +29,14 @@ export class AbogadoEditComponent {
       address: [null],
       phone: [null, [Validators.required, Validators.minLength(10)]],
       email: [null,[Validators.required, Validators.email]],
-      rol: [null,Validators.required],
+      role: [null,Validators.required],
       username: [null,[Validators.required, Validators.minLength(5)]],
       password: [null,[Validators.minLength(8)]],
     });
     
     const { username } = this.data.user;
     this.data.username=username;
+    this.data.role=this.data.user.role.id;
     this.form.patchValue(this.data);
     this.id=data.id;
     this.idUser=data.user.id;
@@ -63,20 +65,46 @@ export class AbogadoEditComponent {
         email:this.form.get('email')?.value,
       }
 
-
-      this.abogadoService.actualizarAbogado(this.id,abogadoBody).subscribe((res:any)=>{
-        const usuarioBody={
-          username:this.form.get('username')?.value,
-          password:this.form.get('password')?.value,
-          role:this.form.get('rol')?.value,
+      this.abogadoService.actualizarAbogado(this.id,abogadoBody).subscribe({
+        next: (res: any) => {
+          const usuarioBody={
+            username:this.form.get('username')?.value,
+            password:this.form.get('password')?.value,
+            role:this.form.get('role')?.value,
+          }
+          
+          this.abogadoService.actualizarUsuario(this.idUser,usuarioBody).subscribe({ 
+            next: (res: any) => {
+              this.updateTable.notifyTableUpdate();
+              this.dialogRef.close(savedData);
+            },
+            error: (err: any) => { 
+              Swal.fire({
+                icon: 'error',
+                title: `Gutierrez & Asociados`,
+                text: err.error.message,
+                timer: 3500,
+                toast: true,
+                position: 'bottom-end',
+                timerProgressBar: true,
+                showConfirmButton: false
+              });
+            }
+          }); 
+        },
+        error: (err: any) => { 
+          Swal.fire({
+            icon: 'error',
+            title: `Gutierrez & Asociados`,
+            text: err.error.message,
+            timer: 3500,
+            toast: true,
+            position: 'bottom-end',
+            timerProgressBar: true,
+            showConfirmButton: false
+          });
         }
-        
-        this.abogadoService.actualizarUsuario(this.idUser,usuarioBody).subscribe((res)=>{
-          this.updateTable.notifyTableUpdate();
-          this.dialogRef.close(savedData);
-        })
-        
-      }); 
+      });  
     }
   }
 

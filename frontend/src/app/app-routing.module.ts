@@ -54,6 +54,11 @@ const routes: Routes = [
         path:'evento',
         loadChildren:()=> import('./evento/evento.module')
         .then(m=> m.EventoModule)
+      },
+      {
+        path:'pago',
+        loadChildren:()=> import('./pago/pago.module')
+        .then(m=> m.PagoModule)
       }
     ],
     canActivate: [AuthGuard]

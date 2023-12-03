@@ -32,8 +32,13 @@ export class AbogadosController {
     return this.abogadosService.remove(id);
   }
 
+  @Delete('eliminar/:id')
+  removeReal(@Param('id') id: string) {
+    return this.abogadosService.removeReal(id);
+  }
+
   @Get('search')
-  findIdentification(@Query('q') q?: string){
+  findName(@Query('q') q?: string){
     return this.abogadosService.findName(q);
   }
 }

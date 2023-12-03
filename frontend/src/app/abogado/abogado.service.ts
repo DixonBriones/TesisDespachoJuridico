@@ -33,6 +33,20 @@ export class AbogadoService {
   mostrarRoles() {
     return this.http.get(`${this.URL}/rol`);
   }
+  desactivarUsuario(id:string) {
+    return this.http.delete(`${this.URL}/usuario/${id}`);
+  }
+  desactivarAbogado(id:string) {
+    return this.http.delete(`${this.URL}/abogado/${id}`);
+  }
+
+  eliminarRealAbogado(id:string) {
+    return this.http.delete(`${this.URL}/abogado/eliminar/${id}`);
+  }
+
+  mostrarAbogadoId(id:string) {
+    return this.http.get(`${this.URL}/abogado/searchId/${id}`);
+  }
 
 
 }

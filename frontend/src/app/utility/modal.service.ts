@@ -14,6 +14,8 @@ import { CasoCreateComponent } from '../caso-legal/caso-create/caso-create.compo
 import { CasoEditComponent } from '../caso-legal/caso-edit/caso-edit.component';
 import { EventoCreateComponent } from '../evento/evento-create/evento-create.component';
 import { EventoEditComponent } from '../evento/evento-edit/evento-edit.component';
+import { PagoCreateComponent } from '../pago/pago-create/pago-create.component';
+import { PagoEditComponent } from '../pago/pago-edit/pago-edit.component';
 
 
 @Injectable({
@@ -122,6 +124,21 @@ export class ModalService {
 
   openModalEditEvento(data: any) {
     const dialogRef = this.dialog.open(EventoEditComponent, {
+      width: '500px',
+      data: data
+    });
+    return dialogRef.afterClosed();
+  }
+
+  openModalCreatePago() {
+    const dialogRef = this.dialog.open(PagoCreateComponent, {
+      width: '500px',
+    });
+    return dialogRef.afterClosed();
+  }
+
+  openModalEditPago(data: any) {
+    const dialogRef = this.dialog.open(PagoEditComponent, {
       width: '500px',
       data: data
     });

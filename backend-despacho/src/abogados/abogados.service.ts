@@ -35,12 +35,12 @@ export class AbogadosService {
   }
 
   async findAll() {
-    const abogados = await this.abogadoRepository.find({where:{status:true}, relations:['user']});
+    const abogados = await this.abogadoRepository.find({relations:['user']});
     return abogados
   }
 
   async findOne(id: string) {
-    const abogado = await this.abogadoRepository.findOneBy({ id });
+    const abogado = await this.abogadoRepository.findOne({relations:['user'],where:{id:id}});
     if (!abogado) throw new NotFoundException(`Abogado ${id} no encontrado`);
     return abogado;
   }
@@ -69,11 +69,16 @@ export class AbogadosService {
     return {...abogado, id};
   }
 
+  async removeReal(id: string) {
+    const abogado= await  this.findOne(id);
+    await this.abogadoRepository.remove(abogado);
+    return {...abogado, id};
+  }
+
   async findName(name: string) {
     return this.abogadoRepository.find({
       where: {
         name: Like(`%${name}%`),
-        status:true
       },
       relations:['user']
     });

@@ -74,7 +74,6 @@ export class EventosService {
     .leftJoinAndSelect('evento.legal_case', 'legal_case')
     .leftJoinAndSelect('legal_case.lawyer', 'lawyer')
     .where('lawyer.id = :id', { id })
-    
     .getMany();
     if (!evento) throw new NotFoundException(`Evento ${id} no encontrado`);
     return evento;

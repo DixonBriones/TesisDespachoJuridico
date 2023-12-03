@@ -53,7 +53,8 @@ export class TipoEventoListComponent {
         Swal.fire('¡Acción confirmada!', 'La acción se realizó con éxito', 'success');
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire('Cancelado', 'La acción ha sido cancelada', 'error');
-      }}) 
+      }
+    }) 
   }
 
 
