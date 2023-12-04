@@ -36,4 +36,9 @@ export class CasosLegalesController {
   findAbogado(@Param('id') id: string) {
     return this.casosLegalesService.findByAbogado(id);
   }
+
+  @Get('clienteId/:id')
+  findCliente(@Param('id') id: string) {
+    return this.casosLegalesService.findByClient(id);
+  }
 }

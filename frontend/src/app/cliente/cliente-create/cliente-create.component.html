@@ -3,27 +3,49 @@
   <form [formGroup]="form" class="modal-form">
         <div class="form-group">
           <label>Identificación</label>
-          <input type="text" class="form-control" formControlName="identification">
+          <input type="text" class="form-control" formControlName="identification" minlength="10">
+          <div *ngIf="form.get('identification')?.hasError('required')" class="text-danger">
+            La cedula es requerida.
+          </div>
+          <div *ngIf="form.get('identification')?.hasError('minlength') " class="text-danger">
+            La cedula debe contener 10 caracteres.
+          </div>
         </div>
+
         <div class="form-group">
           <label>Nombre</label>
           <input type="text" class="form-control" formControlName="name">
+          <div *ngIf="form.get('name')?.hasError('required')" class="text-danger">
+            El Nombre es requerido.
+          </div>
         </div>
+
         <div class="form-group">
           <label>Dirección</label>
           <input type="text" class="form-control" formControlName="address">
         </div>
+
         <div class="form-group">
           <label>Teléfono</label>
-          <input type="text" class="form-control" formControlName="phone">
+          <input type="text" class="form-control" formControlName="phone" maxlength="10" >
+          <div *ngIf="form.get('phone')?.hasError('required')" class="text-danger">
+            El celular es requerido.
+          </div>
+          <div *ngIf="form.get('phone')?.hasError('minlength') " class="text-danger">
+            La celular debe contener 10 caracteres.
+          </div>
         </div>
+
         <div class="form-group">
           <label>Correo electrónico</label>
           <input type="email" class="form-control" formControlName="email">
+          <div *ngIf="form.get('email')?.hasError('email') " class="text-danger">
+            Ingresa un correo electrónico válido.
+          </div>
         </div>
       </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button type="button" class="btn btn-secondary" (click)="cancel()">Cancelar</button>
-  <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="save()">Guardar</button>
+  <button type="button" class="btn btn-danger mx-1" (click)="cancel()">Cancelar</button>
+  <button type="button" class="btn btn-primary mx-1" [disabled]="form.invalid" (click)="save()">Guardar</button>
 </mat-dialog-actions>

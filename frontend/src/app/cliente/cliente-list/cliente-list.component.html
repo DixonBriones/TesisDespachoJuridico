@@ -46,13 +46,13 @@
         <td class="align-middle">{{ cliente.identification }}</td>
         <td class="align-middle">{{ cliente.phone }}</td>
         <td>
-          <button class="btn btn-primary">
+          <button class="btn btn-success mx-1" routerLink="detalle/{{ cliente.id }}">
             Ver
           </button>
-          <button class="btn btn-primary" (click)="openModalEdit(cliente)">
+          <button class="btn btn-warning mx-1" (click)="openModalEdit(cliente)">
             Editar
           </button>
-          <button class="btn btn-primary">
+          <button class="btn btn-danger mx-1" (click)="deleteCliente(cliente.id)">
             Eliminar
           </button>
         </td>

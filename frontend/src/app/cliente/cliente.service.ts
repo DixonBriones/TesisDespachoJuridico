@@ -22,4 +22,15 @@ export class ClienteService {
     return this.http.post(`${this.URL}/cliente`,body);
   }
 
+  desactivarCliente(id:string) {
+    return this.http.delete(`${this.URL}/cliente/${id}`);
+  }
+
+  mostrarClienteId(id:string) {
+    return this.http.get(`${this.URL}/cliente/searchId/${id}`);
+  }
+
+  mostrarCasoClienteId(id:string) {
+    return this.http.get(`${this.URL}/caso-legal/clienteId/${id}`);
+  }
 }

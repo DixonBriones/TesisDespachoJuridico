@@ -80,6 +80,17 @@ export class CasosLegalesService {
   
   }
 
+  async findByClient(id:string) {
+    console.log(id)
+    const casoLegal = await this.casoLegalRepository.createQueryBuilder('caso_legal')
+    .leftJoinAndSelect('caso_legal.lawyer', 'lawyer')
+    .leftJoinAndSelect('caso_legal.client', 'client')
+    .leftJoinAndSelect('caso_legal.case_type', 'case_type')
+    .where('caso_legal.client.id = :id', { id })
+    .getMany();
+    return casoLegal
+  }
+
   async findByAbogadoPago(id:string) {
     //const casoLegal = await this.casoLegalRepository.find({loadRelationIds:true,where:{lawyer: id,status:true}});
     const casoLegal = await this.casoLegalRepository.createQueryBuilder('caso_legal')
