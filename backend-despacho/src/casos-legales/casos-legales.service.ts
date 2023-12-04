@@ -81,7 +81,6 @@ export class CasosLegalesService {
   }
 
   async findByClient(id:string) {
-    console.log(id)
     const casoLegal = await this.casoLegalRepository.createQueryBuilder('caso_legal')
     .leftJoinAndSelect('caso_legal.lawyer', 'lawyer')
     .leftJoinAndSelect('caso_legal.client', 'client')
