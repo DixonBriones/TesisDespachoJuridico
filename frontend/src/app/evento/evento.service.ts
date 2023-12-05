@@ -10,7 +10,6 @@ export class EventoService {
   private URL = environment.rutaService;
   decodedToken:any;
   token:any;
-  data:any=[]
 
 
   constructor(private http: HttpClient,private jwtHelper: JwtHelperService) { }

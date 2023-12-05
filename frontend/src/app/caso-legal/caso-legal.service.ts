@@ -27,7 +27,9 @@ export class CasoLegalService {
   }
 
   mostrarMisCasos() {
-    return this.http.get(`${this.URL}/caso-legal`);
+    this.token=localStorage.getItem('token');
+    this.decodedToken = this.jwtHelper.decodeToken(this.token);
+    return this.http.get(`${this.URL}/caso-legal/abogadoId/${this.decodedToken.idAbogado}`);
   }
 
   insertarMiCaso(body:any) {

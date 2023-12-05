@@ -78,4 +78,20 @@ export class EventosService {
     if (!evento) throw new NotFoundException(`Evento ${id} no encontrado`);
     return evento;
   }
+
+  async findEventAbogadoNotifications(id: string) {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const evento = await this.eventoRepository.createQueryBuilder('evento')
+    .leftJoinAndSelect('evento.event_type', 'event_type')
+    .leftJoinAndSelect('evento.legal_case', 'legal_case')
+    .leftJoinAndSelect('legal_case.lawyer', 'lawyer')
+    .where('lawyer.id = :id', { id })
+    .where('evento.date_start >= :today', { today })
+    .orderBy('evento.date_start', 'ASC') 
+    .getMany();
+    if (!evento) throw new NotFoundException(`Evento ${id} no encontrado`);
+    return evento;
+  }
 }

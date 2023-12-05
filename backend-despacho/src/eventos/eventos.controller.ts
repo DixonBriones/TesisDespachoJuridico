@@ -36,4 +36,9 @@ export class EventosController {
     return this.eventosService.findEventAbogado(id);
   }
 
+  @Get('notifications/:id')
+  findAbogadoDateEvent(@Param('id') id: string) {
+    return this.eventosService.findEventAbogadoNotifications(id);
+  }
+
 }

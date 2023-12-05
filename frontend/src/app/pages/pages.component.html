@@ -13,6 +13,32 @@
     <img src="../assets/img/logo.png" alt="Logo Despacho" class="logo-image" />
   </span>
   <span class="spacer"></span>
+
+
+  <button  [matMenuTriggerFor]="menu" class="btn btn-transparent">
+    <mat-icon class="campana">notifications</mat-icon>
+  </button>
+
+  <button mat-icon-button [matMenuTriggerFor]="menuSesion" class="btn btn-transparent" style="color: white;">
+    <div class="d-flex align-items-center">
+      <div>{{decodedToken.nameAbogado}}</div>
+      <div><mat-icon>arrow_drop_down</mat-icon></div>
+    </div>
+  </button>
+
+  <mat-menu #menuSesion="matMenu">
+    <button mat-menu-item (click)="cerrarSesion()">Cerrar sesión</button>
+  </mat-menu>
+  
+  <mat-menu #menu="matMenu">
+    <div class="card border-0">
+      <div *ngFor="let notification of notifications" class="card-body border-bottom">
+        <h4 class="card-title mb-2">{{ notification.name }}</h4>
+        <h5 class="card-text mb-0" style="color: red;">Empieza en: {{getRemainingTime(notification.date_start,notification.date_end)}}</h5>
+      </div>
+    </div>
+  </mat-menu>
+  
 </mat-toolbar>
 
 <mat-sidenav-container class="sidenav-container">
@@ -32,7 +58,7 @@
 
         <ng-template #submenu>
           <a mat-list-item>
-            <div class="flexContainer nav-item">
+            <div class="flexContainer nav-item" (click)="toggleSubMenu(menuItem)">
               <div>
                 <mat-icon class="material-symbols-outlined">{{ menuItem.icon }}</mat-icon>
               </div>
@@ -40,7 +66,6 @@
               <span class="spacer"></span>
               <button
                 mat-icon-button
-                (click)="toggleSubMenu(menuItem)"
                 class="sidenav-submenu"
               >
                 <mat-icon>{{
