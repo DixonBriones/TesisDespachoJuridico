@@ -14,10 +14,14 @@ import { AuthModule } from './auth/auth.module';
 import { TipoEventoModule } from './tipo_evento/tipo_evento.module';
 import { TipoCasoModule } from './tipo_caso/tipo_caso.module';
 import { PagosModule } from './pagos/pagos.module';
+import { MulterModule } from '@nestjs/platform-express';
 
 
 @Module({
   imports: [
+    MulterModule.register({
+      dest: './uploads',
+    }),
     ConfigModule.forRoot({
       envFilePath: ['.env'],
       isGlobal: true,
