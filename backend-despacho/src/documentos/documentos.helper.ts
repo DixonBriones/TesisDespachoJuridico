@@ -4,13 +4,25 @@ export const destinationDocument = (req, file, callback) => {
     const dest=`./uploads/documentos/${req.params.id}`
     fs.access(dest, function (error) {
       if (error) {
-        //console.log("Directory does not exist.");
-        return fs.mkdir(dest, (error) => callback(error, dest));
+        console.log("Directory does not exist.");
+        return fs.mkdir(dest, {recursive: true} ,(error) => callback(error, dest));
       } else {
-        //console.log("Directory exists.");
+        console.log("Directory exists.");
         return callback(null, dest);
       }
     });
+}
+export const destinationEditDocument = (req, file, callback) => {
+  const dest=`./uploads/documentos/${req.params.idCase}`
+  fs.access(dest, function (error) {
+    if (error) {
+      console.log("Directory does not exist.");
+      return fs.mkdir(dest, {recursive: true} ,(error) => callback(error, dest));
+    } else {
+      console.log("Directory exists.");
+      return callback(null, dest);
+    }
+  });
 }
 
 export const FileNameDocument = (req, file, callback)=> {

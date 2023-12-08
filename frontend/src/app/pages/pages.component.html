@@ -32,6 +32,9 @@
   
   <mat-menu #menu="matMenu">
     <div class="card border-0">
+      <div *ngIf="notifications.length<=0" lass="card-body border-bottom">
+        <h4 class="card-title mx-2">No tiene eventos pendientes</h4>
+      </div>
       <div *ngFor="let notification of notifications" class="card-body border-bottom">
         <h4 class="card-title mb-2">{{ notification.name }}</h4>
         <h5 class="card-text mb-0" style="color: red;">Empieza en: {{getRemainingTime(notification.date_start,notification.date_end)}}</h5>

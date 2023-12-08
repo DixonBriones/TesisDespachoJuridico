@@ -40,7 +40,7 @@ export class PagesComponent {
   notificaciones() {
     this.pagesService.mostrarEventoNotificaciones(this.decodedToken.idAbogado).subscribe((res) => {
       this.notifications = res;
-      console.log(this.notifications);
+      //console.log(this.notifications);
     });
   }
 

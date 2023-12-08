@@ -51,6 +51,11 @@ const routes: Routes = [
         .then(m=> m.CasoLegalModule)
       },
       {
+        path:'documento',
+        loadChildren:()=> import('./documento/documento.module')
+        .then(m=> m.DocumentoModule)
+      },
+      {
         path:'evento',
         loadChildren:()=> import('./evento/evento.module')
         .then(m=> m.EventoModule)

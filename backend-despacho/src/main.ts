@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import * as express from 'express';
 import * as path from 'path';
+import * as multer from 'multer';
 
 
 async function bootstrap() {
@@ -19,6 +20,8 @@ async function bootstrap() {
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
+
+
   app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
   await app.listen(3000);
 }

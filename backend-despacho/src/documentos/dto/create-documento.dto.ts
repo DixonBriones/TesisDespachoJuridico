@@ -15,6 +15,9 @@ export class CreateDocumentoDto {
     @IsOptional()
     path: string;
 
+    @IsOptional()
+    file: any;
+
     @IsNotEmpty()
     legal_case:CasoLegal;
   

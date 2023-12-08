@@ -1,1 +1,49 @@
-<p>documento-create works!</p>
+<h2 mat-dialog-title>Nuevo Documento</h2>
+<mat-dialog-content>
+  <form [formGroup]="form" class="modal-form" enctype="multipart/form-data">
+
+    <div class="form-group mb-3">
+        <label>Descripción del Documeto</label>
+        <textarea class="form-control" formControlName="description" minlength="5" rows="3"></textarea>
+        <div *ngIf="form.get('description')?.hasError('required')" class="text-danger">
+            La decripcion del caso es requerida
+          </div>
+        <div *ngIf="form.get('description')?.hasError('minlength') " class="text-danger">
+          Debe tener mínimo 5 carácteres
+        </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Titulo del caso</label>
+        <select formControlName="legal_case" class="form-select">
+          <option *ngFor="let caso of casos" [value]="caso.id">{{caso.name_case}}</option>
+        </select>
+        <div *ngIf="form.get('legal_case')?.hasError('required')" class="text-danger">
+          La seleccion del caso es requerida
+        </div>
+    </div>
+
+
+    <div class="form-group mb-3">
+      <label>Archivo</label>
+      <input type="file" class="form-control" formControlName="file" accept=".pdf"  (change)="getFile($event)"/>
+      <div *ngIf="form.get('file')?.hasError('required')" class="text-danger">
+        El documeto es requerido.
+      </div>
+    </div>
+
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button type="button" class="btn btn-danger mx-1" (click)="cancel()">
+    Cancelar
+  </button>
+  <button
+    type="button"
+    class="btn btn-primary mx-1"
+    [disabled]="form.invalid"
+    (click)="save()"
+  >
+    Guardar
+  </button>
+</mat-dialog-actions>

@@ -1,1 +1,74 @@
-<p>documento-list works!</p>
+<div class="container">
+    <div class="row">
+      <div class="col-2 justify-content-start">
+        <button class="btn btn-primary" (click)="openModalCreate()">
+          Nuevo documento
+        </button>
+      </div>
+      <div class="col-5"></div>
+  
+      <div class="col-5 justify-content-end">
+        <div class="input-group rounded">
+          <input
+            type="search"
+            class="form-control rounded-start"
+            placeholder="Buscar por nombre o por caso"
+            aria-label="Search"
+            aria-describedby="search-addon"
+            [(ngModel)]="query"
+            (keypress)="listar($event)"
+          />
+          <span
+            class="input-group-text border-0 btn-primary"
+            id="search-addon"
+            [style.cursor]="'pointer'"
+            (click)="listarDocumentos()"
+          >
+            <i class="fas fa-search"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+    <table class="table table-striped table-hover table-bordered mt-3">
+      <thead>
+        <tr class="bg-header text-white">
+          <th scope="col" >#</th>
+          <th scope="col">Nombre del documento</th>
+          <th scope="col">Caso</th>
+          <th scope="col">Decripción</th>
+          <th scope="col">Fecha de subida</th>
+          <th scope="col" class="col-md-4">Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let documento of documentos | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
+          <th scope="row" class="align-middle">{{ i + 1 }}</th>
+          <td class="align-middle">{{ documento.name_document | titlecase }}</td>
+          <td class="align-middle">{{ documento.legal_case.name_case }}</td>
+          <td class="align-middle">{{ documento.description }}</td>
+          <td class="align-middle">{{documento.createdAt | date:'mediumDate'}}</td>
+          <td>
+            <button class="btn btn-success mx-1">
+              <a [href]="urlStorage+'/'+documento.path" target="_blank" style="text-decoration: none; color: white;">
+                Ver
+              </a>
+            </button>
+            <button class="btn btn-warning mx-1" (click)="openModalEdit(documento)" style="color: white;" >
+              Editar
+            </button>
+            <button class="btn btn-danger mx-1" (click)="deleteDocumento(documento.id)" >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="container">
+      <div class=" row">
+        <div class="col-7"></div>
+        <div class="col-5 justify-content-end">
+          <pagination-controls (pageChange)="p=$event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -26,7 +26,7 @@ export const navbardData = [
     ]
   },
   {
-    link: '/dashboard',
+    link: '/dashboard/documento',
     label: 'Documentos',
     icon: 'description'
   },

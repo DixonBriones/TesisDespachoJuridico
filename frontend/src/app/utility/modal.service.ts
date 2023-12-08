@@ -16,6 +16,8 @@ import { EventoCreateComponent } from '../evento/evento-create/evento-create.com
 import { EventoEditComponent } from '../evento/evento-edit/evento-edit.component';
 import { PagoCreateComponent } from '../pago/pago-create/pago-create.component';
 import { PagoEditComponent } from '../pago/pago-edit/pago-edit.component';
+import { DocumentoCreateComponent } from '../documento/documento-create/documento-create.component';
+import { DocumentoEditComponent } from '../documento/documento-edit/documento-edit.component';
 
 
 @Injectable({
@@ -139,6 +141,21 @@ export class ModalService {
 
   openModalEditPago(data: any) {
     const dialogRef = this.dialog.open(PagoEditComponent, {
+      width: '500px',
+      data: data
+    });
+    return dialogRef.afterClosed();
+  }
+
+  openModalCreateDocument() {
+    const dialogRef = this.dialog.open(DocumentoCreateComponent, {
+      width: '500px',
+    });
+    return dialogRef.afterClosed();
+  }
+
+  openModalEditDocument(data: any) {
+    const dialogRef = this.dialog.open(DocumentoEditComponent, {
       width: '500px',
       data: data
     });
