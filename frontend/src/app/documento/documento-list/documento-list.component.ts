@@ -36,8 +36,6 @@ export class DocumentoListComponent {
   listarDocumentos() {
     this.documentoService.mostrarDocumentosAbogado(this.decodedToken.idAbogado,this.query.trim()).subscribe((res) => {
       this.documentos = res;
-      console.log(this.query);
-      console.log(this.decodedToken.idAbogado);
     });
   }
 
