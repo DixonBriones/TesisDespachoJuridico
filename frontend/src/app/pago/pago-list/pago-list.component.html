@@ -40,6 +40,7 @@
         </tr>
       </thead>
       <tbody>
+        <tr *ngIf="misCasos.length<=0"><td colspan="6">No tiene casos </td></tr>
         <tr *ngFor="let micaso of misCasos| paginate: { itemsPerPage: 10, currentPage: p }; index as i">
           <th scope="row" class="align-middle">{{ i + 1 }}</th>
           <td class="align-middle">{{ micaso.name_case }}</td>

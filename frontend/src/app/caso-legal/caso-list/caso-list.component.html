@@ -16,13 +16,14 @@
             placeholder="Buscar por cliente"
             aria-label="Search"
             aria-describedby="search-addon"
-          
+            [(ngModel)]="query"
+            (keypress)="listar($event)"
           />
           <span
             class="input-group-text border-0 btn-primary"
             id="search-addon"
             [style.cursor]="'pointer'"
-            
+            (click)="listarMisCasos()"
           >
             <i class="fas fa-search"></i>
           </span>
@@ -42,6 +43,7 @@
         </tr>
       </thead>
       <tbody>
+        <tr *ngIf="misCasos.length<=0"><td colspan="6">No tiene casos </td></tr>
         <tr *ngFor="let micaso of misCasos| paginate: { itemsPerPage: 10, currentPage: p }; index as i">
           <th scope="row" class="align-middle">{{ i + 1 }}</th>
           <td class="align-middle">{{ micaso.name_case }}</td>

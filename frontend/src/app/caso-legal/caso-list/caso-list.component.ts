@@ -13,6 +13,7 @@ import { CasoLegalService } from '../caso-legal.service';
 export class CasoListComponent {
   misCasos: any = [];
   p: number = 1;
+  query: string = '';
   constructor(
     private casoLegalService: CasoLegalService,
     private modalService: ModalService,
@@ -25,10 +26,17 @@ export class CasoListComponent {
   }
 
   listarMisCasos() {
-    this.casoLegalService.mostrarMisCasos().subscribe((res) => {
+    this.casoLegalService.mostrarMisCasos(this.query.trim()).subscribe((res) => {
       this.misCasos = res;
       //console.log(this.roles);
     });
+  }
+
+  public listar(evn: any) {
+    const key = evn.charCode;
+    if (key == 13) {
+      this.listarMisCasos();
+    }
   }
 
   actualizarTabla() {

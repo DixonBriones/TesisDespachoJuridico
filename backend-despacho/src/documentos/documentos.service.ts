@@ -91,15 +91,18 @@ export class DocumentosService {
 
 
   async findDocumentoAbogado(id: string,name: string) {
-    const evento = await this.documentoRepository.createQueryBuilder('documento')
+    const documento = this.documentoRepository.createQueryBuilder('documento')
     .leftJoinAndSelect('documento.legal_case', 'legal_case')
     .leftJoinAndSelect('legal_case.lawyer', 'lawyer')
-    .where('legal_case.lawyer.id = :id', { id })
-    .where(`documento.name_document LIKE :q`,{q: `%${name}%`})
-    .orWhere('legal_case.name_case LIKE :q', { q: `%${name}%` })
-    .getMany();
-    if (!evento) throw new NotFoundException(`Evento ${id} no encontrado`);
-    return evento;
+    .where('lawyer.id = :id', { id })
+  
+    if (name) {
+      documento.andWhere(`documento.name_document LIKE :q`,{q: `%${name}%`})
+      .orWhere('legal_case.name_case LIKE :q', { q: `%${name}%` })
+    }
+
+    const resultado = await documento.getMany();
+    return resultado
   }
 
   

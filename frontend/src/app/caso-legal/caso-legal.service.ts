@@ -10,7 +10,6 @@ export class CasoLegalService {
   private URL = environment.rutaService;
   decodedToken:any;
   token:any;
-  data:any=[]
 
   constructor(private http: HttpClient,private jwtHelper: JwtHelperService) { }
 
@@ -26,10 +25,10 @@ export class CasoLegalService {
     return this.http.get(`${this.URL}/cliente/identificacion/${id}`);
   }
 
-  mostrarMisCasos() {
+  mostrarMisCasos(query = '') {
     this.token=localStorage.getItem('token');
     this.decodedToken = this.jwtHelper.decodeToken(this.token);
-    return this.http.get(`${this.URL}/caso-legal/abogadoId/${this.decodedToken.idAbogado}`);
+    return this.http.get(`${this.URL}/caso-legal/abogadoId/${this.decodedToken.idAbogado}`,{ params: { q: query }});
   }
 
   insertarMiCaso(body:any) {

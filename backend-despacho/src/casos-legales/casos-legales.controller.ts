@@ -33,8 +33,8 @@ export class CasosLegalesController {
   }
 
   @Get('abogadoId/:id')
-  findAbogado(@Param('id') id: string) {
-    return this.casosLegalesService.findByAbogado(id);
+  findAbogado(@Param('id') id: string, @Query('q') q?: string) {
+    return this.casosLegalesService.findByAbogado(id,q);
   }
 
   @Get('clienteId/:id')

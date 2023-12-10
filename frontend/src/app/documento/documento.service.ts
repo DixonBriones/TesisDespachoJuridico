@@ -12,6 +12,7 @@ export class DocumentoService {
   constructor(private http: HttpClient) { }
 
   mostrarDocumentosAbogado(id:any,query = '') {
+    console.log(this.http.get(`${this.URL}/documento/abogado/${id}`, { params: { q: query }}))
     return this.http.get(`${this.URL}/documento/abogado/${id}`, { params: { q: query }});
   }
   insertarDocumento(body:FormData) {

@@ -67,16 +67,21 @@ export class CasosLegalesService {
     return {...casoLegal, id};
   }
 
-  async findByAbogado(id:string) {
+  async findByAbogado(id:string,query: string) {
     //const casoLegal = await this.casoLegalRepository.find({loadRelationIds:true,where:{lawyer: id,status:true}});
-    const casoLegal = await this.casoLegalRepository.createQueryBuilder('caso_legal')
+    const casoLegal = this.casoLegalRepository.createQueryBuilder('caso_legal')
     .leftJoinAndSelect('caso_legal.lawyer', 'lawyer')
     .leftJoinAndSelect('caso_legal.client', 'client')
     .leftJoinAndSelect('caso_legal.case_type', 'case_type')
-    .where('caso_legal.status = true')
     .where('caso_legal.lawyer.id = :id', { id })
-    .getMany();
-    return casoLegal
+    .andWhere('caso_legal.status = true')
+  
+    if (query) {
+      casoLegal.andWhere(`caso_legal.name_case LIKE :q`,{q: `%${query}%`})
+      .orWhere('client.name LIKE :q', { q: `%${query}%` });
+    }
+    const resultado = await casoLegal.getMany();
+    return resultado
   
   }
 
@@ -103,21 +108,25 @@ export class CasosLegalesService {
   
   }
 
+  
 
   async obtenerCasosPendientesPago(id:string,query: string) {
-    const casos = await this.casoLegalRepository.createQueryBuilder('caso_legal')
+    const casos = this.casoLegalRepository.createQueryBuilder('caso_legal')
     .leftJoinAndSelect('caso_legal.lawyer', 'lawyer')
     .leftJoinAndSelect('caso_legal.client', 'client')
     .leftJoinAndSelect('caso_legal.case_type', 'case_type')
     .leftJoinAndSelect('caso_legal.payment', 'pago')
     .where('caso_legal.status = true')
-    .where('caso_legal.lawyer.id = :id', { id })
-    .where(`caso_legal.name_case LIKE :q`,{q: `%${query}%`})
-    .orWhere('client.name LIKE :q', { q: `%${query}%` })
-    .getMany();
-
+    .where('lawyer.id = :id', { id })
+    
+    
+    if (query) {
+      casos.andWhere(`caso_legal.name_case LIKE :q`,{q: `%${query}%`})
+      .orWhere('client.name LIKE :q', { q: `%${query}%` })
+    }
+    const resultado = await casos.getMany();
     // Filtrar casos pendientes de pago
-    const casosPendientesPago = casos.filter(caso => {
+    const casosPendientesPago = resultado.filter(caso => {
       const honorariosTotales = caso.service_fee;
       const pagosTotales = caso.payment.reduce((total, pago) => total + Number(pago.amount), 0);
       return pagosTotales < honorariosTotales;

@@ -41,6 +41,7 @@
         </tr>
       </thead>
       <tbody>
+        <tr *ngIf="documentos.length<=0"><td colspan="6">No tiene documentos </td></tr>
         <tr *ngFor="let documento of documentos | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
           <th scope="row" class="align-middle">{{ i + 1 }}</th>
           <td class="align-middle">{{ documento.name_document | titlecase }}</td>

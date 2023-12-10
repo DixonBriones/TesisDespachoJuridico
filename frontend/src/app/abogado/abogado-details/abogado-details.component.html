@@ -108,7 +108,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngIf="casos.length<=0"><td colspan="6">No tiene caso activos</td></tr>
+                <tr *ngIf="casos.length<=0"><td colspan="6">No tiene casos activos</td></tr>
                 <tr *ngFor="let caso of casos; index as i">
                   <th scope="row" class="align-middle">{{ i + 1 }}</th>
                   <td class="align-middle">{{ caso.name_case }}</td>
