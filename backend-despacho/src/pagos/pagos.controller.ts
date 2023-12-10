@@ -3,7 +3,7 @@ import { PagosService } from './pagos.service';
 import { CreatePagoDto } from './dto/create-pago.dto';
 import { UpdatePagoDto } from './dto/update-pago.dto';
 
-@Controller('pagos')
+@Controller('pago')
 export class PagosController {
   constructor(private readonly pagosService: PagosService) {}
 
@@ -33,7 +33,12 @@ export class PagosController {
   }
 
   @Get('abogado/:id')
-  findAbogadoEvent(@Param('id') id: string) {
+  findAbogadoPago(@Param('id') id: string) {
     return this.pagosService.findPagoAbogado(id);
+  }
+
+  @Get('caso/:id')
+  findPagoCaso(@Param('id') id: string) {
+    return this.pagosService.findPagoCaso(id);
   }
 }

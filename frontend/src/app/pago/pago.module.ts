@@ -9,6 +9,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatDialogModule} from '@angular/material/dialog';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { PagoHistorialComponent } from './pago-historial/pago-historial.component';
 
 
 
@@ -16,7 +17,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
   declarations: [
     PagoCreateComponent,
     PagoListComponent,
-    PagoEditComponent
+    PagoEditComponent,
+    PagoHistorialComponent
   ],
   imports: [
     CommonModule,

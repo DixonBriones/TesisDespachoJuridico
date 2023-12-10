@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row">
+        <div class="col-2 justify-content-start">
+            <button class="btn btn-primary" (click)="retroceder()"> 
+                <span class="material-symbols-outlined">
+                    arrow_back
+                </span>
+               
+            </button>
+        </div>
+
+        <div class="col-6"></div>
+  
+        <div class="col-4 justify-content-end">
+          <h2 class="align-middle">Saldo restante: {{saldo | currency:"USD"}} </h2>
+          
+        </div>
+    </div>  
+     
+    <table class="table table-striped table-hover table-bordered mt-3">
+      <thead>
+        <tr class="bg-header text-white">
+          <th scope="col" class="col-md-1">#</th>
+          <th scope="col">Monto del pago</th>
+          <th scope="col">Fecha del pago</th>
+          <th scope="col" class="col-md-3">Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pago of pagos| paginate: { itemsPerPage: 10, currentPage: p }; index as i">
+          <th scope="row" class="align-middle">{{ i + 1 }}</th>
+          <td class="align-middle">{{ pago.amount | currency:'USD'}}</td>
+          <td class="align-middle">{{ pago.date_payment | date:'mediumDate' }}</td>
+          <td>
+            <button class="btn btn-warning mx-1" style="color: white;" (click)="openModalEdit(pago)">
+              Editar
+            </button>
+            
+            <button class="btn btn-danger mx-1" (click)="deletePago(pago.id)" >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="container">
+      <div class=" row">
+        <div class="col-7"></div>
+        <div class="col-5 justify-content-end">
+          <pagination-controls (pageChange)="p=$event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>

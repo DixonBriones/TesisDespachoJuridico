@@ -1,9 +1,6 @@
 <div class="container">
     <div class="row">
       <div class="col-2 justify-content-start">
-        <button class="btn btn-primary"  >
-          Nuevo Caso
-        </button>
       </div>
 
       <div class="col-6"></div>
@@ -13,16 +10,17 @@
           <input
             type="search"
             class="form-control rounded-start"
-            placeholder="Buscar por cliente"
+            placeholder="Buscar por caso o cliente"
             aria-label="Search"
             aria-describedby="search-addon"
-          
+            [(ngModel)]="query"
+            (keypress)="listar($event)"
           />
           <span
             class="input-group-text border-0 btn-primary"
             id="search-addon"
             [style.cursor]="'pointer'"
-            
+            (click)="listarCasosPago()"
           >
             <i class="fas fa-search"></i>
           </span>
@@ -36,9 +34,9 @@
           <th scope="col" class="col-md-1">#</th>
           <th scope="col">Nombre caso</th>
           <th scope="col">Cliente</th>
-          <th scope="col">Tipo de caso</th>
-          <th scope="col">Estado del caso</th>
-          <th scope="col" class="col-md-3">Acción</th>
+          <th scope="col">Honorarios totales</th>
+          <th scope="col">Saldo restante</th>
+          <th scope="col" class="col-md-4">Acción</th>
         </tr>
       </thead>
       <tbody>
@@ -46,19 +44,15 @@
           <th scope="row" class="align-middle">{{ i + 1 }}</th>
           <td class="align-middle">{{ micaso.name_case }}</td>
           <td class="align-middle">{{ micaso.client.name }}</td>
-          <td class="align-middle">{{ micaso.case_type.name }}</td>
-          <td class="align-middle">{{ micaso.status_case }}</td>
+          <td class="align-middle">{{ micaso.service_fee | currency:'USD' }}</td>
+          <td class="align-middle">{{ calcularTotalRestante(micaso.service_fee,micaso.payment) | currency:'USD'}}</td>
           <td>
-            <button class="btn btn-success mx-1" >
-              Ver detalles
+            <button class="btn btn-primary mx-1" (click)="openModalCreate(calcularTotalRestante(micaso.service_fee,micaso.payment),micaso.id)" >
+              Realizar pago
             </button>
-
-            <button class="btn btn-warning mx-1" >
-              Editar
-            </button>
-
-            <button class="btn btn-danger mx-1" >
-              Eliminar
+            
+            <button class="btn btn-success mx-1"  routerLink="historial/{{ micaso.id }}">
+              Ver historial
             </button>
           </td>
         </tr>

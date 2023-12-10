@@ -56,4 +56,5 @@ export class CasoLegal {
   //@OneToMany(() => Documento, (documeto) => documeto.legal_case)
   //document: Documento[];
 
+
 }

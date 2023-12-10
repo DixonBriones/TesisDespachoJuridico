@@ -9,10 +9,28 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class PagoService {
   private URL = environment.rutaService;
-  decodedToken:any;
-  token:any;
-  data:any=[]
 
-  constructor(private http: HttpClient,private jwtHelper: JwtHelperService) { }
+
+  constructor(private http: HttpClient) { }
+
+  mostrarPagosPendientesMisCasos(id:string,query = '') {
+    return this.http.get(`${this.URL}/caso-legal/paymentPendient/${id}`, { params: { q: query }});
+  }
+
+  insertarPago(body:any) {
+    return this.http.post(`${this.URL}/pago`,body);
+  }
+
+  mostrarPagosCasoId(id:string) {
+    return this.http.get(`${this.URL}/pago/caso/${id}`);
+  }
+
+  eliminarPago(id:string) {
+    return this.http.delete(`${this.URL}/pago/${id}`);
+  }
+
+  actualizarPago(id:string,body:any) {
+    return this.http.patch(`${this.URL}/pago/${id}`,body);
+  }
 
 }

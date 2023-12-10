@@ -1,1 +1,38 @@
-<p>pago-create works!</p>
+<h2 mat-dialog-title>Nuevo pago</h2>
+<mat-dialog-content>
+  <form [formGroup]="form" class="modal-form">
+
+    <div class="form-group mb-3">
+        <label>Monto del pago</label>
+        <input type="number" class="form-control" formControlName="amount" />
+        <div *ngIf="form.get('amount')?.hasError('required')" class="text-danger">
+            El monto del pago es requerido.
+        </div>
+        <div *ngIf="form.get('amount')?.hasError('max') " class="text-danger">
+            El monto de pago sobrepasa el saldo restante de {{data.maxPayment | currency:'USD'}}
+        </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Fecha del pago</label>
+        <input type="date" class="form-control" formControlName="date_payment"/>
+        <div *ngIf="form.get('date_payment')?.hasError('required')" class="text-danger">
+          La fecha del pago es requerida.
+        </div>
+    </div>
+
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button type="button" class="btn btn-danger mx-1" (click)="cancel()">
+    Cancelar
+  </button>
+  <button
+    type="button"
+    class="btn btn-primary mx-1"
+    [disabled]="form.invalid"
+    (click)="save()"
+  >
+    Guardar
+  </button>
+</mat-dialog-actions>

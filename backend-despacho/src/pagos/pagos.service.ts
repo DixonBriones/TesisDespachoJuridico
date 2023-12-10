@@ -76,4 +76,14 @@ export class PagosService {
     if (!evento) throw new NotFoundException(`Pago ${id} no encontrado`);
     return evento;
   }
+
+  async findPagoCaso(id: string) {
+    //const evento = await this.eventoRepository.find({ relations: ['legal_case'],where:{}});
+    const evento = await this.pagoRepository.createQueryBuilder('pago')
+    .leftJoinAndSelect('pago.legal_case', 'legal_case')
+    .where('legal_case.id = :id', { id })
+    .getMany();
+    if (!evento) throw new NotFoundException(`Pago ${id} no encontrado`);
+    return evento;
+  }
 }

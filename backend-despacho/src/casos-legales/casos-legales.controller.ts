@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete,Query } from '@nestjs/common';
 import { CasosLegalesService } from './casos-legales.service';
 import { CreateCasosLegaleDto } from './dto/create-casos-legale.dto';
 import { UpdateCasosLegaleDto } from './dto/update-casos-legale.dto';
@@ -40,5 +40,10 @@ export class CasosLegalesController {
   @Get('clienteId/:id')
   findCliente(@Param('id') id: string) {
     return this.casosLegalesService.findByClient(id);
+  }
+
+  @Get('paymentPendient/:id')
+  findPagoPendiente(@Param('id') id: string, @Query('q') q?: string) {
+    return this.casosLegalesService.obtenerCasosPendientesPago(id,q);
   }
 }

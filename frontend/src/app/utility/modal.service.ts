@@ -132,9 +132,10 @@ export class ModalService {
     return dialogRef.afterClosed();
   }
 
-  openModalCreatePago() {
+  openModalCreatePago(data: any) {
     const dialogRef = this.dialog.open(PagoCreateComponent, {
       width: '500px',
+      data: data
     });
     return dialogRef.afterClosed();
   }

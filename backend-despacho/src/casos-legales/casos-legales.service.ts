@@ -102,4 +102,27 @@ export class CasosLegalesService {
     return casoLegal
   
   }
+
+
+  async obtenerCasosPendientesPago(id:string,query: string) {
+    const casos = await this.casoLegalRepository.createQueryBuilder('caso_legal')
+    .leftJoinAndSelect('caso_legal.lawyer', 'lawyer')
+    .leftJoinAndSelect('caso_legal.client', 'client')
+    .leftJoinAndSelect('caso_legal.case_type', 'case_type')
+    .leftJoinAndSelect('caso_legal.payment', 'pago')
+    .where('caso_legal.status = true')
+    .where('caso_legal.lawyer.id = :id', { id })
+    .where(`caso_legal.name_case LIKE :q`,{q: `%${query}%`})
+    .orWhere('client.name LIKE :q', { q: `%${query}%` })
+    .getMany();
+
+    // Filtrar casos pendientes de pago
+    const casosPendientesPago = casos.filter(caso => {
+      const honorariosTotales = caso.service_fee;
+      const pagosTotales = caso.payment.reduce((total, pago) => total + Number(pago.amount), 0);
+      return pagosTotales < honorariosTotales;
+    });
+
+    return casosPendientesPago;
+  }
 }
