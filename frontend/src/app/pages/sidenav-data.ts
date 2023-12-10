@@ -23,8 +23,8 @@ export const navbardData = [
     subItems: [
       { label: 'Mis casos',link: '/dashboard/casos/miscasos', role: "ABOGADO" },
       { label: 'Mis casos cerrados',link: '/dashboard/casos/miscasos-cerrados', role: "ABOGADO" },
-      { label: 'Casos abiertos',link: '/ruta1/opcion2', role: "ADMIN" },
-      { label: 'Casos cerrados',link: '/ruta1/opcion3', role: "ADMIN" },
+      { label: 'Casos abiertos',link: '/dashboard/casos/admin', role: "ADMIN" },
+      { label: 'Casos cerrados',link: '/dashboard/casos/admin/casos-cerrados', role: "ADMIN" },
       { label: 'Tipos de casos',link: '/dashboard/tipo-caso', role: "ADMIN" },
     ]
   },
