@@ -48,48 +48,59 @@
   <mat-sidenav #sidenav="matSidenav" mode="side" class="sidenav">
     <mat-nav-list class="sidenav-list">
       <div *ngFor="let menuItem of menuItems">
+
         <div *ngIf="!menuItem.subItems; else submenu">
-          <a mat-list-item [routerLink]="menuItem.link">
-            <div class="flexContainer nav-item">
-              <div>
-                <mat-icon class="material-symbols-outlined">{{ menuItem.icon }}</mat-icon>
+
+          <div *ngIf="rolVerificador(menuItem.role)">
+            <a mat-list-item [routerLink]="menuItem.link">
+              <div class="flexContainer nav-item">
+                <div>
+                  <mat-icon class="material-symbols-outlined">{{ menuItem.icon }}</mat-icon>
+                </div>
+                <div class="customSpan">{{ menuItem.label }}</div>
               </div>
-              <div class="customSpan">{{ menuItem.label }}</div>
-            </div>
-          </a>
+            </a>
+          </div>
+          
         </div>
 
         <ng-template #submenu>
-          <a mat-list-item>
-            <div class="flexContainer nav-item" (click)="toggleSubMenu(menuItem)">
-              <div>
-                <mat-icon class="material-symbols-outlined">{{ menuItem.icon }}</mat-icon>
+
+          <div *ngIf="rolVerificador(menuItem.role)">
+            <a mat-list-item>
+              <div class="flexContainer nav-item" (click)="toggleSubMenu(menuItem)">
+                <div>
+                  <mat-icon class="material-symbols-outlined">{{ menuItem.icon }}</mat-icon>
+                </div>
+                <div class="customSpan">{{ menuItem.label }}</div>
+                <span class="spacer"></span>
+                <button
+                  mat-icon-button
+                  class="sidenav-submenu"
+                >
+                  <mat-icon>{{
+                    submenuOpen[menuItem.label]
+                      ? "keyboard_arrow_up"
+                      : "keyboard_arrow_down"
+                  }}</mat-icon>
+                </button>
               </div>
-              <div class="customSpan">{{ menuItem.label }}</div>
-              <span class="spacer"></span>
-              <button
-                mat-icon-button
-                class="sidenav-submenu"
-              >
-                <mat-icon>{{
-                  submenuOpen[menuItem.label]
-                    ? "keyboard_arrow_up"
-                    : "keyboard_arrow_down"
-                }}</mat-icon>
-              </button>
-            </div>
-          </a>
+            </a>
+          </div>
 
           <div *ngIf="submenuOpen[menuItem.label]">
-            <mat-nav-list>
+            <a mat-nav-list>
               <div *ngFor="let subItem of menuItem.subItems">
-                <a mat-list-item [routerLink]="subItem.link">
-                  <div class="flexContainer nav-item">
-                    <div class="customSpan2">{{ subItem.label }}</div>
-                  </div>
-                </a>
+
+                <div *ngIf="rolVerificador(subItem.role)">
+                  <a mat-list-item [routerLink]="subItem.link">
+                    <div class="flexContainer nav-item">
+                      <div class="customSpan2">{{ subItem.label }}</div>
+                    </div>
+                  </a>
+                </div>
               </div>
-            </mat-nav-list>
+            </a>
           </div>
         </ng-template>
       </div>

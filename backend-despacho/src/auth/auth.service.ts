@@ -29,7 +29,8 @@ export class AuthService {
       username: user.username,
       id: user.id,
       idAbogado: user.lawyer.id,
-      nameAbogado: user.lawyer.name
+      nameAbogado: user.lawyer.name,
+      rolUser: user.role.name
     };
 
     return { access_token: this.jwtService.sign(payload) };

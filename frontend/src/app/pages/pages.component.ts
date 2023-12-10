@@ -44,6 +44,14 @@ export class PagesComponent {
     });
   }
 
+  rolVerificador(rutaRol:any){
+    const rolUser=this.decodedToken.rolUser
+    if(rutaRol==rolUser || rolUser==="ADMIN"){
+      return true
+    }
+    return false
+  }
+
   getRemainingTime(timeStamp: string,date_end: string): string{
     const expirationTime = new Date(timeStamp).getTime(); // Convierte la cadena de tiempo a milisegundos
     const currentTime = new Date().getTime();
