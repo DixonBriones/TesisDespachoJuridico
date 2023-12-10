@@ -22,7 +22,7 @@ export const navbardData = [
     role: "ABOGADO",
     subItems: [
       { label: 'Mis casos',link: '/dashboard/casos/miscasos', role: "ABOGADO" },
-      { label: 'Mis casos cerrados',link: '/dashboard/casos/miscasos', role: "ABOGADO" },
+      { label: 'Mis casos cerrados',link: '/dashboard/casos/miscasos-cerrados', role: "ABOGADO" },
       { label: 'Casos abiertos',link: '/ruta1/opcion2', role: "ADMIN" },
       { label: 'Casos cerrados',link: '/ruta1/opcion3', role: "ADMIN" },
       { label: 'Tipos de casos',link: '/dashboard/tipo-caso', role: "ADMIN" },
@@ -41,7 +41,7 @@ export const navbardData = [
     role: "ABOGADO",
     subItems: [
       { label: 'Pendientes de pago',link: '/dashboard/pago', role: "ABOGADO" },
-      { label: 'Casos pagados',link: '/dashboard/tipo-evento', role: "ABOGADO" }
+      { label: 'Casos pagados',link: '/dashboard/pago/finalizado', role: "ABOGADO" }
     ],
   },
   {

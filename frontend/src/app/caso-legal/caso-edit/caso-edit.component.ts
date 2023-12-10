@@ -65,7 +65,7 @@ export class CasoEditComponent {
         case_type:this.form.get('case_type')?.value,
         client:this.form.get('client')?.value
       }
-      console.log(casoBody)
+      //console.log(casoBody)
       this.casoLegalService.actualizarCaso(this.id,casoBody).subscribe({
         next: (res: any) => {
           this.updateTable.notifyTableUpdate();

@@ -31,6 +31,12 @@ export class CasoLegalService {
     return this.http.get(`${this.URL}/caso-legal/abogadoId/${this.decodedToken.idAbogado}`,{ params: { q: query }});
   }
 
+  mostrarMisCasosCerrados(query = '') {
+    this.token=localStorage.getItem('token');
+    this.decodedToken = this.jwtHelper.decodeToken(this.token);
+    return this.http.get(`${this.URL}/caso-legal/abogadoIdCerrado/${this.decodedToken.idAbogado}`,{ params: { q: query }});
+  }
+
   insertarMiCaso(body:any) {
     this.token=localStorage.getItem('token');
     this.decodedToken = this.jwtHelper.decodeToken(this.token);

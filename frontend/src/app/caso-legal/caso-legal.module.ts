@@ -10,6 +10,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatDialogModule} from '@angular/material/dialog';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CasoEditComponent } from './caso-edit/caso-edit.component';
+import { MisCasosCerradosComponent } from './mis-casos-cerrados/mis-casos-cerrados.component';
+import { AdminCasoListComponent } from './admin-caso-list/admin-caso-list.component';
+import { AdminCasoCerradoComponent } from './admin-caso-cerrado/admin-caso-cerrado.component';
 
 
 @NgModule({
@@ -18,6 +21,9 @@ import { CasoEditComponent } from './caso-edit/caso-edit.component';
     CasoListComponent,
     CasoEditComponent,
     CasoDetailsComponent,
+    MisCasosCerradosComponent,
+    AdminCasoListComponent,
+    AdminCasoCerradoComponent,
   ],
   imports: [
     CommonModule,

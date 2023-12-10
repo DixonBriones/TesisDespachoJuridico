@@ -37,6 +37,11 @@ export class CasosLegalesController {
     return this.casosLegalesService.findByAbogado(id,q);
   }
 
+  @Get('abogadoIdCerrado/:id')
+  findAbogadoCerrado(@Param('id') id: string, @Query('q') q?: string) {
+    return this.casosLegalesService.findByAbogadoCerrado(id,q);
+  }
+
   @Get('clienteId/:id')
   findCliente(@Param('id') id: string) {
     return this.casosLegalesService.findByClient(id);
@@ -45,5 +50,10 @@ export class CasosLegalesController {
   @Get('paymentPendient/:id')
   findPagoPendiente(@Param('id') id: string, @Query('q') q?: string) {
     return this.casosLegalesService.obtenerCasosPendientesPago(id,q);
+  }
+
+  @Get('paymentFinish/:id')
+  findPagoFinalizado(@Param('id') id: string, @Query('q') q?: string) {
+    return this.casosLegalesService.obtenerCasosPagoFinalizado(id,q);
   }
 }

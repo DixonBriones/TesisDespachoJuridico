@@ -8,8 +8,9 @@ import {
 import { CreateCasosLegaleDto } from './dto/create-casos-legale.dto';
 import { UpdateCasosLegaleDto } from './dto/update-casos-legale.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository ,Brackets} from 'typeorm';
 import { CasoLegal } from './entities/casos-legale.entity';
+import { EstadoCaso } from 'src/constants/status_case';
 
 @Injectable()
 export class CasosLegalesService {
@@ -18,6 +19,7 @@ export class CasosLegalesService {
   constructor(
     @InjectRepository(CasoLegal)
     private readonly casoLegalRepository: Repository<CasoLegal>,
+
   ) {}
 
   async create(createCasosLegalDto: CreateCasosLegaleDto) {
@@ -69,16 +71,46 @@ export class CasosLegalesService {
 
   async findByAbogado(id:string,query: string) {
     //const casoLegal = await this.casoLegalRepository.find({loadRelationIds:true,where:{lawyer: id,status:true}});
+    const estado=EstadoCaso.CierreDelCaso
     const casoLegal = this.casoLegalRepository.createQueryBuilder('caso_legal')
     .leftJoinAndSelect('caso_legal.lawyer', 'lawyer')
     .leftJoinAndSelect('caso_legal.client', 'client')
     .leftJoinAndSelect('caso_legal.case_type', 'case_type')
     .where('caso_legal.lawyer.id = :id', { id })
     .andWhere('caso_legal.status = true')
-  
+    .andWhere('caso_legal.status_case != :estado',{estado})
+
     if (query) {
-      casoLegal.andWhere(`caso_legal.name_case LIKE :q`,{q: `%${query}%`})
-      .orWhere('client.name LIKE :q', { q: `%${query}%` });
+      casoLegal.andWhere(
+        new Brackets(qb => {
+          qb.where(`caso_legal.name_case LIKE :q`, { q: `%${query}%` })
+            .orWhere('client.name LIKE :q', { q: `%${query}%` });
+        })
+      );
+    }
+    const resultado = await casoLegal.getMany();
+    return resultado
+  
+  }
+
+  async findByAbogadoCerrado(id:string,query: string) {
+    //const casoLegal = await this.casoLegalRepository.find({loadRelationIds:true,where:{lawyer: id,status:true}});
+    const estado=EstadoCaso.CierreDelCaso
+    const casoLegal = this.casoLegalRepository.createQueryBuilder('caso_legal')
+    .leftJoinAndSelect('caso_legal.lawyer', 'lawyer')
+    .leftJoinAndSelect('caso_legal.client', 'client')
+    .leftJoinAndSelect('caso_legal.case_type', 'case_type')
+    .where('caso_legal.lawyer.id = :id', { id })
+    .andWhere('caso_legal.status_case = :estado',{estado})
+    .andWhere('caso_legal.status = true')
+
+    if (query) {
+      casoLegal.andWhere(
+        new Brackets(qb => {
+          qb.where(`caso_legal.name_case LIKE :q`, { q: `%${query}%` })
+            .orWhere('client.name LIKE :q', { q: `%${query}%` });
+        })
+      );
     }
     const resultado = await casoLegal.getMany();
     return resultado
@@ -121,8 +153,12 @@ export class CasosLegalesService {
     
     
     if (query) {
-      casos.andWhere(`caso_legal.name_case LIKE :q`,{q: `%${query}%`})
-      .orWhere('client.name LIKE :q', { q: `%${query}%` })
+      casos.andWhere(
+        new Brackets(qb => {
+          qb.where(`caso_legal.name_case LIKE :q`, { q: `%${query}%` })
+            .orWhere('client.name LIKE :q', { q: `%${query}%` });
+        })
+      );
     }
     const resultado = await casos.getMany();
     // Filtrar casos pendientes de pago
@@ -130,6 +166,37 @@ export class CasosLegalesService {
       const honorariosTotales = caso.service_fee;
       const pagosTotales = caso.payment.reduce((total, pago) => total + Number(pago.amount), 0);
       return pagosTotales < honorariosTotales;
+    });
+
+    return casosPendientesPago;
+  }
+
+
+
+  async obtenerCasosPagoFinalizado(id:string,query: string) {
+    const casos = this.casoLegalRepository.createQueryBuilder('caso_legal')
+    .leftJoinAndSelect('caso_legal.lawyer', 'lawyer')
+    .leftJoinAndSelect('caso_legal.client', 'client')
+    .leftJoinAndSelect('caso_legal.case_type', 'case_type')
+    .leftJoinAndSelect('caso_legal.payment', 'pago')
+    .where('caso_legal.status = true')
+    .where('lawyer.id = :id', { id })
+    
+    
+    if (query) {
+      casos.andWhere(
+        new Brackets(qb => {
+          qb.where(`caso_legal.name_case LIKE :q`, { q: `%${query}%` })
+            .orWhere('client.name LIKE :q', { q: `%${query}%` });
+        })
+      );
+    }
+    const resultado = await casos.getMany();
+    // Filtrar casos pendientes de pago
+    const casosPendientesPago = resultado.filter(caso => {
+      const honorariosTotales = caso.service_fee;
+      const pagosTotales = caso.payment.reduce((total, pago) => total + Number(pago.amount), 0);
+      return pagosTotales >= honorariosTotales;
     });
 
     return casosPendientesPago;

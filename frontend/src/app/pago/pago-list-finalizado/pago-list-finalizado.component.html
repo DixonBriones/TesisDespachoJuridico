@@ -1,19 +1,16 @@
 <div class="container">
     <div class="row">
       <div class="col-2 justify-content-start">
-        <button class="btn btn-primary"  (click)="openModalCreate()">
-          Nuevo Caso
-        </button>
       </div>
 
-      <div class="col-5"></div>
+      <div class="col-6"></div>
   
-      <div class="col-5 justify-content-end">
+      <div class="col-4 justify-content-end">
         <div class="input-group rounded">
           <input
             type="search"
             class="form-control rounded-start"
-            placeholder="Buscar por cliente o caso"
+            placeholder="Buscar por caso o cliente"
             aria-label="Search"
             aria-describedby="search-addon"
             [(ngModel)]="query"
@@ -23,7 +20,7 @@
             class="input-group-text border-0 btn-primary"
             id="search-addon"
             [style.cursor]="'pointer'"
-            (click)="listarMisCasos()"
+            (click)="listarCasosPago()"
           >
             <i class="fas fa-search"></i>
           </span>
@@ -34,12 +31,12 @@
     <table class="table table-striped table-hover table-bordered mt-3">
       <thead>
         <tr class="bg-header text-white">
-          <th scope="col" >#</th>
+          <th scope="col" class="col-md-1">#</th>
           <th scope="col">Nombre caso</th>
           <th scope="col">Cliente</th>
-          <th scope="col">Tipo de caso</th>
-          <th scope="col">Estado del caso</th>
-          <th scope="col" class="col-md-4">Acción</th>
+          <th scope="col">Honorarios totales</th>
+          <th scope="col">Saldo restante</th>
+          <th scope="col" class="col-md-3">Acción</th>
         </tr>
       </thead>
       <tbody>
@@ -48,19 +45,11 @@
           <th scope="row" class="align-middle">{{ i + 1 }}</th>
           <td class="align-middle">{{ micaso.name_case }}</td>
           <td class="align-middle">{{ micaso.client.name }}</td>
-          <td class="align-middle">{{ micaso.case_type.name }}</td>
-          <td class="align-middle">{{ micaso.status_case }}</td>
+          <td class="align-middle">{{ micaso.service_fee | currency:'USD' }}</td>
+          <td class="align-middle">{{ calcularTotalRestante(micaso.service_fee,micaso.payment) | currency:'USD'}}</td>
           <td>
-            <button class="btn btn-success mx-1" >
-              Ver
-            </button>
-
-            <button class="btn btn-warning mx-1" (click)="openModalEdit(micaso)"   >
-              Editar
-            </button>
-
-            <button class="btn btn-danger mx-1" >
-              Eliminar
+            <button class="btn btn-success mx-1"  (click)="historial(micaso.id)">
+              Ver historial
             </button>
           </td>
         </tr>
@@ -75,4 +64,3 @@
       </div>
     </div>
   </div>
-  

@@ -4,13 +4,13 @@ import { UpdateTableService } from 'src/app/utility/update-table.service';
 import { ModalService } from 'src/app/utility/modal.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import Swal from 'sweetalert2';
-
+import {Router} from '@angular/router';
 @Component({
-  selector: 'app-pago-list',
-  templateUrl: './pago-list.component.html',
-  styleUrls: ['./pago-list.component.scss']
+  selector: 'app-pago-list-finalizado',
+  templateUrl: './pago-list-finalizado.component.html',
+  styleUrls: ['./pago-list-finalizado.component.scss']
 })
-export class PagoListComponent {
+export class PagoListFinalizadoComponent {
   misCasos: any = [];
   query: string = '';
   p: number = 1;
@@ -18,6 +18,7 @@ export class PagoListComponent {
   token:any;
 
   constructor(
+    private router: Router,
     private pagoService: PagoService,
     private updateTable: UpdateTableService,
     private jwtHelper: JwtHelperService,
@@ -32,7 +33,7 @@ export class PagoListComponent {
   }
 
   listarCasosPago() {
-    this.pagoService.mostrarPagosPendientesMisCasos(this.decodedToken.idAbogado,this.query.trim()).subscribe((res) => {
+    this.pagoService.mostrarPagosFinalizadoMisCasos(this.decodedToken.idAbogado,this.query.trim()).subscribe((res) => {
       this.misCasos = res;
       
     });
@@ -56,38 +57,8 @@ export class PagoListComponent {
     });
   }
 
-  openModalCreate(maxPayment: any,idCase:any) {
-    const modalData = {
-      maxPayment:maxPayment,
-      idCase:idCase
-    }; 
-    this.modalService.openModalCreatePago(modalData).subscribe((result) => {
-      if (result) {
-        // console.log('Datos guardados:', result);
-         Swal.fire({
-           icon: 'success',
-           title: `Gutierrez & Asociados`,
-           text: 'Datos guardados',
-           timer: 3500,
-           toast: true,
-           position: 'bottom-end',
-           timerProgressBar: true,
-           showConfirmButton: false
-         });
-       } else {
-        // console.log('Modal cerrado sin guardar');
-        Swal.fire({
-         icon: 'warning',
-         title: `Gutierrez & Asociados`,
-         text: 'Modal cerrado sin guardar',
-         timer: 3500,
-         toast: true,
-         position: 'bottom-end',
-         timerProgressBar: true,
-         showConfirmButton: false
-       });
-      }
-    });
+  historial(id:any){
+    this.router.navigate(['/dashboard/pago/historial/'+id]);
   }
 
 

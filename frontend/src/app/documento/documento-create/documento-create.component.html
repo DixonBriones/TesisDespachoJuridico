@@ -16,7 +16,6 @@
     <div class="form-group mb-3">
         <label>Titulo del caso</label>
         <select formControlName="legal_case" class="form-select">
-          <option *ngIf="casos.length<=0" disabled selected>No tiene casos activos</option>
           <option *ngFor="let caso of casos" [value]="caso.id">{{caso.name_case}}</option>
         </select>
         <div *ngIf="form.get('legal_case')?.hasError('required')" class="text-danger">

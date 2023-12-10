@@ -59,6 +59,7 @@ export class DocumentoCreateComponent {
       this.documentoService.insertarDocumento(formData).subscribe({
         next: (res: any) => {
           this.updateTable.notifyTableUpdate();
+          this.fileTmp=null;
           this.dialogRef.close(formData);
         },
         error: (err: any) => { 

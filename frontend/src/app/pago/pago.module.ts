@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatDialogModule} from '@angular/material/dialog';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PagoHistorialComponent } from './pago-historial/pago-historial.component';
+import { PagoListFinalizadoComponent } from './pago-list-finalizado/pago-list-finalizado.component';
 
 
 
@@ -18,7 +19,8 @@ import { PagoHistorialComponent } from './pago-historial/pago-historial.componen
     PagoCreateComponent,
     PagoListComponent,
     PagoEditComponent,
-    PagoHistorialComponent
+    PagoHistorialComponent,
+    PagoListFinalizadoComponent
   ],
   imports: [
     CommonModule,

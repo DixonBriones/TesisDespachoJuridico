@@ -17,6 +17,10 @@ export class PagoService {
     return this.http.get(`${this.URL}/caso-legal/paymentPendient/${id}`, { params: { q: query }});
   }
 
+  mostrarPagosFinalizadoMisCasos(id:string,query = '') {
+    return this.http.get(`${this.URL}/caso-legal/paymentFinish/${id}`, { params: { q: query }});
+  }
+
   insertarPago(body:any) {
     return this.http.post(`${this.URL}/pago`,body);
   }

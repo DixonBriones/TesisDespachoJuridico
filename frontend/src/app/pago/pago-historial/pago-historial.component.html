@@ -27,6 +27,7 @@
         </tr>
       </thead>
       <tbody>
+        <tr *ngIf="pagos.length<=0"><td colspan="6">No tiene pagos</td></tr>
         <tr *ngFor="let pago of pagos| paginate: { itemsPerPage: 10, currentPage: p }; index as i">
           <th scope="row" class="align-middle">{{ i + 1 }}</th>
           <td class="align-middle">{{ pago.amount | currency:'USD'}}</td>
