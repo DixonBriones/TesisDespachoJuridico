@@ -3,7 +3,7 @@ import { ModalService } from 'src/app/utility/modal.service';
 import { UpdateTableService } from 'src/app/utility/update-table.service';
 import Swal from 'sweetalert2';
 import { CasoLegalService } from '../caso-legal.service';
-
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-caso-list',
@@ -15,6 +15,7 @@ export class CasoListComponent {
   p: number = 1;
   query: string = '';
   constructor(
+    private router: Router,
     private casoLegalService: CasoLegalService,
     private modalService: ModalService,
     private updateTable: UpdateTableService
@@ -104,6 +105,10 @@ export class CasoListComponent {
         this.listarMisCasos()
       }
     });
+  }
+
+  rutaDetalle(id:any){
+    this.router.navigate(['/dashboard/casos/detalle/'+id]);
   }
 
 

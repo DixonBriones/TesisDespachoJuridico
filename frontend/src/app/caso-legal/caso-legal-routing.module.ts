@@ -5,6 +5,7 @@ import { CasoListComponent } from './caso-list/caso-list.component';
 import { MisCasosCerradosComponent } from './mis-casos-cerrados/mis-casos-cerrados.component';
 import { AdminCasoCerradoComponent } from './admin-caso-cerrado/admin-caso-cerrado.component';
 import { AdminCasoListComponent } from './admin-caso-list/admin-caso-list.component';
+import { CasoDetailsComponent } from './caso-details/caso-details.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,10 @@ const routes: Routes = [
     path:'admin',
     component: AdminCasoListComponent
   },
+  {
+    path:'detalle/:id',
+    component: CasoDetailsComponent
+  }
 ];
 
 @NgModule({

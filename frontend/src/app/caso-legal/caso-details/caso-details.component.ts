@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { CasoLegalService } from '../caso-legal.service';
 
 @Component({
   selector: 'app-caso-details',
@@ -6,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./caso-details.component.scss']
 })
 export class CasoDetailsComponent {
+  id: any;
+  datos: any = {};
 
+
+  constructor(private route: ActivatedRoute,
+    private casoLegalService: CasoLegalService) {
+    this.id = this.route.snapshot.params['id'];
+  }
 }
