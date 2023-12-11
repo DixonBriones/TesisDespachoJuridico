@@ -32,6 +32,16 @@ export class CasosLegalesController {
     return this.casosLegalesService.remove(id);
   }
 
+  @Get('admin/casos')
+  findCasos(@Query('q') q?: string) {
+    return this.casosLegalesService.findCasos(q);
+  }
+
+  @Get('admin/casos-cerrados')
+  findCasosCerrados(@Query('q') q?: string) {
+    return this.casosLegalesService.findCasosCerrados(q);
+  }
+
   @Get('abogadoId/:id')
   findAbogado(@Param('id') id: string, @Query('q') q?: string) {
     return this.casosLegalesService.findByAbogado(id,q);

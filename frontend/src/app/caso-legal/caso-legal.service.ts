@@ -25,6 +25,14 @@ export class CasoLegalService {
     return this.http.get(`${this.URL}/cliente/identificacion/${id}`);
   }
 
+  mostrarCasos(query = '') {
+    return this.http.get(`${this.URL}/caso-legal/admin/casos`,{ params: { q: query }});
+  }
+
+  mostrarCasosCerrados(query = '') {
+    return this.http.get(`${this.URL}/caso-legal/admin/casos-cerrados`,{ params: { q: query }});
+  }
+
   mostrarMisCasos(query = '') {
     this.token=localStorage.getItem('token');
     this.decodedToken = this.jwtHelper.decodeToken(this.token);

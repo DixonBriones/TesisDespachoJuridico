@@ -101,6 +101,7 @@ export class AbogadoListComponent {
           timerProgressBar: true,
           showConfirmButton: false
         });
+        this.listarAbogados();
       }
     });
   }

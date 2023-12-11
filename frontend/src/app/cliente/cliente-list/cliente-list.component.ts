@@ -101,6 +101,7 @@ export class ClienteListComponent {
           timerProgressBar: true,
           showConfirmButton: false
         });
+        this.listarClientes();
       }
     });
   }

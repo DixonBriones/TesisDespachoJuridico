@@ -71,6 +71,7 @@ export class MisCasosCerradosComponent {
           timerProgressBar: true,
           showConfirmButton: false
         });
+        this.listarMisCasos();
       }
     });
   }

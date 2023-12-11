@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { ModalService } from 'src/app/utility/modal.service';
+import { UpdateTableService } from 'src/app/utility/update-table.service';
+import Swal from 'sweetalert2';
+import { CasoLegalService } from '../caso-legal.service';
 
 @Component({
   selector: 'app-admin-caso-list',
@@ -6,5 +10,99 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin-caso-list.component.scss']
 })
 export class AdminCasoListComponent {
+  casos: any = [];
+  p: number = 1;
+  query: string = '';
+  constructor(
+    private casoLegalService: CasoLegalService,
+    private modalService: ModalService,
+    private updateTable: UpdateTableService
+  ) {}
+
+  ngOnInit(): void {
+    this.listarCasos();
+    this.actualizarTabla();
+  }
+
+  listarCasos() {
+    this.casoLegalService.mostrarCasos(this.query.trim()).subscribe((res) => {
+      this.casos = res;
+      //console.log(this.roles);
+    });
+  }
+
+  public listar(evn: any) {
+    const key = evn.charCode;
+    if (key == 13) {
+      this.listarCasos();
+    }
+  }
+
+  actualizarTabla() {
+    this.updateTable.updateTable$.subscribe(() => {
+      this.listarCasos();
+    });
+  }
+
+  openModalCreate() {
+    this.modalService.openModalCreateCasoLegal().subscribe((result) => {
+      if (result) {
+       // console.log('Datos guardados:', result);
+        Swal.fire({
+          icon: 'success',
+          title: `Gutierrez & Asociados`,
+          text: 'Datos guardados',
+          timer: 3500,
+          toast: true,
+          position: 'bottom-end',
+          timerProgressBar: true,
+          showConfirmButton: false
+        });
+      } else {
+       // console.log('Modal cerrado sin guardar');
+       Swal.fire({
+        icon: 'warning',
+        title: `Gutierrez & Asociados`,
+        text: 'Modal cerrado sin guardar',
+        timer: 3500,
+        toast: true,
+        position: 'bottom-end',
+        timerProgressBar: true,
+        showConfirmButton: false
+      });
+      }
+    });
+  }
+
+  openModalEdit(data: any) {
+    const modalData = data; 
+    this.modalService.openModalEditCasoLegal(modalData).subscribe((result) => {
+      // Lógica a realizar después de cerrar el modal (si es necesario)
+      if (result) {
+        Swal.fire({
+          icon: 'success',
+          title: `Gutierrez & Asociados`,
+          text: 'Datos actualizados correctamente',
+          timer: 3500,
+          toast: true,
+          position: 'bottom-end',
+          timerProgressBar: true,
+          showConfirmButton: false
+        });
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: `Gutierrez & Asociados`,
+          text: 'Modal cerrado sin guardar',
+          timer: 3500,
+          toast: true,
+          position: 'bottom-end',
+          timerProgressBar: true,
+          showConfirmButton: false
+        });
+        this.listarCasos()
+      }
+    });
+  }
 
 }

@@ -69,6 +69,50 @@ export class CasosLegalesService {
     return {...casoLegal, id};
   }
 
+  async findCasos(query: string) {
+    //const casoLegal = await this.casoLegalRepository.find({loadRelationIds:true,where:{lawyer: id,status:true}});
+    const estado=EstadoCaso.CierreDelCaso
+    const casoLegal = this.casoLegalRepository.createQueryBuilder('caso_legal')
+    .leftJoinAndSelect('caso_legal.lawyer', 'lawyer')
+    .leftJoinAndSelect('caso_legal.client', 'client')
+    .leftJoinAndSelect('caso_legal.case_type', 'case_type')
+    .where('caso_legal.status = true')
+    .andWhere('caso_legal.status_case != :estado',{estado})
+
+    if (query) {
+      casoLegal.andWhere(
+        new Brackets(qb => {
+          qb.where(`caso_legal.name_case LIKE :q`, { q: `%${query}%` })
+            .orWhere('client.name LIKE :q', { q: `%${query}%` });
+        })
+      );
+    }
+    const resultado = await casoLegal.getMany();
+    return resultado
+  }
+
+  async findCasosCerrados(query: string) {
+    //const casoLegal = await this.casoLegalRepository.find({loadRelationIds:true,where:{lawyer: id,status:true}});
+    const estado=EstadoCaso.CierreDelCaso
+    const casoLegal = this.casoLegalRepository.createQueryBuilder('caso_legal')
+    .leftJoinAndSelect('caso_legal.lawyer', 'lawyer')
+    .leftJoinAndSelect('caso_legal.client', 'client')
+    .leftJoinAndSelect('caso_legal.case_type', 'case_type')
+    .where('caso_legal.status = true')
+    .andWhere('caso_legal.status_case = :estado',{estado})
+
+    if (query) {
+      casoLegal.andWhere(
+        new Brackets(qb => {
+          qb.where(`caso_legal.name_case LIKE :q`, { q: `%${query}%` })
+            .orWhere('client.name LIKE :q', { q: `%${query}%` });
+        })
+      );
+    }
+    const resultado = await casoLegal.getMany();
+    return resultado
+  }
+
   async findByAbogado(id:string,query: string) {
     //const casoLegal = await this.casoLegalRepository.find({loadRelationIds:true,where:{lawyer: id,status:true}});
     const estado=EstadoCaso.CierreDelCaso

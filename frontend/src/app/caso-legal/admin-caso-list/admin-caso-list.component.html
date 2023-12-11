@@ -1,1 +1,80 @@
-<p>admin-caso-list works!</p>
+<div class="container">
+    <div class="row">
+      <div class="col-2 justify-content-start">
+        <button class="btn btn-primary"  (click)="openModalCreate()">
+          Nuevo Caso
+        </button>
+      </div>
+
+      <div class="col-5"></div>
+  
+      <div class="col-5 justify-content-end">
+        <div class="input-group rounded">
+          <input
+            type="search"
+            class="form-control rounded-start"
+            placeholder="Buscar por cliente o caso"
+            aria-label="Search"
+            aria-describedby="search-addon"
+            [(ngModel)]="query"
+            (keypress)="listar($event)"
+          />
+          <span
+            class="input-group-text border-0 btn-primary"
+            id="search-addon"
+            [style.cursor]="'pointer'"
+            (click)="listarCasos()"
+          >
+            <i class="fas fa-search"></i>
+          </span>
+        </div>
+      </div>
+    </div>  
+     
+    <table class="table table-striped table-hover table-bordered mt-3">
+      <thead>
+        <tr class="bg-header text-white">
+          <th scope="col" >#</th>
+          <th scope="col">Nombre del caso</th>
+          <th scope="col">Cliente</th>
+          <th scope="col">Abogado</th>
+          <th scope="col">Tipo de caso</th>
+          <th scope="col">Estado del caso</th>
+          <th scope="col" class="col-md-4">Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="casos.length<=0"><td colspan="6">No tiene casos </td></tr>
+        <tr *ngFor="let caso of casos| paginate: { itemsPerPage: 10, currentPage: p }; index as i">
+          <th scope="row" class="align-middle">{{ i + 1 }}</th>
+          <td class="align-middle">{{ caso.name_case }}</td>
+          <td class="align-middle">{{ caso.client.name }}</td>
+          <td class="align-middle">{{ caso.lawyer.name }}</td>
+          <td class="align-middle">{{ caso.case_type.name }}</td>
+          <td class="align-middle">{{ caso.status_case }}</td>
+          <td>
+            <button class="btn btn-success mx-1" >
+              Ver
+            </button>
+
+            <button class="btn btn-warning mx-1" (click)="openModalEdit(caso)"   >
+              Editar
+            </button>
+
+            <button class="btn btn-danger mx-1" >
+              Eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="container">
+      <div class=" row">
+        <div class="col-7"></div>
+        <div class="col-5 justify-content-end">
+          <pagination-controls (pageChange)="p=$event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+  

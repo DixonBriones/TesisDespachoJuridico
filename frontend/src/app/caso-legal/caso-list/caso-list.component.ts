@@ -101,6 +101,7 @@ export class CasoListComponent {
           timerProgressBar: true,
           showConfirmButton: false
         });
+        this.listarMisCasos()
       }
     });
   }
