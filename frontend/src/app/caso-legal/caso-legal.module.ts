@@ -14,6 +14,7 @@ import { MisCasosCerradosComponent } from './mis-casos-cerrados/mis-casos-cerrad
 import { AdminCasoListComponent } from './admin-caso-list/admin-caso-list.component';
 import { AdminCasoCerradoComponent } from './admin-caso-cerrado/admin-caso-cerrado.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { CasoReasignarComponent } from './caso-reasignar/caso-reasignar.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     MisCasosCerradosComponent,
     AdminCasoListComponent,
     AdminCasoCerradoComponent,
+    CasoReasignarComponent,
   ],
   imports: [
     CommonModule,

@@ -1,5 +1,11 @@
 export const navbardData = [
   {
+    link: '/dashboard/inicio',
+    label: 'Inicio',
+    icon: 'home',
+    role: "ABOGADO",
+  },
+  {
     link: '/dashboard/abogado',
     label: 'Abogados',
     icon: 'groups',

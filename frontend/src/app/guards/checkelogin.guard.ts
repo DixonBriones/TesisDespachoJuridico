@@ -16,7 +16,7 @@ export class CheckeloginGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
   canActivate(): boolean {
     if (this.authService.isAuth()) {
-      this.router.navigateByUrl('dashboard/cliente')
+      this.router.navigateByUrl('dashboard/inicio')
       return false;
     }
     return true;

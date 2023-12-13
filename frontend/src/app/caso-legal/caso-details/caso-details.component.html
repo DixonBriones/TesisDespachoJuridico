@@ -126,7 +126,7 @@
               <tbody>
                 <tr *ngFor="let documento of data.document; index as i">
                   <th scope="row" class="align-middle">{{ i + 1 }}</th>
-                  <td>{{ documento.name_document }}</td>
+                  <td><a [href]="urlStorage+'/'+documento.path" target="_blank">{{ documento.name_document }}</a></td>
                   <td>{{ documento.description }}</td>
                   <td>{{ documento.createdAt | date:"shortDate" }}</td>
                 </tr>

@@ -22,6 +22,18 @@ const routes: Routes = [
     component: PagesComponent,
     children:[
       {
+        path: '',
+        redirectTo:'/dashboard/inicio',
+        pathMatch:'full'
+      },
+      {
+        path:'inicio',
+        loadChildren:()=> import('./dashboard/dashboard.module')
+        .then(m=> m.DashboardModule),
+        canActivate: [RoleGuard],
+        data: { role:['ADMIN','ABOGADO'] }
+      },
+      {
         path:'cliente',
         loadChildren:()=> import('./cliente/cliente.module')
         .then(m=> m.ClienteModule),

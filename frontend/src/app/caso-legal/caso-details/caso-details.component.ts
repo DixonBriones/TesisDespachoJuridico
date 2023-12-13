@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CasoLegalService } from '../caso-legal.service';
 import { Location } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-caso-details',
@@ -10,6 +11,7 @@ import { Location } from '@angular/common';
 })
 export class CasoDetailsComponent {
   id: any;
+  urlStorage:any= environment.rutaStorage
   data: any = {
     lawyer : {},
     client : {},
