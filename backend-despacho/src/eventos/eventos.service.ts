@@ -88,7 +88,7 @@ export class EventosService {
     .leftJoinAndSelect('evento.legal_case', 'legal_case')
     .leftJoinAndSelect('legal_case.lawyer', 'lawyer')
     .where('lawyer.id = :id', { id })
-    .where('evento.date_start >= :today', { today })
+    .andWhere('evento.date_start >= :today', { today })
     .orderBy('evento.date_start', 'ASC') 
     .getMany();
     if (!evento) throw new NotFoundException(`Evento ${id} no encontrado`);
