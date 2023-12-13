@@ -44,7 +44,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngIf="casos.length<=0"><td colspan="6">No tiene casos </td></tr>
+        <tr *ngIf="casos.length<=0"><td colspan="7">No tiene casos </td></tr>
         <tr *ngFor="let caso of casos| paginate: { itemsPerPage: 10, currentPage: p }; index as i">
           <th scope="row" class="align-middle">{{ i + 1 }}</th>
           <td class="align-middle">{{ caso.name_case }}</td>
@@ -52,13 +52,17 @@
           <td class="align-middle">{{ caso.lawyer.name }}</td>
           <td class="align-middle">{{ caso.case_type.name }}</td>
           <td class="align-middle">{{ caso.status_case }}</td>
-          <td>
-            <button class="btn btn-success mx-1" >
+          <td class="text-center">
+            <button class="btn btn-success mx-1" (click)="rutaDetalle(caso.id)" >
               Ver
             </button>
 
             <button class="btn btn-warning mx-1" (click)="openModalEdit(caso)"   >
               Editar
+            </button>
+
+            <button class="btn btn-secondary mx-1" (click)="openModalEdit(caso)"   >
+              Reasignar abogado
             </button>
 
             <button class="btn btn-danger mx-1" >

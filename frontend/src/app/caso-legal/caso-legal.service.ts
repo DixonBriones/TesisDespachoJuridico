@@ -59,4 +59,8 @@ export class CasoLegalService {
   eliminarTipoCaso(id:string) {
     return this.http.delete(`${this.URL}/caso-legal/${id}`);
   }
+
+  mostrarCasoCompleto(id:any) {
+    return this.http.get(`${this.URL}/caso-legal/full/${id}`);
+  }
 }

@@ -48,7 +48,7 @@
           <td class="align-middle">{{ documento.legal_case.name_case }}</td>
           <td class="align-middle">{{ documento.description }}</td>
           <td class="align-middle">{{documento.createdAt | date:'mediumDate'}}</td>
-          <td>
+          <td class="text-center">
             <button class="btn btn-success mx-1">
               <a [href]="urlStorage+'/'+documento.path" target="_blank" style="text-decoration: none; color: white;">
                 Ver

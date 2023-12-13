@@ -19,7 +19,7 @@
         <tr *ngFor="let tipoCaso of tiposCasos| paginate: { itemsPerPage: 10, currentPage: p }; index as i">
           <th scope="row" class="align-middle">{{ i + 1 }}</th>
           <td class="align-middle">{{ tipoCaso.name }}</td>
-          <td>
+          <td class="text-center">
             <button class="btn btn-warning mx-1" (click)="openModalEdit(tipoCaso)"  >
               Editar
             </button>

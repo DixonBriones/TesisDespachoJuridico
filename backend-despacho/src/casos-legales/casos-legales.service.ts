@@ -245,4 +245,16 @@ export class CasosLegalesService {
 
     return casosPendientesPago;
   }
+
+  async findOneCasoCompleto(id:string) {
+    const casoLegal = await this.casoLegalRepository.createQueryBuilder('caso_legal')
+    .leftJoinAndSelect('caso_legal.lawyer', 'lawyer')
+    .leftJoinAndSelect('caso_legal.client', 'client')
+    .leftJoinAndSelect('caso_legal.case_type', 'case_type')
+    .leftJoinAndSelect('caso_legal.document', 'document')
+    .leftJoinAndSelect('caso_legal.payment', 'payment')
+    .where('caso_legal.id = :id', { id })
+    .getOne();
+    return casoLegal
+  }
 }

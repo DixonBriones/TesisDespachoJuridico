@@ -13,7 +13,7 @@ import { CasoEditComponent } from './caso-edit/caso-edit.component';
 import { MisCasosCerradosComponent } from './mis-casos-cerrados/mis-casos-cerrados.component';
 import { AdminCasoListComponent } from './admin-caso-list/admin-caso-list.component';
 import { AdminCasoCerradoComponent } from './admin-caso-cerrado/admin-caso-cerrado.component';
-
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -34,6 +34,7 @@ import { AdminCasoCerradoComponent } from './admin-caso-cerrado/admin-caso-cerra
     NgbModule,
     MatDialogModule,
     NgxPaginationModule,
+    MatTabsModule
   ]
 })
 export class CasoLegalModule { }

@@ -48,7 +48,7 @@
           <td class="align-middle" *ngIf="abogado.status"> Activo </td>
           <td class="align-middle" *ngIf="!abogado.status"> Inactivo </td>
           <td class="align-middle">{{abogado.user.role.description}}</td>
-          <td>
+          <td class="text-center">
             <button class="btn btn-success mx-1" routerLink="detalle/{{ abogado.id }}">
               Ver
             </button>

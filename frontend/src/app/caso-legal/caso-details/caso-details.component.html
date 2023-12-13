@@ -1,1 +1,164 @@
-{{id}}
+<div class="container mt-4">
+  <div class="card mt-4">
+    <div class="card-header bg-primary text-white">
+      <div class="row">
+        <div class="col-2 justify-content-start">
+          <button class="btn btn-primary" (click)="retroceder()"> 
+              <span class="material-symbols-outlined">
+                  arrow_back
+              </span>
+          </button>
+        </div>
+        <div class="col-8 d-flex align-items-center justify-content-center">
+          <h4 class="card-title mb-0">Detalles del Caso</h4>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <mat-tab-group class="custom-tab-group">
+        <!-- Datos del Caso -->
+        <mat-tab label="Datos del Caso" class="custom-tab">
+          <div class="row mt-4">
+            <div class="col">            
+              <table class="table table-bordered table-hover">
+                <thead>
+                  <tr class="bg-header text-white text-center align-middle">
+                    <th scope="col" colspan="2">Titulo del caso: <span style="font-weight: normal;">{{ data.name_case }}</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Decripción</th>
+                    <td>{{ data.description }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Tipo de caso</th>
+                    <td>{{ data.case_type.name }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Estado del Caso</th>
+                    <td>{{ data.status_case }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Fecha de Inicio</th>
+                    <td>{{ data.date_start }}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Honorarios</th>
+                    <td>${{ data.service_fee }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="row">
+              <div class="col">
+                <h4 class="card-title" style="font-weight: bolder;">Información del Cliente</h4>
+                <table class="table table-bordered table-hover">
+                  <tbody>
+                    <tr>
+                      <th scope="row">Nombre</th>
+                      <td>{{ data.client.name }}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Cedula</th>
+                      <td>{{ data.client.identification }}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Dirección</th>
+                      <td>{{ data.client.address }}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Teléfono</th>
+                      <td>{{ data.client.phone }}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Email</th>
+                      <td>{{ data.client.email }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+
+              <div class="col">
+                <h4 class="card-title bolder" style="font-weight: bolder;">Información del Abogado</h4>
+                <table class="table table-bordered table-hover">
+                  <tbody>
+                    <tr>
+                      <th scope="row">Nombre</th>
+                      <td>{{ data.lawyer.name }}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Cedula</th>
+                      <td>{{ data.lawyer.identification }}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Dirección</th>
+                      <td>{{ data.lawyer.address }}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Teléfono</th>
+                      <td>{{ data.lawyer.phone }}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">Email</th>
+                      <td>{{ data.lawyer.email }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+
+        <!-- Documentos -->
+        <mat-tab label="Documentos" class="custom-tab">
+          <div class="mt-4">
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th scope="col" class="col-md-1">#</th>
+                  <th scope="col">Nombre del Documento</th>
+                  <th scope="col">Descripción</th>
+                  <th scope="col">Fecha de Creación</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let documento of data.document; index as i">
+                  <th scope="row" class="align-middle">{{ i + 1 }}</th>
+                  <td>{{ documento.name_document }}</td>
+                  <td>{{ documento.description }}</td>
+                  <td>{{ documento.createdAt | date:"shortDate" }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+        </mat-tab>
+
+        <!-- Pagos -->
+        <mat-tab label="Pagos" class="custom-tab">
+          <div class="mt-4">
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th scope="col" class="col-md-1">#</th>
+                  <th scope="col">Monto del pago</th>
+                  <th scope="col">Fecha del pago</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let pago of data.payment; index as i">
+                  <th scope="row" class="align-middle">{{ i + 1 }}</th>
+                  <td>{{ pago.amount }}</td>
+                  <td>{{ pago.date_payment | date:"shortDate" }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

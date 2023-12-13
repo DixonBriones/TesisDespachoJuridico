@@ -47,7 +47,7 @@
           <td class="align-middle">{{ micaso.client.name }}</td>
           <td class="align-middle">{{ micaso.service_fee | currency:'USD' }}</td>
           <td class="align-middle">{{ calcularTotalRestante(micaso.service_fee,micaso.payment) | currency:'USD'}}</td>
-          <td>
+          <td class="text-center"> 
             <button class="btn btn-success mx-1"  (click)="historial(micaso.id)">
               Ver historial
             </button>

@@ -66,4 +66,9 @@ export class CasosLegalesController {
   findPagoFinalizado(@Param('id') id: string, @Query('q') q?: string) {
     return this.casosLegalesService.obtenerCasosPagoFinalizado(id,q);
   }
+
+  @Get('full/:id')
+  findOneCasoCompleto(@Param('id') id: string) {
+    return this.casosLegalesService.findOneCasoCompleto(id);
+  }
 }
