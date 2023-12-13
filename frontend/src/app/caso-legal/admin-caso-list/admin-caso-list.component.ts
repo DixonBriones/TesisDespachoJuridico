@@ -111,5 +111,37 @@ export class AdminCasoListComponent {
     this.router.navigate(['/dashboard/casos/detalle/'+id]);
   }
 
+  openModalReasignarCaso(data: any) {
+    const modalData = data; 
+    this.modalService.openModalReasignarCasoLegal(modalData).subscribe((result) => {
+      if (result) {
+       // console.log('Datos guardados:', result);
+        Swal.fire({
+          icon: 'success',
+          title: `Gutierrez & Asociados`,
+          text: 'Datos guardados',
+          timer: 3500,
+          toast: true,
+          position: 'bottom-end',
+          timerProgressBar: true,
+          showConfirmButton: false
+        });
+      } else {
+       // console.log('Modal cerrado sin guardar');
+       Swal.fire({
+        icon: 'warning',
+        title: `Gutierrez & Asociados`,
+        text: 'Modal cerrado sin guardar',
+        timer: 3500,
+        toast: true,
+        position: 'bottom-end',
+        timerProgressBar: true,
+        showConfirmButton: false
+      });
+      this.listarCasos();
+      }
+    });
+  }
+
 
 }

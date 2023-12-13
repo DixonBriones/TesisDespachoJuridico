@@ -25,6 +25,10 @@ export class CasoLegalService {
     return this.http.get(`${this.URL}/cliente/identificacion/${id}`);
   }
 
+  buscarAbogadoCedula(id:string) {
+    return this.http.get(`${this.URL}/abogado/identificacion/${id}`);
+  }
+
   mostrarCasos(query = '') {
     return this.http.get(`${this.URL}/caso-legal/admin/casos`,{ params: { q: query }});
   }

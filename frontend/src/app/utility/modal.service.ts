@@ -18,6 +18,7 @@ import { PagoCreateComponent } from '../pago/pago-create/pago-create.component';
 import { PagoEditComponent } from '../pago/pago-edit/pago-edit.component';
 import { DocumentoCreateComponent } from '../documento/documento-create/documento-create.component';
 import { DocumentoEditComponent } from '../documento/documento-edit/documento-edit.component';
+import { CasoReasignarComponent } from '../caso-legal/caso-reasignar/caso-reasignar.component';
 
 
 @Injectable({
@@ -111,6 +112,14 @@ export class ModalService {
 
   openModalEditCasoLegal(data: any) {
     const dialogRef = this.dialog.open(CasoEditComponent, {
+      width: '500px',
+      data: data
+    });
+    return dialogRef.afterClosed();
+  }
+
+  openModalReasignarCasoLegal(data: any) {
+    const dialogRef = this.dialog.open(CasoReasignarComponent, {
       width: '500px',
       data: data
     });

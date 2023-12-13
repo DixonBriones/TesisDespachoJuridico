@@ -1,1 +1,38 @@
-<p>caso-reasignar works!</p>
+<h2 mat-dialog-title>Reasignar Caso</h2>
+<mat-dialog-content>
+  <form [formGroup]="form" class="modal-form">
+
+    <div class="form-group mb-3">
+        <label>Identificacion del cliente</label>
+        <input type="text" class="form-control" formControlName="identification" minlength="10" (change)="buscarCliente()" />
+        <div *ngIf="form.get('identification')?.hasError('required')" class="text-danger">
+          La identificacion del cliente es requerida.
+        </div>
+        <div *ngIf="form.get('identification')?.hasError('minlength') " class="text-danger">
+            Debe tener mínimo 10 carácteres
+          </div>
+    </div>
+
+    <div class="form-group mb-3">
+        <label>Nombre del cliente</label>
+        <input type="text" class="form-control" formControlName="lawyer" readonly />
+    </div>
+
+
+
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button type="button" class="btn btn-danger mx-1" (click)="cancel()">
+    Cancelar
+  </button>
+  <button
+    type="button"
+    class="btn btn-primary mx-1"
+    [disabled]="form.invalid"
+    (click)="save()"
+  >
+    Guardar
+  </button>
+</mat-dialog-actions>
+

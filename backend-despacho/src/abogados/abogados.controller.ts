@@ -41,4 +41,9 @@ export class AbogadosController {
   findName(@Query('q') q?: string){
     return this.abogadosService.findName(q);
   }
+
+  @Get('identificacion/:identification')
+  findIdentificationCompleta(@Param('identification') identificacion: string){
+    return this.abogadosService.findIdentificationCompleta(identificacion);
+  }
 }

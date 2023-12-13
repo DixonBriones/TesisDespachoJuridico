@@ -85,4 +85,13 @@ export class AbogadosService {
   }
 
 
+  async findIdentificationCompleta(identification: string) {
+    return this.abogadoRepository.findOne({
+      where: {
+        identification: identification,
+        status:true,
+      },
+    });
+  }
+
 }
