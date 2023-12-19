@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Nuevo Abogado</h2>
+<h2 mat-dialog-title>Editar Abogado</h2>
 <mat-dialog-content>
   <form [formGroup]="form" class="modal-form">
     <div class="form-group mb-3">
@@ -12,7 +12,7 @@
       <div *ngIf="form.get('identification')?.hasError('required')" class="text-danger">
         La cedula es requerida.
       </div>
-      <div *ngIf="form.get('identification')?.hasError('minlength') " class="text-danger">
+      <div *ngIf="form.get('identification')?.hasError('minlength')" class="text-danger">
         La cedula debe contener 10 caracteres.
       </div>
     </div>

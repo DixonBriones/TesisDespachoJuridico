@@ -55,7 +55,7 @@ export class AuthComponent {
       next: (res: any) => {
         this.loading = false;
         localStorage.setItem('token', res.access_token);
-        this.router.navigateByUrl('dashboard/cliente')
+        this.router.navigateByUrl('dashboard/inicio')
         Swal.fire({
           icon: 'success',
           title: `Gutierrez & Asociados`,
