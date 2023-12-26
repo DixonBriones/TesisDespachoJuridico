@@ -91,6 +91,7 @@ export class CasoListComponent {
           timerProgressBar: true,
           showConfirmButton: false
         });
+        this.listarMisCasos()
       } else {
         Swal.fire({
           icon: 'warning',

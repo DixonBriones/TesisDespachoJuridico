@@ -77,6 +77,7 @@ export class PagoHistorialComponent {
   openModalEdit(data: any) {
     const modalData = data; 
     modalData.maxPayment= this.saldo
+    modalData.maxPayment = Number(modalData.maxPayment)+Number(data.amount)
     this.modalService.openModalEditPago(modalData).subscribe((result) => {
       // Lógica a realizar después de cerrar el modal (si es necesario)
       if (result) {

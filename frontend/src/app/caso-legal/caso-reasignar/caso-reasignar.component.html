@@ -3,10 +3,10 @@
   <form [formGroup]="form" class="modal-form">
 
     <div class="form-group mb-3">
-        <label>Identificacion del cliente</label>
+        <label>Identificacion del abogado</label>
         <input type="text" class="form-control" formControlName="identification" minlength="10" (change)="buscarCliente()" />
         <div *ngIf="form.get('identification')?.hasError('required')" class="text-danger">
-          La identificacion del cliente es requerida.
+          La identificacion del abogado es requerida.
         </div>
         <div *ngIf="form.get('identification')?.hasError('minlength') " class="text-danger">
             Debe tener mínimo 10 carácteres
@@ -14,7 +14,7 @@
     </div>
 
     <div class="form-group mb-3">
-        <label>Nombre del cliente</label>
+        <label>Nombre del abogado</label>
         <input type="text" class="form-control" formControlName="lawyer" readonly />
     </div>
 

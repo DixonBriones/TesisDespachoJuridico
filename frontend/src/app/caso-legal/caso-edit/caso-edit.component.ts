@@ -54,6 +54,28 @@ export class CasoEditComponent {
     });
   }
 
+  buscarCliente() {
+    this.casoLegalService.buscarClienteCedula(this.form.get('clientIdentificacion')?.value).subscribe((res) => {
+      this.form.controls['clientName'].setValue(null)
+      if( Object.keys(res).length === 0){
+        Swal.fire({
+          icon: 'error',
+          title: `Gutierrez & Asociados`,
+          text: "No existe el cliente",
+          timer: 3500,
+          toast: true,
+          position: 'bottom-end',
+          timerProgressBar: true,
+          showConfirmButton: false
+        });
+      }else{
+        this.cliente = res;
+        this.form.controls['clientName'].setValue(this.cliente[0].name)
+        this.form.controls['client'].setValue(this.cliente[0].id)
+      }
+    });
+  }
+
    save(): void {
     if (this.form.valid) {
       const casoBody={

@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Nuevo Caso</h2>
+<h2 mat-dialog-title>Editar Caso</h2>
 <mat-dialog-content>
   <form [formGroup]="form" class="modal-form">
 
@@ -15,7 +15,7 @@
 
     <div class="form-group mb-3">
         <label>Identificacion del cliente</label>
-        <input type="text" class="form-control" formControlName="clientIdentificacion" minlength="10"  />
+        <input type="text" class="form-control" formControlName="clientIdentificacion" minlength="10" (change)="buscarCliente()" />
         <div *ngIf="form.get('clientIdentificacion')?.hasError('required')" class="text-danger">
           La identificacion del cliente es requerida.
         </div>
