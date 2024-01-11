@@ -14,7 +14,7 @@
     </div>
 
     <div class="form-group mb-3">
-        <label>Descripción del caso</label>
+        <label>Descripción del evento</label>
         <textarea class="form-control" formControlName="description" minlength="5" rows="3"></textarea>
         <div *ngIf="form.get('description')?.hasError('minlength') " class="text-danger">
           Debe tener mínimo 5 carácteres

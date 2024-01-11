@@ -13,8 +13,9 @@ import {
   isSameDay,
   isSameMonth,
   addHours,
+  parseISO
 } from 'date-fns';
-
+import { format} from 'date-fns-tz';
 @Component({
   selector: 'app-evento-list',
   templateUrl: './evento-list.component.html',

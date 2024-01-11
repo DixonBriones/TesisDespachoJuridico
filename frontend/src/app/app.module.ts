@@ -44,7 +44,7 @@ registerLocaleData(localeEs);
   providers: [ 
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService,
-    {provide: LOCALE_ID, useValue: 'es'} 
+    //{provide: LOCALE_ID, useValue: 'es'} 
   ],
   bootstrap: [AppComponent]
 })
