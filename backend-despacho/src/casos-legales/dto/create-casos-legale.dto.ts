@@ -22,6 +22,9 @@ export class CreateCasosLegaleDto {
   name_case: string;
 
   @IsString()
+  process_number: string;
+
+  @IsString()
   @IsNotEmpty()
   description: string;
 

@@ -3,13 +3,21 @@
   <form [formGroup]="form" class="modal-form">
 
     <div class="form-group mb-3">
-      <label>Nombre del Caso</label>
+      <label>Titulo del Caso</label>
       <input type="text" class="form-control" formControlName="name_case" minlength="3" />
       <div *ngIf="form.get('name_case')?.hasError('required')" class="text-danger">
         El Nombre del caso es requerido.
       </div>
       <div *ngIf="form.get('name_case')?.hasError('minlength') " class="text-danger">
         Debe tener mínimo 3 carácteres
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label>Numero del proceso judicial</label>
+      <input type="text" class="form-control" formControlName="process_number" minlength="17" />
+      <div *ngIf="form.get('process_number')?.hasError('minlength') " class="text-danger">
+        Debe tener mínimo 17 carácteres
       </div>
     </div>
 

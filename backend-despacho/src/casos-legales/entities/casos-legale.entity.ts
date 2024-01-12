@@ -15,6 +15,9 @@ export class CasoLegal {
   @Column('varchar')
   name_case: string;
 
+  @Column('varchar',{unique:true,nullable:true})
+  process_number: string;
+
   @Column('text', {nullable:true})
   description: string;
 

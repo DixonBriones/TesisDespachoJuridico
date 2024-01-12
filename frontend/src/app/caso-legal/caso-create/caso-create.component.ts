@@ -25,6 +25,7 @@ export class CasoCreateComponent {
   ) {
     this.form = this.formBuilder.group({
       name_case: [null, [Validators.required, Validators.minLength(3)]],
+      process_number: [null, [Validators.minLength(17)]],
       description: [null, [Validators.required, Validators.minLength(5)]],
       status_case: [null],
       date_start: [null, [Validators.required]],
@@ -73,6 +74,7 @@ export class CasoCreateComponent {
     if (this.form.valid) {
       const CasoBody={
         name_case:this.form.get('name_case')?.value,
+        process_number:this.form.get('process_number')?.value,
         description:this.form.get('description')?.value,
         status_case:EstadoCaso.RevisionInicial,
         date_start:this.form.get('date_start')?.value,
