@@ -28,6 +28,11 @@
                 </thead>
                 <tbody>
                   <tr>
+                    <th scope="row">Numero del proceso judicial</th>
+                    <td *ngIf="data.process_number">{{ data.process_number }}</td>
+                    <td *ngIf="!data.process_number">No registrado</td>
+                  </tr>
+                  <tr>
                     <th scope="row">Decripción</th>
                     <td>{{ data.description }}</td>
                   </tr>
