@@ -17,6 +17,13 @@
       </div>
     </div>
     <div class="form-group mb-3">
+      <label>Numero de matricula</label>
+      <input type="text" class="form-control" formControlName="registration_number" />
+      <div *ngIf="form.get('registration_number')?.hasError('required')" class="text-danger">
+        El numero de matricula es requerido.
+      </div>
+    </div>
+    <div class="form-group mb-3">
       <label>Nombre</label>
       <input type="text" class="form-control" formControlName="name" />
       <div *ngIf="form.get('name')?.hasError('required')" class="text-danger">

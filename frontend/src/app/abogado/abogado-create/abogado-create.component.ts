@@ -22,6 +22,7 @@ export class AbogadoCreateComponent {
   ) {
     this.form = this.formBuilder.group({
       identification: [null, [Validators.required, Validators.minLength(10)]],
+      registration_number: [null, [Validators.required]],
       name: [null, Validators.required],
       address: [null],
       phone: [null, [Validators.required, Validators.minLength(10)]],
@@ -49,6 +50,7 @@ export class AbogadoCreateComponent {
       //console.log('Datos a guardar:', savedData);
       const abogadoBody={
         identification:this.form.get('identification')?.value,
+        registration_number:this.form.get('registration_number')?.value,
         name:this.form.get('name')?.value,
         address:this.form.get('address')?.value,
         phone:this.form.get('phone')?.value,

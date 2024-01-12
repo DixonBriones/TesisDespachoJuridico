@@ -5,6 +5,10 @@ export class CreateAbogadoDto {
     @IsNotEmpty()
     @Length(10,10)
     identification:string;
+
+    @IsString()
+    @IsNotEmpty()
+    registration_number:string;
     
     @IsString()
     @IsNotEmpty()

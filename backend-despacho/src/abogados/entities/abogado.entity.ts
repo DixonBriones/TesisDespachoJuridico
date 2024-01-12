@@ -11,6 +11,9 @@ export class Abogado {
   @Column('varchar',{length: 10, unique:true})
   identification: string;
 
+  @Column('varchar',{unique:true,nullable:true})
+  registration_number: string;
+
   @Column('varchar')
   name: string;
 

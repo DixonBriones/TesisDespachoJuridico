@@ -32,11 +32,16 @@
                     <th>Número de cédula</th>
                     <td>{{datos.identification}}</td>
                   </tr>
-  
+
+                  <tr>
+                    <th>Número de matricula</th>
+                    <td>{{datos.registration_number}}</td>
+                  </tr>
   
                   <tr>
                     <th>Dirección domiciliaria</th>
-                    <td>{{ datos.address }}</td>
+                    <td *ngIf="datos.address">{{ datos.address }}</td>
+                    <td *ngIf="!datos.address">No registra domicilio</td>
                   </tr>
   
                 </tbody>
