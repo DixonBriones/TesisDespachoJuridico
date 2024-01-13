@@ -51,6 +51,9 @@
           <td class="align-middle">{{ micaso.case_type.name }}</td>
           <td class="align-middle">{{ micaso.status_case }}</td>
           <td class="text-center">
+            <button class="btn btn-success mx-1" (click)="rutaJudicatura(micaso.process_number)" >
+              Informacion
+            </button>
             <button class="btn btn-success mx-1" (click)="rutaDetalle(micaso.id)" >
               Ver
             </button>

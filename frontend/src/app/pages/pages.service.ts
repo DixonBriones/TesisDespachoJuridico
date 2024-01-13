@@ -12,4 +12,8 @@ export class PagesService {
   mostrarEventoNotificaciones(id:any) {
     return this.http.get<any[]>(`${this.URL}/evento/notifications/${id}`);
   }
+
+  actualizarUsuario(id:string,body:any) {
+    return this.http.patch(`${this.URL}/usuario/${id}`,body);
+  }
 }

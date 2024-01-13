@@ -15,9 +15,9 @@
 
     <div class="form-group mb-3">
       <label>Numero del proceso judicial</label>
-      <input type="text" class="form-control" formControlName="process_number" minlength="17" />
+      <input type="text" class="form-control" formControlName="process_number" minlength="15" />
       <div *ngIf="form.get('process_number')?.hasError('minlength') " class="text-danger">
-        Debe tener mínimo 17 carácteres
+        Debe tener mínimo 15 carácteres
       </div>
     </div>
 

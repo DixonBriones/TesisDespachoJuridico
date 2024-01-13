@@ -6,6 +6,7 @@ import { MisCasosCerradosComponent } from './mis-casos-cerrados/mis-casos-cerrad
 import { AdminCasoCerradoComponent } from './admin-caso-cerrado/admin-caso-cerrado.component';
 import { AdminCasoListComponent } from './admin-caso-list/admin-caso-list.component';
 import { CasoDetailsComponent } from './caso-details/caso-details.component';
+import { CasoJudicaturaComponent } from './caso-judicatura/caso-judicatura.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,10 @@ const routes: Routes = [
   {
     path:'detalle/:id',
     component: CasoDetailsComponent
+  },
+  {
+    path:'judicatura/:id',
+    component: CasoJudicaturaComponent
   }
 ];
 

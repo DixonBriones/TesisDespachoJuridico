@@ -112,5 +112,9 @@ export class CasoListComponent {
     this.router.navigate(['/dashboard/casos/detalle/'+id]);
   }
 
+  rutaJudicatura(id:any){
+    this.router.navigate(['/dashboard/casos/judicatura/'+id]);
+  }
+
 
 }

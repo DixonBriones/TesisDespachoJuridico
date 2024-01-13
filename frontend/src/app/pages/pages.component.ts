@@ -5,6 +5,8 @@ import { navbardData } from './sidenav-data';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { PagesService } from './pages.service';
+import Swal from 'sweetalert2';
+import { ModalService } from 'src/app/utility/modal.service';
 
 @Component({
   selector: 'app-pages',
@@ -25,6 +27,7 @@ export class PagesComponent {
   constructor(private observer: BreakpointObserver,private cd:ChangeDetectorRef,
     private router: Router,
     private jwtHelper: JwtHelperService,
+    private modalService: ModalService,
     private pagesService:PagesService) 
   {
 
@@ -90,6 +93,36 @@ export class PagesComponent {
       }
     });
     this.cd.detectChanges();
+  }
+
+  cambioPassword(){
+    this.modalService.openModalChangePassword(this.decodedToken.id).subscribe((result) => {
+      if (result) {
+        // console.log('Datos guardados:', result);
+         Swal.fire({
+           icon: 'success',
+           title: `Gutierrez & Asociados`,
+           text: 'Contraseña guardada',
+           timer: 3500,
+           toast: true,
+           position: 'bottom-end',
+           timerProgressBar: true,
+           showConfirmButton: false
+         });
+       } else {
+        // console.log('Modal cerrado sin guardar');
+        Swal.fire({
+         icon: 'warning',
+         title: `Gutierrez & Asociados`,
+         text: 'Modal cerrado sin guardar',
+         timer: 3500,
+         toast: true,
+         position: 'bottom-end',
+         timerProgressBar: true,
+         showConfirmButton: false
+       });
+      }
+    });
   }
 
   cerrarSesion() {

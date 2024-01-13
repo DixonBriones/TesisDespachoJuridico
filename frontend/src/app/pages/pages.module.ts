@@ -10,10 +10,15 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CambioPasswordComponent } from './cambio-password/cambio-password.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
-    PagesComponent
+    PagesComponent,
+    CambioPasswordComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +29,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatSidenavModule,
     MatListModule,
     MatMenuModule,
-    NgbModule
+    NgbModule,
+    
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatDialogModule
   ]
 })
 export class PagesModule { }

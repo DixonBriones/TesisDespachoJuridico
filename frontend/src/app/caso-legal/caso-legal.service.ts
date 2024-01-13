@@ -67,4 +67,14 @@ export class CasoLegalService {
   mostrarCasoCompleto(id:any) {
     return this.http.get(`${this.URL}/caso-legal/full/${id}`);
   }
+
+  //Consejo de la judicatura
+  mostrarCasoJudicatura(id:any) {
+    return this.http.get(`https://api.funcionjudicial.gob.ec/informacion/getIncidenteJudicatura/${id}`);
+  }
+
+  mostrarActuaciones(body:any) {
+    return this.http.post(`https://api.funcionjudicial.gob.ec/informacion/actuacionesJudiciales`,body);
+  }
+
 }

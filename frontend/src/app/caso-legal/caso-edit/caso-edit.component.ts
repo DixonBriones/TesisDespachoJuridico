@@ -27,7 +27,7 @@ export class CasoEditComponent {
   ) {
     this.form = this.formBuilder.group({
       name_case: [null, [Validators.required, Validators.minLength(3)]],
-      process_number: [null, [Validators.minLength(17)]],
+      process_number: [null, [Validators.minLength(15)]],
       description: [null, [Validators.required, Validators.minLength(5)]],
       status_case: [null],
       date_start: [null, [Validators.required]],

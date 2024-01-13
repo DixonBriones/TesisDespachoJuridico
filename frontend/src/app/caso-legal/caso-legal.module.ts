@@ -15,6 +15,7 @@ import { AdminCasoListComponent } from './admin-caso-list/admin-caso-list.compon
 import { AdminCasoCerradoComponent } from './admin-caso-cerrado/admin-caso-cerrado.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { CasoReasignarComponent } from './caso-reasignar/caso-reasignar.component';
+import { CasoJudicaturaComponent } from './caso-judicatura/caso-judicatura.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { CasoReasignarComponent } from './caso-reasignar/caso-reasignar.componen
     AdminCasoListComponent,
     AdminCasoCerradoComponent,
     CasoReasignarComponent,
+    CasoJudicaturaComponent,
   ],
   imports: [
     CommonModule,

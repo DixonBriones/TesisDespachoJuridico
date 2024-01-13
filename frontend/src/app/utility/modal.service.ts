@@ -19,6 +19,7 @@ import { PagoEditComponent } from '../pago/pago-edit/pago-edit.component';
 import { DocumentoCreateComponent } from '../documento/documento-create/documento-create.component';
 import { DocumentoEditComponent } from '../documento/documento-edit/documento-edit.component';
 import { CasoReasignarComponent } from '../caso-legal/caso-reasignar/caso-reasignar.component';
+import { CambioPasswordComponent } from '../pages/cambio-password/cambio-password.component';
 
 
 @Injectable({
@@ -166,6 +167,14 @@ export class ModalService {
 
   openModalEditDocument(data: any) {
     const dialogRef = this.dialog.open(DocumentoEditComponent, {
+      width: '500px',
+      data: data
+    });
+    return dialogRef.afterClosed();
+  }
+
+  openModalChangePassword(data: any) {
+    const dialogRef = this.dialog.open(CambioPasswordComponent, {
       width: '500px',
       data: data
     });
