@@ -1,0 +1,55 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-4 justify-content-start">
+        <button class="btn btn-primary" (click)="retroceder()"> 
+            <span class="material-symbols-outlined">
+                arrow_back
+            </span>
+        </button>
+      </div>
+
+      <div class="col-4 align-middle justify-content-center"> <h1 style="font-weight: bolder;">Información del proceso</h1> </div>
+  
+      <div class="col-4 justify-content-end">
+       
+      </div>
+    </div>  
+   
+    
+    <table class="table table-striped table-hover table-bordered mt-3" >
+      <thead>
+        <tr class="bg-header text-white">
+          <th scope="col" >#</th>
+          <th scope="col">Fecha de ingreso</th>
+          <th scope="col" class="col-md-9">Detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let actuaccion of dataActuaciones| paginate: { itemsPerPage: 10, currentPage: p };; index as i">
+            <th scope="row" class="align-middle">{{ i + 1 }}</th>
+            <td class="align-middle">{{ actuaccion.fecha | date:'dd/MM/yyyy HH:mm': '-0500' : 'es-EC' }}</td>
+            <td>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        {{ actuaccion.tipo }}
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div [innerHTML]="actuaccion.actividad"></div>
+                </mat-expansion-panel>
+            </td>
+        </tr>
+       
+      </tbody>
+    </table>
+
+    <div *ngIf="cargando" class="loader"></div>
+    <div class="container">
+        <div class=" row">
+          <div class="col-7"></div>
+          <div class="col-5 justify-content-end">
+            <pagination-controls (pageChange)="p=$event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+          </div>
+        </div>
+      </div>
+</div>

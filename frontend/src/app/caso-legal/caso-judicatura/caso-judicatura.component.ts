@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CasoLegalService } from '../caso-legal.service';
 import { Location } from '@angular/common';
 import { environment } from 'src/environments/environment';
-
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-caso-judicatura',
   templateUrl: './caso-judicatura.component.html',
@@ -11,9 +11,16 @@ import { environment } from 'src/environments/environment';
 })
 export class CasoJudicaturaComponent {
   id: any;
-  data: any = {
-  };
+  idGuion: any;
+  data: any = [{
+    lstIncidenteJudicatura:[ {
+      lstLitiganteActor:[{}],
+      lstLitiganteDemandado:[{}]
+    }
+    ]
+  }];
   constructor(private route: ActivatedRoute,
+    private router: Router,
     private location: Location,
     private casoLegalService: CasoLegalService) {
     this.id = this.route.snapshot.params['id'];
@@ -23,7 +30,7 @@ export class CasoJudicaturaComponent {
 
   ngOnInit(): void {
     this.eliminarGuiones()
-    this.mostrarCasoId(this.id);
+    this.mostrarMovimientoJudicatura(this.idGuion);
   }
 
   retroceder(): void {
@@ -31,14 +38,28 @@ export class CasoJudicaturaComponent {
   }
 
   eliminarGuiones() {
-    this.id = this.id.replace(/-/g, '');
+    this.idGuion = this.id.replace(/-/g, '');
   }
 
-  mostrarCasoId(id: any) {
+  mostrarMovimientoJudicatura(id: any) {
     this.casoLegalService.mostrarCasoJudicatura(id).subscribe((res) => {
       this.data = res
-      console.log(this.data)
+      //console.log(this.data)
     });
   }
+
+  enviarJSON(body:any) {
+    const jsonData={
+      idMovimientoJuicioIncidente: body.idMovimientoJuicioIncidente,
+      idJuicio: this.idGuion,
+      idJudicatura: body.idJudicaturaDestino,
+      idIncidenteJudicatura: body.idIncidenteJudicatura,
+      incidente: body.incidente
+    }
+    this.casoLegalService.enviarDatos(jsonData);
+    this.router.navigate(['/dashboard/casos/judicatura/'+this.id+'/acciones']);
+  }
+
+
 
 }

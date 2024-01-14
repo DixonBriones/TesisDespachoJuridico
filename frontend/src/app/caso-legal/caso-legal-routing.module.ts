@@ -7,6 +7,7 @@ import { AdminCasoCerradoComponent } from './admin-caso-cerrado/admin-caso-cerra
 import { AdminCasoListComponent } from './admin-caso-list/admin-caso-list.component';
 import { CasoDetailsComponent } from './caso-details/caso-details.component';
 import { CasoJudicaturaComponent } from './caso-judicatura/caso-judicatura.component';
+import { CasoJudicaturaActuacionesComponent } from './caso-judicatura-actuaciones/caso-judicatura-actuaciones.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path:'judicatura/:id',
     component: CasoJudicaturaComponent
+  },
+  {
+    path:'judicatura/:id/acciones',
+    component: CasoJudicaturaActuacionesComponent
   }
 ];
 

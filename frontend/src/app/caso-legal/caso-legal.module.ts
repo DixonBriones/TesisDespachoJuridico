@@ -16,6 +16,8 @@ import { AdminCasoCerradoComponent } from './admin-caso-cerrado/admin-caso-cerra
 import { MatTabsModule } from '@angular/material/tabs';
 import { CasoReasignarComponent } from './caso-reasignar/caso-reasignar.component';
 import { CasoJudicaturaComponent } from './caso-judicatura/caso-judicatura.component';
+import { CasoJudicaturaActuacionesComponent } from './caso-judicatura-actuaciones/caso-judicatura-actuaciones.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { CasoJudicaturaComponent } from './caso-judicatura/caso-judicatura.compo
     AdminCasoCerradoComponent,
     CasoReasignarComponent,
     CasoJudicaturaComponent,
+    CasoJudicaturaActuacionesComponent,
   ],
   imports: [
     CommonModule,
@@ -38,7 +41,8 @@ import { CasoJudicaturaComponent } from './caso-judicatura/caso-judicatura.compo
     NgbModule,
     MatDialogModule,
     NgxPaginationModule,
-    MatTabsModule
+    MatTabsModule,
+    MatExpansionModule
   ]
 })
 export class CasoLegalModule { }

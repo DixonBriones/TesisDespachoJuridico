@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
-
+import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -77,4 +77,10 @@ export class CasoLegalService {
     return this.http.post(`https://api.funcionjudicial.gob.ec/informacion/actuacionesJudiciales`,body);
   }
 
+  private datosFuente = new BehaviorSubject<any>(null);
+  datosCompartidos = this.datosFuente.asObservable();
+
+  enviarDatos(datos: any) {
+    this.datosFuente.next(datos);
+  }
 }

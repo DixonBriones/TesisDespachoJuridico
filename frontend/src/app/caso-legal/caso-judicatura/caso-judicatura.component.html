@@ -1,1 +1,44 @@
-<p>caso-judicatura works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-4 justify-content-start">
+      <button class="btn btn-primary" (click)="retroceder()"> 
+          <span class="material-symbols-outlined">
+              arrow_back
+          </span>
+      </button>
+    </div>
+
+    <div class="col-4 align-middle justify-content-center"> <h1 style="font-weight: bolder;">Información del proceso</h1> </div>
+
+    <div class="col-4 justify-content-end">
+     
+    </div>
+  </div>  
+     
+    <table class="table table-striped table-hover table-bordered mt-3">
+      <thead>
+        <tr class="bg-header text-white">
+          <th scope="col" >#</th>
+          <th scope="col">Nombre de Judicatura</th>
+          <th scope="col">Fecha de ingreso</th>
+          <th scope="col" class="col-md-4">Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="data.length<=0"><td colspan="6">No tiene movimientos en la judicatura o no existe el numero de proceso</td></tr>
+        <tr *ngFor="let caso of data; index as i">
+          <th scope="row" class="align-middle">{{ i + 1 }}</th>
+          <td class="align-middle">{{ caso.nombreJudicatura }}</td>
+          <td *ngFor="let judicaturaMovimiento of caso.lstIncidenteJudicatura; index as j">{{judicaturaMovimiento.fechaCrea }}</td>
+          <td class="text-center" *ngFor="let judicaturaMovimiento of caso.lstIncidenteJudicatura; index as j">
+            <button class="btn btn-success mx-1" (click)="enviarJSON(judicaturaMovimiento)" >
+                Ver acciones judiciales
+              </button>
+          </td>
+        </tr>  
+      </tbody>
+    </table>
+</div>
+
+
+
