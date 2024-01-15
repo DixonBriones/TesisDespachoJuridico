@@ -108,6 +108,25 @@ export class CasoListComponent {
     });
   }
 
+  deleteCaso(id:string){
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'Esta acción no se puede deshacer',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, estoy seguro',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.casoLegalService.eliminarCaso(id).subscribe((res) => {
+          this.listarMisCasos()
+        })
+        Swal.fire('¡Acción confirmada!', 'La acción se realizó con éxito', 'success');
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire('Cancelado', 'La acción ha sido cancelada', 'error');
+      }}) 
+  }
+
   rutaDetalle(id:any){
     this.router.navigate(['/dashboard/casos/detalle/'+id]);
   }

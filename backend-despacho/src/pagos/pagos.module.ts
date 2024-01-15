@@ -6,6 +6,7 @@ import { Pago } from './entities/pago.entity';
 @Module({
   controllers: [PagosController],
   providers: [PagosService],
+  exports: [PagosService],
   imports:[TypeOrmModule.forFeature([Pago])]
 })
 export class PagosModule {}

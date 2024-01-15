@@ -42,13 +42,13 @@ export class CasoLegal {
   @JoinColumn({name:'client_id'})
   client: Cliente;
 
-  @OneToMany(() => Pago, pago => pago.legal_case)
+  @OneToMany(() => Pago, pago => pago.legal_case, { cascade: true })
   payment: Pago[];
 
-  @OneToMany(() => Documento, documento => documento.legal_case)
+  @OneToMany(() => Documento, documento => documento.legal_case, { cascade: true })
   document: Documento[];
 
-  @OneToMany(() => Evento, evento => evento.legal_case)
+  @OneToMany(() => Evento, evento => evento.legal_case, { cascade: true })
   event: Evento[];
 
   @Column('boolean',{default:true})

@@ -89,6 +89,12 @@ export class DocumentosService {
     return {...documento, id};
   }
 
+  async eliminarDocumentosPorCasoLegalId(casoLegalId: string): Promise<void> {
+    const documentos = await this.documentoRepository.find({ where: { legal_case: { id: casoLegalId } } });
+    // Eliminar documentos
+    await Promise.all(documentos.map(documento => this.documentoRepository.remove(documento)));
+  }
+
 
   async findDocumentoAbogado(id: string,name: string) {
     const documento = this.documentoRepository.createQueryBuilder('documento')

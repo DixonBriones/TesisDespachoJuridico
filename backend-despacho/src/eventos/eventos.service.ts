@@ -66,6 +66,12 @@ export class EventosService {
     return {...evento, id};
   }
 
+  async eliminarEventosPorCasoLegalId(casoLegalId: string): Promise<void> {
+    const documentos = await this.eventoRepository.find({ where: { legal_case: { id: casoLegalId } } });
+    // Eliminar documentos
+    await Promise.all(documentos.map(documento => this.eventoRepository.remove(documento)));
+  }
+
 
   async findEventAbogado(id: string) {
     //const evento = await this.eventoRepository.find({ relations: ['legal_case'],where:{}});

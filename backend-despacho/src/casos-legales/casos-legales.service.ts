@@ -11,6 +11,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository ,Brackets} from 'typeorm';
 import { CasoLegal } from './entities/casos-legale.entity';
 import { EstadoCaso } from 'src/constants/status_case';
+import { DocumentosService } from 'src/documentos/documentos.service';
+import { EventosService } from 'src/eventos/eventos.service';
+import { PagosService } from 'src/pagos/pagos.service';
 
 @Injectable()
 export class CasosLegalesService {
@@ -19,7 +22,9 @@ export class CasosLegalesService {
   constructor(
     @InjectRepository(CasoLegal)
     private readonly casoLegalRepository: Repository<CasoLegal>,
-
+    private readonly documentosService: DocumentosService,
+    private readonly eventosService: EventosService,
+    private readonly pagosService: PagosService,
   ) {}
 
   async create(createCasosLegalDto: CreateCasosLegaleDto) {
@@ -66,6 +71,15 @@ export class CasosLegalesService {
   async remove(id: string) {
     const casoLegal= await  this.findOne(id);
     await this.update(id,{status:false });
+    return {...casoLegal, id};
+  }
+
+  async removeReal(id: string) {
+    const casoLegal= await  this.casoLegalRepository.find({where:{id}});
+    await this.documentosService.eliminarDocumentosPorCasoLegalId(id);
+    await this.eventosService.eliminarEventosPorCasoLegalId(id);
+    await this.pagosService.eliminarPagosPorCasoLegalId(id);
+    await this.casoLegalRepository.remove(casoLegal);
     return {...casoLegal, id};
   }
 

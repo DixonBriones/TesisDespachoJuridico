@@ -40,7 +40,7 @@
           <th scope="col">Abogado</th>
           <th scope="col">Tipo de caso</th>
           <th scope="col">Estado del caso</th>
-          <th scope="col" class="col-md-4">Acción</th>
+          <th scope="col" class="col-md-6">Acción</th>
         </tr>
       </thead>
       <tbody>
@@ -53,6 +53,15 @@
           <td class="align-middle">{{ caso.case_type.name }}</td>
           <td class="align-middle">{{ caso.status_case }}</td>
           <td class="text-center">
+            
+            <button class="btn btn-secondary mx-1" (click)="rutaJudicatura(caso.process_number)" >
+              Consejo de la Judicatura
+            </button>
+
+            <button class="btn btn-info mx-1" (click)="openModalReasignarCaso(caso.id)"   >
+              Reasignar abogado
+            </button>
+
             <button class="btn btn-success mx-1" (click)="rutaDetalle(caso.id)" >
               Ver
             </button>
@@ -61,11 +70,7 @@
               Editar
             </button>
 
-            <button class="btn btn-secondary mx-1" (click)="openModalReasignarCaso(caso.id)"   >
-              Reasignar abogado
-            </button>
-
-            <button class="btn btn-danger mx-1" >
+            <button class="btn btn-danger mx-1" (click)="deleteCaso(caso.id)">
               Eliminar
             </button>
           </td>

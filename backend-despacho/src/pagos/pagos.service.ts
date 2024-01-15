@@ -66,6 +66,12 @@ export class PagosService {
     return {...evento, id};
   }
 
+  async eliminarPagosPorCasoLegalId(casoLegalId: string): Promise<void> {
+    const documentos = await this.pagoRepository.find({ where: { legal_case: { id: casoLegalId } } });
+    // Eliminar documentos
+    await Promise.all(documentos.map(documento => this.pagoRepository.remove(documento)));
+  }
+
   async findPagoAbogado(id: string) {
     //const evento = await this.eventoRepository.find({ relations: ['legal_case'],where:{}});
     const evento = await this.pagoRepository.createQueryBuilder('pago')

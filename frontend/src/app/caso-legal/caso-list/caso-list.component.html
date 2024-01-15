@@ -39,7 +39,7 @@
           <th scope="col">Cliente</th>
           <th scope="col">Tipo de caso</th>
           <th scope="col">Estado del caso</th>
-          <th scope="col" class="col-md-4">Acción</th>
+          <th scope="col" class="col-md-5">Acción</th>
         </tr>
       </thead>
       <tbody>
@@ -51,8 +51,8 @@
           <td class="align-middle">{{ micaso.case_type.name }}</td>
           <td class="align-middle">{{ micaso.status_case }}</td>
           <td class="text-center">
-            <button class="btn btn-success mx-1" (click)="rutaJudicatura(micaso.process_number)" >
-              Informacion
+            <button class="btn btn-secondary mx-1" (click)="rutaJudicatura(micaso.process_number)" >
+              Consejo de la Judicatura
             </button>
             <button class="btn btn-success mx-1" (click)="rutaDetalle(micaso.id)" >
               Ver
@@ -62,7 +62,7 @@
               Editar
             </button>
 
-            <button class="btn btn-danger mx-1" >
+            <button class="btn btn-danger mx-1" (click)="deleteCaso(micaso.id)">
               Eliminar
             </button>
           </td>

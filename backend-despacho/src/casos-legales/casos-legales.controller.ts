@@ -31,6 +31,10 @@ export class CasosLegalesController {
   remove(@Param('id') id: string) {
     return this.casosLegalesService.remove(id);
   }
+  @Delete('realRemove/:id')
+  remove2(@Param('id') id: string) {
+    return this.casosLegalesService.removeReal(id);
+  }
 
   @Get('admin/casos')
   findCasos(@Query('q') q?: string) {
