@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 export class ClienteListComponent {
   clientes: any = [];
   query: string = '';
+  p: number = 1;
 
   constructor(
     private clienteService: ClienteService,

@@ -18,6 +18,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -39,6 +40,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatSidenavModule,
     MatListModule,
     NgbModule,
+    NgxPaginationModule,
     
 
     MatCardModule,

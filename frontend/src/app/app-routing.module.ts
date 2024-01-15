@@ -95,6 +95,13 @@ const routes: Routes = [
         .then(m=> m.PagoModule),
         canActivate: [RoleGuard],
         data: { role:['ADMIN','ABOGADO'] }
+      },
+      {
+        path:'reporte',
+        loadChildren:()=> import('./reporte/reporte.module')
+        .then(m=> m.ReporteModule),
+        canActivate: [RoleGuard],
+        data: { role:['ADMIN','ABOGADO'] }
       }
     ],
     canActivate: [AuthGuard]

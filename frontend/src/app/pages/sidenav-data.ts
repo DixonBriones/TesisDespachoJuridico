@@ -59,5 +59,14 @@ export const navbardData = [
       { label: 'Mis eventos',link: '/dashboard/evento', role: "ABOGADO" },
       { label: 'Tipos de eventos',link: '/dashboard/tipo-evento', role: "ADMIN" }
     ],
+  },
+  {
+    link: '/dashboard/reporte',
+    label: 'Reportes',
+    icon: 'monitoring',
+    role: "ABOGADO",
+    subItems: [
+      { label: 'Casos por abogado',link: '/dashboard/reporte/caso-abogado', role: "ABOGADO" },
+    ],
   }
 ];

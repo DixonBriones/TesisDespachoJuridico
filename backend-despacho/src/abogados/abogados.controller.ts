@@ -46,4 +46,12 @@ export class AbogadosController {
   findIdentificationCompleta(@Param('identification') identificacion: string){
     return this.abogadosService.findIdentificationCompleta(identificacion);
   }
+
+  @Get('reportAbogadoCasos')
+  getDatosConRangoFechas(
+    @Query('fechaInicio') fechaInicio?: string,
+    @Query('fechaFin') fechaFin?: string,
+  ){
+    return this.abogadosService.reportAbogadosCasos(fechaInicio,fechaFin);
+  }
 }
