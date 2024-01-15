@@ -10,7 +10,7 @@ import { ReporteService } from '../reporte.service';
   templateUrl: './reporte-honorario-abogado.component.html',
   styleUrls: ['./reporte-honorario-abogado.component.scss']
 })
-export class ReporteHonorarioAbogadoComponent {
+export class ReporteHonorarioAbogadoComponent implements OnInit  {
   myChart: any;
   fechaInicio: string="";
   fechaFin: string="";

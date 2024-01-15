@@ -10,6 +10,7 @@ import { UpdateAbogadoDto } from './dto/update-abogado.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository,Like,Relation,Brackets } from 'typeorm';
 import { Abogado } from './entities/abogado.entity';
+import { EstadoCaso } from 'src/constants/status_case';
 
 @Injectable()
 export class AbogadosService {
@@ -120,4 +121,22 @@ export class AbogadosService {
     return resultado
   }
 
+  async dashboardResumen() {
+    const estado=EstadoCaso.CierreDelCaso
+    const abogado = this.abogadoRepository.createQueryBuilder('lawyer')
+    .leftJoinAndSelect('lawyer.legal_case', 'legal_case')
+    .leftJoinAndSelect('legal_case.document', 'document')
+    .select([
+      'lawyer.name as lawyerName',
+      'lawyer.id as lawyerId',
+      'COUNT(DISTINCT CASE WHEN legal_case.status = true AND legal_case.status_case != :estado THEN legal_case.id END) as openActiveCaseCount',
+      'COUNT(DISTINCT CASE WHEN document.status = true THEN document.id END) as activeDocumentCount',
+    ])
+    .groupBy('lawyer.id, lawyer.name')
+    .setParameters({ estado});
+    //.groupBy('lawyer.name')
+    const resultado = await abogado.getRawMany();
+    return resultado
+  }
+  
 }

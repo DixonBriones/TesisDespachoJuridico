@@ -44,6 +44,9 @@ export class ClientesController {
     return this.clientesService.findIdentificationCompleta(identificacion);
   }
 
-  
+  @Get('dashboard')
+  getDashboard(){
+    return this.clientesService.dashboardResumen();
+  }
 
 }

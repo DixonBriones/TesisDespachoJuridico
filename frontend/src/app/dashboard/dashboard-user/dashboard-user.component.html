@@ -1,76 +1,79 @@
-<div class="container mt-4">
+<div class="container">
     <div class="row">
-        <div class="col">
-            <div class="card flex-row" style="width: 24rem; max-height: 100%;">
-                <div class="col-md-5 d-flex align-items-center">
-                    <img src="../assets/img/cliente.png" class="card-img-top img-fluid" alt="Nombre de la persona" style="height: 80%;">
-                </div>
-                <div class="col-md-7">
-                    <div class="card-body">
-                        <h4 class="card-title">Clientes totales 5</h4>
-                        <p class="card-text">Ver clientes registrados</p>
-                        <a href="dashboard/cliente" class="btn btn-primary">Ver más</a>
+        <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-center justify-content-center">
+            <div class="box doctor text-black  rounded text-center" style="background-color: white; width: 100%;">
+                <div class="box-content">
+                    <i class="fa-solid fa-person fa-5x text-black"></i>
+                    <div>
+                        <h2>{{cliente}}</h2>
+                        <p>Clientes</p>
                     </div>
+                </div>
+                <div class="box-foot">
+                    <a [routerLink]="['/dashboard/cliente']" class="text-black">Más Información</a>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card flex-row" style="width: 24rem; max-height: 100%;">
-                <div class="col-md-5 d-flex align-items-center">
-                    <img src="../assets/img/casos.png" class="card-img-top img-fluid" alt="Nombre de la persona" style="height: 80%;">
-                </div>
-                <div class="col-md-7">
-                    <div class="card-body">
-                        <h4 class="card-title">Mis casos totales 5</h4>
-                        <p class="card-text">Ver mis casos registrados</p>
-                        <a href="dashboard/casos/miscasos" class="btn btn-primary">Ver más</a>
+ 
+        <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-center justify-content-center">
+            <div class="box doctor text-black  rounded text-center" style="background-color: white; width: 100%;">
+                <div class="box-content">
+                    <i class="fa-solid fa-gavel fa-5x text-black"></i>
+                    <div>
+                        <h2>{{misDatos.openactivecasecount}}</h2>
+                        <p>Mis casos activos</p>
                     </div>
+                </div>
+                <div class="box-foot">
+                    <a [routerLink]="['/dashboard/casos/miscasos']" class="text-black">Más Información</a>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card flex-row" style="width: 24rem; max-height: 100%;">
-                <div class="col-md-5 d-flex align-items-center">
-                    <img src="../assets/img/documento.png" class="card-img-top img-fluid" alt="Nombre de la persona" style="height: 80%;">
-                </div>
-                <div class="col-md-7">
-                    <div class="card-body">
-                        <h4 class="card-title">Documentos totales 5</h4>
-                        <p class="card-text">Ver documentos registrados</p>
-                        <a href="dashboard/documento" class="btn btn-primary">Ver más</a>
+ 
+        <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-center justify-content-center">
+            <div class="box doctor text-black rounded text-center" style="background-color: white; width: 100%;">
+                <div class="box-content">
+                    <i class="fa-regular fa-file fa-5x text-black"></i>
+                    <div>
+                        <h2>{{misDatos.activedocumentcount}}</h2>
+                        <p>Mis Documetos</p>
                     </div>
+                </div>
+                <div class="box-foot">
+                    <a [routerLink]="['/dashboard/documento']" class="text-black">Más Información</a>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row mt-4">
-        <div class="col-md-4">
-            <div class="card flex-row" style="width: 24rem; max-width: 100%; max-height: 100%;">
-                <div class="col-md-5 d-flex align-items-center">
-                    <img src="../assets/img/abogados.png" class="card-img-top img-fluid" alt="Nombre de la persona" style="height: 80%;">
-                </div>
-                <div class="col-md-7">
-                    <div class="card-body">
-                        <h4 class="card-title">Abogados totales 5</h4>
-                        <p class="card-text">Ver abogados registrados</p>
-                        <a href="dashboard/abogado" class="btn btn-primary">Ver más</a>
+ 
+        <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-center justify-content-center" *ngIf='decodedToken.rolUser=="ADMIN"'>
+            <div class="box doctor text-black rounded text-center" style="background-color: white; width: 100%;">
+                <div class="box-content">
+                    <i class="fa-regular fa-user fa-5x text-black"></i>
+                    <div>
+                        <h2>{{data.length}}</h2>
+                        <p>Abogados</p>
                     </div>
+                </div>
+                <div class="box-foot">
+                    <a [routerLink]="['/dashboard/abogado']" class="text-black"> Más Información</a>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card flex-row" style="width: 24rem; max-width: 100%; max-height: 100%;">
-                <div class="col-md-5 d-flex align-items-center">
-                    <img src="../assets/img/casos.png" class="card-img-top img-fluid" alt="Nombre de la persona" style="height: 80%;">
-                </div>
-                <div class="col-md-7">
-                    <div class="card-body">
-                        <h4 class="card-title">Casos totales 5</h4>
-                        <p class="card-text">Ver casos registrados</p>
-                        <a href="dashboard/casos/admin" class="btn btn-primary">Ver más</a>
+ 
+        <div class="col-lg-4 col-md-6 mb-4 d-flex align-items-center justify-content-center" *ngIf='decodedToken.rolUser=="ADMIN"'>
+            <div class="box doctor text-black rounded text-center" style="background-color: white; width: 100%;">
+                <div class="box-content">
+                    <i class="fa-solid fa-briefcase fa-5x text-black"></i>
+                    <div>
+                        <h2>{{casos}}</h2>
+                        <p>Casos activos</p>
                     </div>
+                </div>
+                <div class="box-foot">
+                    <a [routerLink]="['/dashboard/casos/admin']" class="text-black">Más Información</a>
                 </div>
             </div>
         </div>
+ 
     </div>
 </div>

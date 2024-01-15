@@ -84,4 +84,12 @@ export class ClientesService {
     });
   }
 
+  async dashboardResumen() {
+    const cliente = this.clienteRepository.createQueryBuilder('client')
+    .where('client.status = true');
+      
+    const resultado = await cliente.getCount();
+    return resultado
+  }
+
 }

@@ -62,4 +62,9 @@ export class AbogadosController {
   ){
     return this.abogadosService.reportAbogadosHonorarios(fechaInicio,fechaFin);
   }
+
+  @Get('dashboard')
+  getDashboard(){
+    return this.abogadosService.dashboardResumen();
+  }
 }
