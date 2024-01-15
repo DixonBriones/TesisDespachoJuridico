@@ -49,9 +49,15 @@
           <tr *ngFor="let data of dataReport index as i">
             <th scope="row" class="align-middle">{{ i + 1 }}</th>
             <td class="align-middle">{{ data.lawyer_name }}</td>
-            <td class="align-middle">{{ data.sumaservicefee }}</td>
+            <td class="align-middle">{{ data.sumaservicefee | currency:'USD' }}</td>
           </tr>
         </tbody>
+        <tfoot>
+          <tr class="table-primary"> 
+            <th colspan="2">Total</th>
+            <td class="align-middle">{{sumaHonorarios | currency:'USD'}}</td>
+          </tr>
+        </tfoot>
       </table>
   
       <div class="row">

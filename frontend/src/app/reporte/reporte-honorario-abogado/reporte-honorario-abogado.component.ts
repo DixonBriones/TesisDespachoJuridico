@@ -14,6 +14,7 @@ export class ReporteHonorarioAbogadoComponent {
   myChart: any;
   fechaInicio: string="";
   fechaFin: string="";
+  sumaHonorarios:number=0;
   dataReport:any =[];
   constructor( private reporteService: ReporteService,) {
     this.fechaDefecto();
@@ -45,15 +46,16 @@ export class ReporteHonorarioAbogadoComponent {
 
   crearGrafico() {
     const nombresAbogados= this.dataReport.map((item:any) => item.lawyer_name);
-    const casosCount = this.dataReport.map((item:any) => item.sumaservicefee);
+    const honorarios = this.dataReport.map((item:any) => item.sumaservicefee);
+    this.sumaHonorarios= honorarios.reduce((total:number, actual:number) => total + Number(actual), 0)
     const colores = this.generarColoresAleatorios(this.dataReport.length);
-    if(casosCount.some((numero:any) => numero !== 0)){
+    if(honorarios.some((numero:any) => numero !== 0)){
       var data = {
         labels: nombresAbogados,
         datasets: [
           {
             label: 'Honorarios',
-            data: casosCount,
+            data: honorarios,
             backgroundColor: colores,
        
           }
