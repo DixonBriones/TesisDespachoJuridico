@@ -6,12 +6,11 @@ import html2canvas from 'html2canvas';
 import { ReporteService } from '../reporte.service';
 
 @Component({
-  selector: 'app-reporte-abogados-casos',
-  templateUrl: './reporte-abogados-casos.component.html',
-  styleUrls: ['./reporte-abogados-casos.component.scss']
+  selector: 'app-reporte-honorario-abogado',
+  templateUrl: './reporte-honorario-abogado.component.html',
+  styleUrls: ['./reporte-honorario-abogado.component.scss']
 })
-export class ReporteAbogadosCasosComponent implements OnInit  {
-
+export class ReporteHonorarioAbogadoComponent {
   myChart: any;
   fechaInicio: string="";
   fechaFin: string="";
@@ -27,7 +26,7 @@ export class ReporteAbogadosCasosComponent implements OnInit  {
   mostrarReporte() {
     const paramInicio= new Date(this.fechaInicio);
     const paramFin= new Date(this.fechaFin);
-    this.reporteService.mostrarCasosAbogados(paramInicio,paramFin).subscribe((res) => {
+    this.reporteService.mostrarHonorariosAbogados(paramInicio,paramFin).subscribe((res) => {
       this.dataReport = res;
       this.borrarGrafico()
       this.crearGrafico();
@@ -46,22 +45,23 @@ export class ReporteAbogadosCasosComponent implements OnInit  {
 
   crearGrafico() {
     const nombresAbogados= this.dataReport.map((item:any) => item.lawyer_name);
-    const casosCount = this.dataReport.map((item:any) => item.casocount);
+    const casosCount = this.dataReport.map((item:any) => item.sumaservicefee);
     const colores = this.generarColoresAleatorios(this.dataReport.length);
     if(casosCount.some((numero:any) => numero !== 0)){
       var data = {
         labels: nombresAbogados,
         datasets: [
           {
-            label: 'Casos',
+            label: 'Honorarios',
             data: casosCount,
             backgroundColor: colores,
+       
           }
         ]
       };
   
       this.myChart = new Chart("grafico", {
-        type: 'pie',
+        type: 'bar',
         data: data,
         options: {
           responsive: true,
@@ -71,10 +71,24 @@ export class ReporteAbogadosCasosComponent implements OnInit  {
             },
             title: {
               display: true,
-              text: 'Casos por abogados'
+              text: 'Honorarios por abogados'
+            }
+          },
+          scales: {
+            x: {
+              title: {
+                display: true,
+                text: 'Abogados'
+              }
+            },
+            y: {
+              title: {
+                display: true,
+                text: 'Honorarios'
+              }
             }
           }
-        },
+        }
       });
     }
     
@@ -125,7 +139,7 @@ export class ReporteAbogadosCasosComponent implements OnInit  {
       const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
   
       doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
-      doc.save(`ReporteAbogados${new Date().toISOString()}.pdf`);
+      doc.save(`ReporteHonorariosAbogados${new Date().toISOString()}.pdf`);
     } catch (error) {
       console.error('Error al crear el PDF:', error);
     }

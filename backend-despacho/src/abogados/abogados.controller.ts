@@ -48,10 +48,18 @@ export class AbogadosController {
   }
 
   @Get('reportAbogadoCasos')
-  getDatosConRangoFechas(
+  getCasosConRangoFechas(
     @Query('fechaInicio') fechaInicio?: string,
     @Query('fechaFin') fechaFin?: string,
   ){
     return this.abogadosService.reportAbogadosCasos(fechaInicio,fechaFin);
+  }
+
+  @Get('reportAbogadoHonorarios')
+  getHonorariosConRangoFechas(
+    @Query('fechaInicio') fechaInicio?: string,
+    @Query('fechaFin') fechaFin?: string,
+  ){
+    return this.abogadosService.reportAbogadosHonorarios(fechaInicio,fechaFin);
   }
 }

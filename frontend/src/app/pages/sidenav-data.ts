@@ -66,7 +66,8 @@ export const navbardData = [
     icon: 'monitoring',
     role: "ABOGADO",
     subItems: [
-      { label: 'Casos por abogado',link: '/dashboard/reporte/caso-abogado', role: "ABOGADO" },
+      { label: 'Casos por abogado',link: '/dashboard/reporte/caso-abogado', role: "ADMIN" },
+      { label: 'Reporte Honorarios',link: '/dashboard/reporte/honorario-abogado', role: "ADMIN" },
     ],
   }
 ];

@@ -107,4 +107,17 @@ export class AbogadosService {
     return resultado
   }
 
+  async reportAbogadosHonorarios(fechaInicio: string, fechaFin: string) {
+    const fin=new Date(fechaFin)
+    const inicio=new Date(fechaInicio)
+    const abogado = this.abogadoRepository.createQueryBuilder('lawyer')
+    .leftJoinAndSelect('lawyer.legal_case', 'legal_case')
+    .select(['lawyer.name', 'SUM(CASE WHEN legal_case.status = true AND legal_case.date_start BETWEEN :inicio AND :fin THEN legal_case.service_fee ELSE 0 END) AS sumaServiceFee'])
+    .groupBy('lawyer.name')
+    .setParameters({ inicio, fin });
+    
+    const resultado = await abogado.getRawMany();
+    return resultado
+  }
+
 }
