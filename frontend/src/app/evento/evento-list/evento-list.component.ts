@@ -65,9 +65,9 @@ export class EventoListComponent {
   listarEvento() {
     this.eventoService.mostrarEventoAbogado().subscribe((res) => {
       this.events = res.map((event) => {
-        event.date_start=addHours(parseISO(event.date_start), 5);
-        console.log(event.date_start)
-        event.date_end=addHours(parseISO(event.date_end), 5);
+        //event.date_start=addHours(parseISO(event.date_start), 5);
+        //console.log(event.date_start)
+        //event.date_end=addHours(parseISO(event.date_end), 5);
         return {
           title: event.name,
           start: new Date(event.date_start), // Ajusta según el formato de fecha en tu API
