@@ -11,10 +11,12 @@ export class ReporteService {
 
   constructor(private http: HttpClient) { }
 
-  mostrarCasosAbogados(fchInicio:Date,fchFin:Date) {
+  mostrarCasosAbogados(fchInicio:Date,fchFin:Date,q:any) {
     const params = new HttpParams()
     .set('fechaInicio', this.formatDate(fchInicio))
-    .set('fechaFin', this.formatDate(fchFin));
+    .set('fechaFin', this.formatDate(fchFin))
+    .set('q', q);
+    console.log(params)
     return this.http.get(`${this.URL}/abogado/reportAbogadoCasos`, {params});
   }
 

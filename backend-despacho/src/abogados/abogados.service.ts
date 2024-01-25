@@ -95,15 +95,20 @@ export class AbogadosService {
     });
   }
 
-  async reportAbogadosCasos(fechaInicio: string, fechaFin: string) {
+  async reportAbogadosCasos(fechaInicio: string, fechaFin: string,query: string) {
     const fin=new Date(fechaFin)
     const inicio=new Date(fechaInicio)
     const abogado = this.abogadoRepository.createQueryBuilder('lawyer')
     .leftJoinAndSelect('lawyer.legal_case', 'legal_case')
-    .select(['lawyer.name', 'COUNT(CASE WHEN legal_case.status = true AND legal_case.date_start BETWEEN :inicio AND :fin THEN 1 ELSE null END) AS casoCount'])
+
+    if (query) {
+      abogado.where('legal_case.status_case = :query',{query})
+    }
+
+    abogado.select(['lawyer.name', 'COUNT(CASE WHEN legal_case.status = true AND legal_case.date_start BETWEEN :inicio AND :fin THEN 1 ELSE null END) AS casoCount'])
     .groupBy('lawyer.name')
     .setParameters({ inicio, fin });
-    
+
     const resultado = await abogado.getRawMany();
     return resultado
   }

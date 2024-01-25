@@ -4,6 +4,7 @@ Chart.register(...registerables);
 import { jsPDF} from 'jspdf';
 import html2canvas from 'html2canvas';
 import { ReporteService } from '../reporte.service';
+import { EstadoCaso } from 'src/app/constants/status_case';
 
 @Component({
   selector: 'app-reporte-abogados-casos',
@@ -12,8 +13,10 @@ import { ReporteService } from '../reporte.service';
 })
 export class ReporteAbogadosCasosComponent implements OnInit  {
 
+  estadoCaso=Object.values(EstadoCaso);
   myChart: any;
   fechaInicio: string="";
+  q: string="";
   fechaFin: string="";
   dataReport:any =[];
   constructor( private reporteService: ReporteService,) {
@@ -27,8 +30,10 @@ export class ReporteAbogadosCasosComponent implements OnInit  {
   mostrarReporte() {
     const paramInicio= new Date(this.fechaInicio);
     const paramFin= new Date(this.fechaFin);
-    this.reporteService.mostrarCasosAbogados(paramInicio,paramFin).subscribe((res) => {
+    const paramQ= this.q;
+    this.reporteService.mostrarCasosAbogados(paramInicio,paramFin,paramQ).subscribe((res) => {
       this.dataReport = res;
+      console.log(res)
       this.borrarGrafico()
       this.crearGrafico();
     });
