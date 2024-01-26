@@ -1,5 +1,5 @@
 export const environment = {
-    rutaService:"http://164.92.112.31:3000/api",
-    rutaAuth:"http://164.92.112.31:3000/api/auth",
-    rutaStorage:"http://164.92.112.31:3000"
+    rutaService:"https://api.abogadosgutierrez.site/api",
+    rutaAuth:"https://api.abogadosgutierrez.site/api/auth",
+    rutaStorage:"https://api.abogadosgutierrez.site"
 };
