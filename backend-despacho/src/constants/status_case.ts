@@ -9,3 +9,8 @@ export enum EstadoCaso {
   Apelacion = 'Apelación',
   CierreDelCaso = 'Caso cerrado'
 }
+
+export enum EstadoCaso2 {
+  RevisionInicial = 'Revisión Inicial',
+
+}

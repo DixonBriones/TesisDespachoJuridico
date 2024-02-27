@@ -15,6 +15,8 @@ import { TipoEventoModule } from './tipo_evento/tipo_evento.module';
 import { TipoCasoModule } from './tipo_caso/tipo_caso.module';
 import { PagosModule } from './pagos/pagos.module';
 import { MulterModule } from '@nestjs/platform-express';
+import { JuecesModule } from './jueces/jueces.module';
+import { EnteJurisdiccionalModule } from './ente-jurisdiccional/ente-jurisdiccional.module';
 
 
 @Module({
@@ -51,7 +53,9 @@ import { MulterModule } from '@nestjs/platform-express';
     AuthModule,
     TipoEventoModule,
     TipoCasoModule,
-    PagosModule],
+    PagosModule,
+    JuecesModule,
+    EnteJurisdiccionalModule],
   controllers: [AppController],
   providers: [AppService],
 })

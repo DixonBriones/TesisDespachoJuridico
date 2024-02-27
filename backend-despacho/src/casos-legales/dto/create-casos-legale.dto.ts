@@ -22,6 +22,7 @@ export class CreateCasosLegaleDto {
   name_case: string;
 
   @IsString()
+  @IsOptional()
   process_number: string;
 
   @IsString()
@@ -47,4 +48,8 @@ export class CreateCasosLegaleDto {
 
   @IsString()
   lawyer: Abogado;
+
+  @IsString()
+  @IsOptional()
+  judge: string;
 }
